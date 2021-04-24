@@ -3,14 +3,14 @@
  */
 package com.ibm.loan.Exceptions;
 
-public class IvalidFormatException extends Exception {
+public class InvalidFormatException extends Exception {
 
-	public IvalidFormatException() {
+	public InvalidFormatException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public IvalidFormatException(String message) {
+	public InvalidFormatException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,4 +1,4 @@
-/**
+/*
  * @author satya
  */
 package com.ibm.loan.entity;
