@@ -1,5 +1,9 @@
 package com.ibm.loan.repo;
 
-public class CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ibm.loan.entity.Customer;
+
+public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 }

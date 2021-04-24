@@ -2,7 +2,7 @@
  * @author satya
  */
 
-package com.ibm.loan.Exceptions;
+package com.ibm.loan.exception;
 
 public class DocumentNotFoundException extends Exception {
 
