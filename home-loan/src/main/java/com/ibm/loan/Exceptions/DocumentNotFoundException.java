@@ -1,16 +1,17 @@
 /**
  * @author satya
  */
+
 package com.ibm.loan.Exceptions;
 
-public class InvalidFormatException extends Exception {
+public class DocumentNotFoundException extends Exception {
 
-	public InvalidFormatException() {
+	public DocumentNotFoundException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public InvalidFormatException(String message) {
+	public DocumentNotFoundException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
