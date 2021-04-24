@@ -1,5 +1,5 @@
-/**
- * @author satya
+/*
+  @author satya
  */
 package com.ibm.loan.repo;
 
