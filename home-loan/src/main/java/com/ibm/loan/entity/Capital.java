@@ -1,4 +1,6 @@
-
+/*
+   @author satya
+ */
 package com.ibm.loan.entity;
 
 import javax.persistence.Column;
