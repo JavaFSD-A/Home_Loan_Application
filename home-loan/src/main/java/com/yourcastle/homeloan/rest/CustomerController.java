@@ -1,4 +1,4 @@
-package com.ibm.loan.rest;
+package com.yourcastle.homeloan.rest;
 
 public class CustomerController {
 

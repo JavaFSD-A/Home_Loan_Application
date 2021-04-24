@@ -1,7 +1,7 @@
 /*
  * @author Vyshu
  */
-package com.ibm.loan.entity;
+package com.yourcastle.homeloan.entity;
 public class Loan {
 	private int loan_id;
 	private int loan_tenure;

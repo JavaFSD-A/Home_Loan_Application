@@ -1,4 +1,4 @@
-package com.ibm.loan;
+package com.yourcastle.homeloan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

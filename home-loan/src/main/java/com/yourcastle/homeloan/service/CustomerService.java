@@ -2,7 +2,7 @@
  * @author tarishi geetey
  */
 
-package com.ibm.loan.service;
+package com.yourcastle.homeloan.service;
 
 public interface CustomerService {
 

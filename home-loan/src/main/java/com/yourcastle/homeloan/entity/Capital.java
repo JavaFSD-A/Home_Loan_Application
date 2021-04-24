@@ -1,7 +1,7 @@
 /*
    @author satya
  */
-package com.ibm.loan.entity;
+package com.yourcastle.homeloan.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

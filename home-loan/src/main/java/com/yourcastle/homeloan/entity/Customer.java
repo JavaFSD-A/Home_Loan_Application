@@ -1,7 +1,7 @@
 /** 
  * @author tarishi geetey
  */
-package com.ibm.loan.entity;
+package com.yourcastle.homeloan.entity;
 
 public class Customer {
 

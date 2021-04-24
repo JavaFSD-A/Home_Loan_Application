@@ -1,4 +1,4 @@
-package com.ibm.loan.service;
+package com.yourcastle.homeloan.service;
 
 public interface AdminService {
 

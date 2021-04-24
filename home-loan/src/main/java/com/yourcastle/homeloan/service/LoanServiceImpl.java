@@ -1,7 +1,7 @@
 /*
  * @author Vyshu
  */
-package com.ibm.loan.service;
+package com.yourcastle.homeloan.service;
 
 public class LoanServiceImpl implements LoanService {
 

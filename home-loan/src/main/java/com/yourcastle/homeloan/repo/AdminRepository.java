@@ -1,4 +1,4 @@
-package com.ibm.loan.repo;
+package com.yourcastle.homeloan.repo;
 
 public class AdminRepository {
 
