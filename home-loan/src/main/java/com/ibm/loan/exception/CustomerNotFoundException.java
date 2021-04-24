@@ -1,7 +1,7 @@
 /**
  * @author satya
  */
-package com.ibm.loan.Exception;
+package com.ibm.loan.exception;
 
 public class CustomerNotFoundException extends Exception {
 
