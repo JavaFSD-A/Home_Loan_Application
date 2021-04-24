@@ -1,5 +1,7 @@
-
-package com.ibm.loan.Exceptions;
+/**
+ * @author satya
+ */
+package com.ibm.loan.exception;
 
 public class InvalidFormatException extends Exception {
 
