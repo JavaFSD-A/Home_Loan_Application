@@ -28,7 +28,7 @@ public class Customer {
 	private int pincode;
 	private int adhar_no;
 	
-	Loan cust_loan;
+	//Loan cust_loan;
 	Capital cust_capital;
 	//AuthDocument cust_auth_doc;
 	
