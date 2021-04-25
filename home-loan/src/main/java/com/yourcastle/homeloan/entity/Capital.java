@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Capital {
 	@Id
 	@GeneratedValue
-	private int property_id;
+	private int cap_id;
 	@Column(length = 20)
 	private String property_name;
 	@Column(length = 20)
@@ -27,17 +28,18 @@ public class Capital {
 	private double monthly_income;
 	
 	@JsonBackReference
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "cust_id")
 	private Customer customer;
 
-	public int getProperty_id() {
-		return property_id;
+	public int getCap_id() {
+		return cap_id;
 	}
 
-	public void setProperty_id(int property_id) {
-		this.property_id = property_id;
+	public void setCap_id(int cap_id) {
+		this.cap_id = cap_id;
 	}
+
 
 	public String getProperty_name() {
 		return property_name;
