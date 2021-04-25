@@ -14,10 +14,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -50,13 +52,13 @@ public class Customer {
 	
 	//@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	//private Loan cust_loan;
-  
+    
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<AuthDocument> cust_auth_document = new ArrayList<>();
+	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private AuthDocument cust_auth_document;
 	
 	public Customer() {
 	
@@ -65,7 +67,7 @@ public class Customer {
 	
 	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, int cust_phone_no,
 			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, int adhar_no,
-			Loan cust_loan, Capital cust_capital, List<AuthDocument> cust_auth_document) {
+			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
 		super();
 		this.cust_id = cust_id;
 		this.cust_name = cust_name;
@@ -190,14 +192,17 @@ public class Customer {
 	}
 
 
-	public List<AuthDocument> getCust_auth_document() {
+	public AuthDocument getCust_auth_document() {
 		return cust_auth_document;
 	}
 
 
-	public void setCust_auth_document(List<AuthDocument> cust_auth_document) {
+	public void setCust_auth_document(AuthDocument cust_auth_document) {
 		this.cust_auth_document = cust_auth_document;
 	}
+
+	
+
 
 	
 

@@ -13,6 +13,7 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
 import com.yourcastle.homeloan.repo.CapitalRepository;
@@ -50,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public int addAuthDocument(AuthDocument ad,  int cust_id) {
 		Customer cust = custrepo.findById(cust_id).get();
-		cust.getCust_auth_document().add(ad);
+		cust.setCust_auth_document(ad);
 		ad.setCustomer(cust);
 		authrepo.save(ad);
 		return ad.getAuth_id();
@@ -64,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException {
-		AuthDocument ad =  authrepo.findById(auth_id).orElseThrow(() -> new DocumentNotFoundException("Document Not Found: "+auth_id));
+		AuthDocument ad =  authrepo.findById(auth_id).orElseThrow(() -> new DocumentNotFoundException("Document Not Found: "+ auth_id));
 		return ad;
 	}
 
@@ -72,6 +73,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public int addCapital(Capital cap,  int cust_id) {
 		Customer customer=custrepo.findById(cust_id).get();
 		customer.setCust_capital(cap);
+		cap.setCustomer(customer);
 		caprepo.save(cap);
 		return cap.getCap_id();
 	
@@ -87,6 +89,12 @@ public class CustomerServiceImpl implements CustomerService{
 	public Capital getCapital(int capId) {
 		return caprepo.findById(capId).get();
 
+	}
+
+	@Override
+	public Customer getCustomer(int cust_id) throws CustomerNotFoundException {
+		Customer cust = custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("No Customer found with Id : " + cust_id ));
+		return cust;
 	}
 
 //	@Override
