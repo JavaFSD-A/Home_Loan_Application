@@ -50,7 +50,7 @@ public class CustomerController {
 	
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
 	public Capital getAllCapital(@PathVariable int capId) {
-		return service.getAllCapital(capId);
+		return service.getCapital(capId);
 	}
 	
 	
