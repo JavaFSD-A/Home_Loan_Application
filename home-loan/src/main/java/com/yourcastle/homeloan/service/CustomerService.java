@@ -21,7 +21,7 @@ public interface CustomerService {
 	AuthDocument getAllAuthDocument();
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
-	Capital getAllCapital(int capId);
+	Capital getCapital(int capId);
 	//int addLoan(Loan loan,  int cust_id);
 	
 	

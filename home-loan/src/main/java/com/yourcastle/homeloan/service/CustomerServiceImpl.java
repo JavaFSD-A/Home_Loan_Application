@@ -63,7 +63,10 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public int addCapital(Capital cap,  int cust_id) {
-		return cust_id;
+		Customer customer=custrepo.findById(cust_id).get();
+		customer.setCust_capital(cap);
+		caprepo.save(cap);
+		return cap.getCap_id();
 	
 	}
 
@@ -74,8 +77,8 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Capital getAllCapital(int capId) {
-		return null;
+	public Capital getCapital(int capId) {
+		return caprepo.findById(capId).get();
 
 	}
 
