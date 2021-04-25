@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey
+ * @author tarishi geetey, Anju
  */
 
 package com.yourcastle.homeloan.service;
@@ -13,6 +13,7 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
 import com.yourcastle.homeloan.repo.CapitalRepository;
 import com.yourcastle.homeloan.repo.CustomerRepository;
@@ -48,7 +49,12 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public int addAuthDocument(AuthDocument ad,  int cust_id) {
-		return cust_id;
+		Customer cust = custrepo.findById(cust_id).get();
+		cust.getCust_auth_document().add(ad);
+		ad.setCustomer(cust);
+		authrepo.save(ad);
+		return ad.getAuth_id();
+	
 	}
 
 	@Override
@@ -57,8 +63,9 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public AuthDocument getAllAuthDocument() {
-		return null;
+	public AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException {
+		AuthDocument ad =  authrepo.findById(auth_id).orElseThrow(() -> new DocumentNotFoundException("Document Not Found: "+auth_id));
+		return ad;
 	}
 
 	@Override
