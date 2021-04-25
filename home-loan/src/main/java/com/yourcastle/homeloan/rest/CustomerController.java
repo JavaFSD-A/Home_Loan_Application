@@ -44,7 +44,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value = "/getAuthDocument", produces = "application/json")
-	public Collection<AuthDocument> getAuthDocument() {
+	public AuthDocument getAuthDocument() {
 		return service.getAllAuthDocument();
 	}
 	

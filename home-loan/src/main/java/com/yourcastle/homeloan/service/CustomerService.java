@@ -18,7 +18,7 @@ public interface CustomerService {
 	boolean updateCustomer(Customer c);
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	boolean updateAuthDocument(AuthDocument ad);
-	Collection<AuthDocument> getAllAuthDocument();
+	AuthDocument getAllAuthDocument();
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
 	Capital getAllCapital(int capId);

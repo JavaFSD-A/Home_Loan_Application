@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -31,7 +32,7 @@ public class AuthDocument {
 	@Column(length = 50)
 	private String auth_income_certificate;
 	
-	@ManyToOne
+	@OneToOne
 	@JsonBackReference
 	@JoinColumn(name = "cust_id")
 	private Customer customer;

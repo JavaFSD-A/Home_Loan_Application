@@ -48,11 +48,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public int addAuthDocument(AuthDocument ad,  int cust_id) {
-		Customer cust = custrepo.findById(cust_id).get();
-	    cust.getCust_auth_document().add(ad);
-	    ad.setCustomer(cust);
-		authrepo.save(ad);
-		return ad.getAuth_id();
+		return cust_id;
 	}
 
 	@Override
@@ -61,16 +57,14 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public List<AuthDocument> getAllAuthDocument() {
-		return authrepo.findAll();
+	public AuthDocument getAllAuthDocument() {
+		return null;
 	}
 
 	@Override
 	public int addCapital(Capital cap,  int cust_id) {
-		Customer cust = custrepo.findById(cust_id).get();
-	    cust.setCust_capital(cap);
-		caprepo.save(cap);
-		return cap.getCap_id();
+		return cust_id;
+	
 	}
 
 	@Override
@@ -81,14 +75,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Capital getAllCapital(int capId) {
-		Capital cap = caprepo.findById(capId).get();
-		return cap;
+		return null;
+
 	}
 
 //	@Override
 //	public int addLoan(Loan loan) {
-//		loanrepo.save(loan);
-//		return loan.get;
+//		
 //	}
 
 	
