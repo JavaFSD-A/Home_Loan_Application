@@ -1,18 +1,25 @@
+/** 
+ * @author tarishi geetey, Anju
+ */
+
 package com.yourcastle.homeloan.rest;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
+import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
 
 
@@ -44,8 +51,14 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value = "/getAuthDocument", produces = "application/json")
-	public AuthDocument getAuthDocument() {
-		return service.getAllAuthDocument();
+	public AuthDocument getAuthDocument(@PathVariable("auth_id") int auth_id) {
+		AuthDocument ad = null;
+		try {
+			ad= service.getAllAuthDocument(auth_id);
+		} catch (DocumentNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+		return ad;
 	}
 	
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
