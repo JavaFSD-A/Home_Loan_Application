@@ -31,6 +31,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
+	
 	@PostMapping(value = "/addCustomer", consumes = "application/json")
 	public String addCustomer(@RequestBody Customer cust) {
 		int custId = service.addCustometer(cust);
