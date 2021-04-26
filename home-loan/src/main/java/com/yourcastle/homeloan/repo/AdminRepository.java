@@ -1,13 +1,15 @@
+/*
+   @author raj
+ */
 package com.yourcastle.homeloan.repo;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Loan;
 
-public interface AdminRepository {
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	
-	public List<Loan> getLoanDeatils();
-	public List<Loan> getLoan(boolean status);
-	public boolean UpdateStatus(int age_limit,int min_sal,int max_tenure);
-
 }
