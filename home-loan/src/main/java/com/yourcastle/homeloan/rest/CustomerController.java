@@ -21,7 +21,6 @@ import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
-import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
 
 
@@ -34,7 +33,7 @@ public class CustomerController {
 	
 	@PostMapping(value = "/addCustomer", consumes = "application/json")
 	public String addCustomer(@RequestBody Customer cust) {
-		int custId = service.addCustomer(cust);
+		int custId = service.addCustometer(cust);
 		return "New Customer added with Customer ID " + custId ;
 	}
 	
@@ -46,7 +45,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
-	public String addCapital(@RequestBody Capital cap, @PathVariable int custId){
+	public String addCapital(@RequestBody Capital cap, @PathVariable int custId) {
 		int capId = service.addCapital(cap, custId);
 		return "New Capital document added with Customer ID " + capId ;
 		
@@ -76,16 +75,8 @@ public class CustomerController {
 	
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
 	public Capital getAllCapital(@PathVariable("capId") int capId) {
-		Capital cap=null;
-		try {
-			cap=service.getCapital(capId);
-		}catch (CapitalNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
-		}
-		return cap;
+		return service.getCapital(capId);
 	}
-	
-	
 	
 	
 }

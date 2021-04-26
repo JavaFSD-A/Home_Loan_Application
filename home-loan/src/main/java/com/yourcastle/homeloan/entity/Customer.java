@@ -18,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -36,9 +35,8 @@ public class Customer {
 	private Date cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	//@UniqueConstraint
-	@Column(length = 10,unique =true)
-	private long cust_phone_no;
+	@Column(length = 10)
+	private int cust_phone_no;
 	@Column(length = 20)
 	private String cust_passwd;
 	@Column(length = 15)         // respecting gender fluidity
@@ -49,11 +47,11 @@ public class Customer {
 	private String city;
 	@Column(length = 6)
 	private int pincode;
-	@Column(length = 20)
-	private long adhar_no;
+	@Column(length = 12)
+	private int adhar_no;
 	
-	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Loan cust_loan;
+	//@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	//private Loan cust_loan;
     
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
@@ -66,8 +64,9 @@ public class Customer {
 	
 	}
 
-	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, long cust_phone_no,
-			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, long adhar_no,
+	
+	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, int cust_phone_no,
+			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, int adhar_no,
 			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
 		super();
 		this.cust_id = cust_id;
@@ -81,10 +80,11 @@ public class Customer {
 		this.city = city;
 		this.pincode = pincode;
 		this.adhar_no = adhar_no;
-		this.cust_loan = cust_loan;
+		//this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
 		this.cust_auth_document = cust_auth_document;
 	}
+
 
 	public int getCust_id() {
 		return cust_id;
@@ -118,11 +118,11 @@ public class Customer {
 		this.cust_email = cust_email;
 	}
 
-	public long getCust_phone_no() {
+	public int getCust_phone_no() {
 		return cust_phone_no;
 	}
 
-	public void setCust_phone_no(long cust_phone_no) {
+	public void setCust_phone_no(int cust_phone_no) {
 		this.cust_phone_no = cust_phone_no;
 	}
 
@@ -166,36 +166,48 @@ public class Customer {
 		this.pincode = pincode;
 	}
 
-	public long getAdhar_no() {
+	public int getAdhar_no() {
 		return adhar_no;
 	}
 
-	public void setAdhar_no(long adhar_no) {
+	public void setAdhar_no(int adhar_no) {
 		this.adhar_no = adhar_no;
 	}
 
-	public Loan getCust_loan() {
-		return cust_loan;
-	}
-
-	public void setCust_loan(Loan cust_loan) {
-		this.cust_loan = cust_loan;
-	}
-
+//	public Loan getCust_loan() {
+//		return cust_loan;
+//	}
+//
+//	public void setCust_loan(Loan cust_loan) {
+//		this.cust_loan = cust_loan;
+//	}
+	
 	public Capital getCust_capital() {
 		return cust_capital;
 	}
+
 
 	public void setCust_capital(Capital cust_capital) {
 		this.cust_capital = cust_capital;
 	}
 
+
 	public AuthDocument getCust_auth_document() {
 		return cust_auth_document;
 	}
 
+
 	public void setCust_auth_document(AuthDocument cust_auth_document) {
 		this.cust_auth_document = cust_auth_document;
 	}
-    
+
+	
+
+
+	
+
+	
+	
+	
+	
 }
