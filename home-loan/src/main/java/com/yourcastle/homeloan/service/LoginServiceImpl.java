@@ -1,5 +1,5 @@
 package com.yourcastle.homeloan.service;
 
-public class LoginServiceImpl implements LoanService{
+public class LoginServiceImpl implements LoginService{
 
 }
