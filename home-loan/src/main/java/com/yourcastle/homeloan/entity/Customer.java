@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "customers")
 public class Customer {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idseq")
 	@Column(name = "customer_id")
@@ -80,7 +81,7 @@ public class Customer {
 		this.city = city;
 		this.pincode = pincode;
 		this.adhar_no = adhar_no;
-		//this.cust_loan = cust_loan;
+		this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
 		this.cust_auth_document = cust_auth_document;
 	}
@@ -174,13 +175,13 @@ public class Customer {
 		this.adhar_no = adhar_no;
 	}
 
-//	public Loan getCust_loan() {
-//		return cust_loan;
-//	}
-//
-//	public void setCust_loan(Loan cust_loan) {
-//		this.cust_loan = cust_loan;
-//	}
+	public Loan getCust_loan() {
+		return cust_loan;
+	}
+
+	public void setCust_loan(Loan cust_loan) {
+		this.cust_loan = cust_loan;
+	}
 	
 	public Capital getCust_capital() {
 		return cust_capital;
