@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey, Anju,Satya
+ * @author tarishi geetey, Anju
  */
 
 package com.yourcastle.homeloan.service;
@@ -15,7 +15,6 @@ import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
-import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
 import com.yourcastle.homeloan.repo.CapitalRepository;
 import com.yourcastle.homeloan.repo.CustomerRepository;
@@ -38,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService{
     private LoanRepository loanrepo;
 
 	@Override
-	public int addCustomer(Customer c) {
+	public int addCustometer(Customer c) {
 		custrepo.save(c);
 		return c.getCust_id();
 	}
@@ -61,7 +60,6 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public boolean updateAuthDocument(AuthDocument ad) {
-		
 		return false;
 	}
 
@@ -77,29 +75,19 @@ public class CustomerServiceImpl implements CustomerService{
 		customer.setCust_capital(cap);
 		cap.setCustomer(customer);
 		caprepo.save(cap);
-		
 		return cap.getCap_id();
 	
 	}
 
 	@Override
 	public boolean updateCapital(Capital cap) {
-//		if(custrepo.findById(cap_id).isPresent()) {
-//			Capital cust=caprepo.findById(cap_id).get();
-//			//cust.setCust_capital(cap);
-//			//cap.setCap_id(cust);
-//			caprepo.save(cap);
-//			return cap.getCap_id();
-//		}
-//		else {
-//		return (Integer) null;
-//		}
+		
 		return false;
 	}
 
 	@Override
-	public Capital getCapital(int capId) throws CapitalNotFoundException {
-		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
+	public Capital getCapital(int capId) {
+		return caprepo.findById(capId).get();
 
 	}
 
