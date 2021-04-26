@@ -85,11 +85,11 @@ public class CustomerController {
 	}
 	
 	@PostMapping(value = "/check", consumes = "application/json")
-	public String checkEligblity(@RequestBody EligiblityCalculator e) {
+	public String checkEligiblity(@RequestBody EligiblityCalculator e) {
 		double elg = cservice.checkEligiblity(e);
 		if( e.isEligiblity() == true)
-			return "Eligblity : eligible \nMaximum loan value : " + elg;
+			return "Eligiblity : eligible \nMaximum loan value : " + elg;
 		else
-			return "Eligblity : Not eligible";
+			return "Eligiblity : Not eligible";
 	}
 }
