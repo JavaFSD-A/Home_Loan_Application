@@ -34,6 +34,7 @@ public class Admin {
 	private boolean admin_permission;
 	@JsonManagedReference
 	@OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="cust_id")
 	private List<Customer> cust_details=new ArrayList<Customer>();
 	
 	public Admin() {
