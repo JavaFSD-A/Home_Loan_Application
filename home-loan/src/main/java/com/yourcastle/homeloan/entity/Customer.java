@@ -56,7 +56,7 @@ public class Customer {
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
 	
-	@JsonManagedReference
+	@JsonManagedReference   // corrected
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private AuthDocument cust_auth_document;
 	

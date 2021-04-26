@@ -17,7 +17,7 @@ import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 public interface CustomerService {
 
 	int addCustometer(Customer c);
-	boolean updateCustomer(Customer c);
+	boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	boolean updateAuthDocument(AuthDocument ad);

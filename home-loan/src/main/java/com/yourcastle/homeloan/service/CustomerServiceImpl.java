@@ -43,13 +43,13 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public boolean updateCustomer(Customer c) {
-		// TODO Auto-generated method stub
+	public boolean updateCustomer(Customer c, int cust_id) {
+		//Customer cust = custrepo.findById(cust_id).get();
 		return false;
 	}
 
 	@Override
-	public int addAuthDocument(AuthDocument ad,  int cust_id) {
+	public int addAuthDocument(AuthDocument ad,  int cust_id) {  // change in code because I changed it is not map and oneTomany
 		Customer cust = custrepo.findById(cust_id).get();
 		cust.setCust_auth_document(ad);
 		ad.setCustomer(cust);
