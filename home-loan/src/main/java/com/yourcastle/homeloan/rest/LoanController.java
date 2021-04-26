@@ -1,3 +1,6 @@
+/*
+ * @author Vyshu
+ */
 package com.yourcastle.homeloan.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -5,10 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.service.LoanService;
 
+@RestController
+@RequestMapping("/loan")
 public class LoanController {
 	@Autowired
 	private LoanService service;
@@ -25,10 +32,10 @@ public class LoanController {
 //		return "Loan with id ;" +l+ "is removed";
 //		
 //	}
-	@GetMapping(value="/get{lo_id}", produces="application/json")
-	public String getLoan(@PathVariable ("lo_id") int lo_id) {
-		Loan loan_id = service.getLoan(lo_id);
-		return "Loan with Id : " +lo_id+ "is displayed";
+	@GetMapping(value="/get/{loanid}", produces="application/json")
+	public String getLoan(@PathVariable ("loanid") int loanid) {
+		service.getLoan(loanid);
+		return "Loan with Id : " +loanid+ "is displayed";
 	}
 
 }

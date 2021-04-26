@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,7 +29,8 @@ public class Loan {
 	private String loan_status;
 	private double loan_emi;
 	
-	@OneToOne(mappedBy="customer",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne
+	@JoinColumn(name="cust_id")
 	private Customer customer;
 
 	public int getLoan_id() {
