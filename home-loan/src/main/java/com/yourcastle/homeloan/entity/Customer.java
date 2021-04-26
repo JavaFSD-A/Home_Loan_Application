@@ -50,8 +50,8 @@ public class Customer {
 	@Column(length = 12)
 	private Long  adhar_no;
 	
-	//@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	//private Loan cust_loan;
+	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Loan cust_loan;
     
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
