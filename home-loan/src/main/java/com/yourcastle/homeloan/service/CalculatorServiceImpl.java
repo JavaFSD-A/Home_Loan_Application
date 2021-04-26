@@ -1,16 +1,14 @@
 package com.yourcastle.homeloan.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.yourcastle.homeloan.entity.EligiblityCalculator;
-import com.yourcastle.homeloan.repo.CalculatorRepository;
+import com.yourcastle.homeloan.entity.EmiCalculator;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
-  
-	@Autowired
-	private CalculatorRepository crepo;
+
 	
 	static final int MINAGE = 23;
 	static final int MAXAGE = 62;
@@ -18,13 +16,30 @@ public class CalculatorServiceImpl implements CalculatorService {
 	static final double MINSALARY = 25000;
 	
 	@Override
-	public Double checkEligiblity(EligiblityCalculator e) {
-		if(e.getAge() >= MINAGE && e.getAge() <= MAXAGE && e.getIncome_per_mth()>=MINSALARY && e.getTenure_yr() <= TENURE)
+	public Double checkEligiblity(EligiblityCalculator eligiblity) {
+		if(eligiblity.getAge() >= MINAGE && eligiblity.getAge() <= MAXAGE && eligiblity.getIncome_per_mth()>=MINSALARY && eligiblity.getTenure_yr() <= TENURE)
 			{
-			e.setEligiblity(true);
+			eligiblity.setEligiblity(true);
 			
 			}
-		return 50*(0.5 *(e.getIncome_per_mth()));
+		return 50*(0.5 *(eligiblity.getIncome_per_mth()));
+	}
+
+
+	@Override
+	public Double calculateFixedEmi(EmiCalculator emi) {
+		double principle = emi.getPrinciple_amt();
+		double rate = emi.getIntrest_rate();
+		int tenure = emi.getTenure();
+		int instalment = emi.getNum_instalment();
+		return (principle * tenure * rate)/instalment;
+	}
+
+	@Override
+	public Double calculateReducingEmi(EmiCalculator emi) {
+		double remaning_amt = emi.getRemaning_loan_amt();
+		double rate = emi.getIntrest_rate(); 
+		return remaning_amt * rate;
 	}
 
 }
