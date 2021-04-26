@@ -36,7 +36,7 @@ public class Customer {
 	@Column(length = 25)
 	private String cust_email;
 	@Column(length = 10)
-	private int cust_phone_no;
+	private Long cust_phone_no;
 	@Column(length = 20)
 	private String cust_passwd;
 	@Column(length = 15)         // respecting gender fluidity
@@ -65,7 +65,7 @@ public class Customer {
 	}
 
 	
-	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, int cust_phone_no,
+	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, Long cust_phone_no,
 			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, Long adhar_no,
 			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
 		super();
@@ -118,11 +118,11 @@ public class Customer {
 		this.cust_email = cust_email;
 	}
 
-	public int getCust_phone_no() {
+	public Long getCust_phone_no() {
 		return cust_phone_no;
 	}
 
-	public void setCust_phone_no(int cust_phone_no) {
+	public void setCust_phone_no(Long cust_phone_no) {
 		this.cust_phone_no = cust_phone_no;
 	}
 
