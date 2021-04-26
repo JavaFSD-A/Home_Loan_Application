@@ -19,8 +19,11 @@ import org.springframework.web.server.ResponseStatusException;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
+import com.yourcastle.homeloan.entity.EligiblityCalculator;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
+import com.yourcastle.homeloan.repo.CalculatorRepository;
+import com.yourcastle.homeloan.service.CalculatorService;
 import com.yourcastle.homeloan.service.CustomerService;
 
 
@@ -30,6 +33,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService service;
+	
+	@Autowired
+	private CalculatorService cservice;
 	
 	@PostMapping(value = "/addCustomer", consumes = "application/json")
 	public String addCustomer(@RequestBody Customer cust) {
@@ -78,5 +84,12 @@ public class CustomerController {
 		return service.getCapital(capId);
 	}
 	
-	
+	@PostMapping(value = "/check", consumes = "application/json")
+	public String checkEligblity(@RequestBody EligiblityCalculator e) {
+		double elg = cservice.checkEligiblity(e);
+		if( e.isEligiblity() == true)
+			return "Eligblity : eligible \nMaximum loan value : " + elg;
+		else
+			return "Eligblity : Not eligible";
+	}
 }

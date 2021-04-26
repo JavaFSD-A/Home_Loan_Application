@@ -48,7 +48,7 @@ public class Customer {
 	@Column(length = 6)
 	private int pincode;
 	@Column(length = 12)
-	private int adhar_no;
+	private Long  adhar_no;
 	
 	//@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	//private Loan cust_loan;
@@ -66,7 +66,7 @@ public class Customer {
 
 	
 	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, int cust_phone_no,
-			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, int adhar_no,
+			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, Long adhar_no,
 			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
 		super();
 		this.cust_id = cust_id;
@@ -166,11 +166,11 @@ public class Customer {
 		this.pincode = pincode;
 	}
 
-	public int getAdhar_no() {
+	public Long getAdhar_no() {
 		return adhar_no;
 	}
 
-	public void setAdhar_no(int adhar_no) {
+	public void setAdhar_no(Long adhar_no) {
 		this.adhar_no = adhar_no;
 	}
 
@@ -200,13 +200,6 @@ public class Customer {
 	public void setCust_auth_document(AuthDocument cust_auth_document) {
 		this.cust_auth_document = cust_auth_document;
 	}
-
-	
-
-
-	
-
-	
 	
 	
 	
