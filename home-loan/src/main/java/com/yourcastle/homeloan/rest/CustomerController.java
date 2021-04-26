@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
+import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
 
@@ -50,6 +51,17 @@ public class CustomerController {
 		
 	}
 	
+	@GetMapping(value = "/get/{cust_id}", produces = "application/json")
+	public Customer getCustomer(@PathVariable("cust_id") int cust_id) {
+		Customer cust = null;
+		try {
+			cust= service.getCustomer(cust_id);
+		} catch (CustomerNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+		return cust;
+	}
+	
 	@GetMapping(value = "/getAuthDocument", produces = "application/json")
 	public AuthDocument getAuthDocument(@PathVariable("auth_id") int auth_id) {
 		AuthDocument ad = null;
@@ -62,7 +74,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
-	public Capital getAllCapital(@PathVariable int capId) {
+	public Capital getAllCapital(@PathVariable("capId") int capId) {
 		return service.getCapital(capId);
 	}
 	

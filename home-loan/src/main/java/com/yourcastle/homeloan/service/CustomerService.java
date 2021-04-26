@@ -11,12 +11,14 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
 public interface CustomerService {
 
 	int addCustometer(Customer c);
-	boolean updateCustomer(Customer c);
+	boolean updateCustomer(Customer c, int cust_id);
+	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	boolean updateAuthDocument(AuthDocument ad);
 	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
