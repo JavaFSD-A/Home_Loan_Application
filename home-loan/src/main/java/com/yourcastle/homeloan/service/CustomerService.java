@@ -11,6 +11,7 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
@@ -24,7 +25,7 @@ public interface CustomerService {
 	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
-	Capital getCapital(int capId);
+	Capital getCapital(int capId) throws CapitalNotFoundException;
 	//int addLoan(Loan loan,  int cust_id);
 	
 	

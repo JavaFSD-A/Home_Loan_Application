@@ -13,6 +13,7 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
@@ -96,8 +97,8 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Capital getCapital(int capId) {
-		return caprepo.findById(capId).get();
+	public Capital getCapital(int capId) throws CapitalNotFoundException {
+		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
 
 	}
 

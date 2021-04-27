@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey, Anju
+ * @author tarishi geetey, Anju, Satya
  */
 
 package com.yourcastle.homeloan.rest;
@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
+import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
@@ -76,7 +77,13 @@ public class CustomerController {
 	
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
 	public Capital getAllCapital(@PathVariable("capId") int capId) {
-		return service.getCapital(capId);
+		Capital cap=null;
+		try {
+			cap=service.getCapital(capId);
+		}catch (CapitalNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
+		}
+		return cap;
 	}
 	
 	
