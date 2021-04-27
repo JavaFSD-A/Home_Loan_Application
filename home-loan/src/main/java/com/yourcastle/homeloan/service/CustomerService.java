@@ -11,13 +11,14 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
 public interface CustomerService {
 
 	int addCustometer(Customer c);
-	boolean updateCustomer(Customer c, int cust_id);
+	//boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	
 	int addAuthDocument(AuthDocument ad,  int cust_id);
@@ -26,10 +27,11 @@ public interface CustomerService {
 	
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
-	Capital getCapital(int capId);
+
+	Capital getCapital(int capId) throws CapitalNotFoundException;
 	
 	int addLoan(Loan loan,  int cust_id);
 	Loan getLoan(int loan_id);
-	
+
 	
 }
