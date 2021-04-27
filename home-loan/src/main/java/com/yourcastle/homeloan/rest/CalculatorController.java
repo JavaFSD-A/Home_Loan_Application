@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yourcastle.homeloan.entity.EligiblityCalculator;
-import com.yourcastle.homeloan.entity.EmiCalculator;
+import com.yourcastle.homeloan.bean.EligiblityCalculator;
+import com.yourcastle.homeloan.bean.EmiCalculator;
 import com.yourcastle.homeloan.service.CalculatorService;
 
 @RestController

@@ -1,7 +1,7 @@
 package com.yourcastle.homeloan.service;
 
-import com.yourcastle.homeloan.entity.EligiblityCalculator;
-import com.yourcastle.homeloan.entity.EmiCalculator;
+import com.yourcastle.homeloan.bean.EligiblityCalculator;
+import com.yourcastle.homeloan.bean.EmiCalculator;
 
 public interface CalculatorService {
 
