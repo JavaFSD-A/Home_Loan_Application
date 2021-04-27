@@ -10,5 +10,7 @@ import com.yourcastle.homeloan.entity.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
-	Customer findByPhoneNoAndPasswd(long phone_no, String passwd);
+	Customer findByPhoneNoAndPasswd(long phoneNo, String passwd);
+	Customer findByPhoneNo(long phoneNo);
+  
 }

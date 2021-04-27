@@ -4,7 +4,6 @@
 
 package com.yourcastle.homeloan.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.yourcastle.homeloan.bean.Login;
@@ -13,21 +12,22 @@ import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
+import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
 public interface CustomerService {
 
-	int addCustometer(Customer c);
+	int addCustomer(Customer c) throws CustomerAlreadyExists;
 	//boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	
 	int addAuthDocument(AuthDocument ad,  int cust_id);
-	boolean updateAuthDocument(AuthDocument ad);
+	//boolean updateAuthDocument(AuthDocument ad);
 	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
 	
 	int addCapital(Capital cap,  int cust_id);
-	boolean updateCapital(Capital cap);
+	//boolean updateCapital(Capital cap);
 	Capital getCapital(int capId) throws CapitalNotFoundException;
 	
 	int addLoan(Loan loan,  int cust_id);
@@ -35,6 +35,7 @@ public interface CustomerService {
 	
     Customer validate(Login login);
 	List<Customer> getAllCustomers();
+	Customer getByPhoneNo(long phoneNo);
 
 	
 }

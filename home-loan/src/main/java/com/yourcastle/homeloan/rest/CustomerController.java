@@ -4,7 +4,6 @@
 
 package com.yourcastle.homeloan.rest;
 
-import java.util.Collection;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +23,7 @@ import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
+import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
@@ -38,9 +38,14 @@ public class CustomerController {
 	
 	
 	@PostMapping(value = "/addCustomer", consumes = "application/json")
-	public String addCustomer(@RequestBody Customer cust) {
-		int custId = service.addCustometer(cust);
-		return "New Customer added with Customer ID " + custId ;
+	public ResponseEntity<?> addCustomer(@RequestBody Customer cust) {
+			int custId;
+			try {
+				custId = service.addCustomer(cust);
+			} catch (CustomerAlreadyExists e) {
+				throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,e.getMessage());
+			}
+			return new ResponseEntity<String>("New Customer added with Customer ID " + custId, HttpStatus.OK) ;			
 	}
 	
 	@PostMapping(value = "/addAuthDocument/{custId}", consumes = "application/json")
@@ -88,13 +93,13 @@ public class CustomerController {
 	
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
 	  public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session){
-		    Customer user = service.validate(login);
-		    if(user != null) {
-		    	session.setAttribute("CUSTOMER", user);
-			    return new ResponseEntity<Customer>(user, HttpStatus.OK);
+		    Customer customer = service.validate(login);
+		    if(customer != null) {
+		    	session.setAttribute("CUSTOMER", customer);
+			    return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 			}
 		    else
-		    	return new ResponseEntity<String>("Invalid", HttpStatus.NOT_FOUND);
+		    	return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
 		
 		}
 		

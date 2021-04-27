@@ -1,6 +1,5 @@
 package com.yourcastle.homeloan.bean;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
 public class EmiCalculator {

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
@@ -15,6 +16,7 @@ import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
+import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
@@ -37,31 +39,21 @@ public class CustomerServiceImpl implements CustomerService{
     
 	@Autowired
     private LoanRepository loanrepo;
+	
+	
 
 	@Override
-	public int addCustometer(Customer c) {
-		custrepo.save(c);
-		return c.getCust_id();
+	public int addCustomer(Customer c){
+		   
+		    
+			custrepo.save(c);
+		    return c.getCust_id();
+		
 	}
 
-	// Thinking about drawbacks of updating 
-//	@Override
-//	public boolean updateCustomer(Customer c, int cust_id) {
-//		Customer cust = custrepo.findById(cust_id).get();
-//		cust.setAdhar_no(c.getAdhar_no());
-//		cust.setCity(c.getCity());
-//		cust.setCust_address(c.getCust_address());
-//		cust.setCust_dob(c.getCust_dob());
-//		cust.setCust_email(c.getCust_email());
-//		cust.setCust_name(c.getCust_name());
-//		cust.setCust_passwd(c.getCust_passwd());
-//		cust.setPincode(c.getPincode());
-//		cust.setCust_phone_no(c.getCust_phone_no());
-//		return false;
-//	}
 
 	@Override
-	public int addAuthDocument(AuthDocument ad,  int cust_id) {  // change in code because I changed it is not map and oneTomany
+	public int addAuthDocument(AuthDocument ad,  int cust_id) {  
 		Customer cust = custrepo.findById(cust_id).get();
 		cust.setCust_auth_document(ad);
 		ad.setCustomer(cust);
@@ -70,10 +62,6 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	}
 
-	@Override
-	public boolean updateAuthDocument(AuthDocument ad) {
-		return false;
-	}
 
 	@Override
 	public AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException {
@@ -92,40 +80,32 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public boolean updateCapital(Capital cap) {
-		
-		return false;
-	}
-
-	@Override
 	public Customer getCustomer(int cust_id) throws CustomerNotFoundException {
 		Customer cust = custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("No Customer found with Id : " + cust_id ));
 		return cust;
 	}
-
-//	@Override
-//	public boolean updateCustomer(Customer c, int cust_id) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-
-	@Override
-	public int addLoan(Loan loan, int cust_id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Loan getLoan(int loan_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public Capital getCapital(int capId) throws CapitalNotFoundException {
 		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
 
 	}
+
+
+	@Override
+	public int addLoan(Loan loan, int cust_id) {
+		Customer customer = custrepo.findById(cust_id).get();
+		customer.setCust_loan(loan);
+		loan.setCustomer(customer);
+		loanrepo.save(loan);
+		return loan.getLoan_id();
+	}
+
+	@Override
+	public Loan getLoan(int loan_id) {
+		return loanrepo.findById(loan_id).get();
+	}
+
 
 	@Override
 	public Customer validate(Login login) {
@@ -134,8 +114,14 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
 		return custrepo.findAll();
+	}
+
+
+	@Override
+	public Customer getByPhoneNo(long phoneNo) {
+		// TODO Auto-generated method stub
+		return custrepo.findByPhoneNo(phoneNo);
 	}
 
 

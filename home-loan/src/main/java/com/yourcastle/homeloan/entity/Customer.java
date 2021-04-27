@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -36,7 +37,7 @@ public class Customer {
 	private Date cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	@Column(length = 10)
+	@Column(name = "phone_no", length = 10, unique = true)
 	private Long phoneNo;
 	@Column(length = 20)
 	private String passwd;
@@ -119,11 +120,11 @@ public class Customer {
 		this.cust_email = cust_email;
 	}
 
-	public Long getCust_phone_no() {
+	public Long getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setCust_phone_no(Long phoneNo) {
+	public void setPhoneNo(Long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
