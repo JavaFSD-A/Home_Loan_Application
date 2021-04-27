@@ -43,20 +43,20 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	// Thinking about drawbacks of updating 
-	@Override
-	public boolean updateCustomer(Customer c, int cust_id) {
-		Customer cust = custrepo.findById(cust_id).get();
-		cust.setAdhar_no(c.getAdhar_no());
-		cust.setCity(c.getCity());
-		cust.setCust_address(c.getCust_address());
-		cust.setCust_dob(c.getCust_dob());
-		cust.setCust_email(c.getCust_email());
-		cust.setCust_name(c.getCust_name());
-		cust.setCust_passwd(c.getCust_passwd());
-		cust.setPincode(c.getPincode());
-		cust.setCust_phone_no(c.getCust_phone_no());
-		return false;
-	}
+//	@Override
+//	public boolean updateCustomer(Customer c, int cust_id) {
+//		Customer cust = custrepo.findById(cust_id).get();
+//		cust.setAdhar_no(c.getAdhar_no());
+//		cust.setCity(c.getCity());
+//		cust.setCust_address(c.getCust_address());
+//		cust.setCust_dob(c.getCust_dob());
+//		cust.setCust_email(c.getCust_email());
+//		cust.setCust_name(c.getCust_name());
+//		cust.setCust_passwd(c.getCust_passwd());
+//		cust.setPincode(c.getPincode());
+//		cust.setCust_phone_no(c.getCust_phone_no());
+//		return false;
+//	}
 
 	@Override
 	public int addAuthDocument(AuthDocument ad,  int cust_id) {  // change in code because I changed it is not map and oneTomany
@@ -107,10 +107,24 @@ public class CustomerServiceImpl implements CustomerService{
 		return cust;
 	}
 
-//	@Override
-//	public int addLoan(Loan loan) {
-//		
-//	}
+	@Override
+	public boolean updateCustomer(Customer c, int cust_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int addLoan(Loan loan, int cust_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Loan getLoan(int loan_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 }

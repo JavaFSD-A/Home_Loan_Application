@@ -19,13 +19,17 @@ public interface CustomerService {
 	int addCustometer(Customer c);
 	boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
+	
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	boolean updateAuthDocument(AuthDocument ad);
 	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
+	
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
 	Capital getCapital(int capId);
-	//int addLoan(Loan loan,  int cust_id);
+	
+	int addLoan(Loan loan,  int cust_id);
+	Loan getLoan(int loan_id);
 	
 	
 }
