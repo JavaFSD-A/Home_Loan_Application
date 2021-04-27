@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Login;
+import com.yourcastle.homeloan.repo.AdminRepository;
 import com.yourcastle.homeloan.repo.CustomerRepository;
 import com.yourcastle.homeloan.repo.LoginRepository;
 
@@ -18,6 +19,9 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Autowired 
 	private CustomerRepository custrepo;
+	
+	@Autowired
+	private AdminRepository adminrepo;
 
 	@Override
 	public Login authenticationUser(Login login, String role) {

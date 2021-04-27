@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey, Anju
+ * @author tarishi geetey, Anju, Satya
  */
 
 package com.yourcastle.homeloan.service;
@@ -42,9 +42,19 @@ public class CustomerServiceImpl implements CustomerService{
 		return c.getCust_id();
 	}
 
+	// Thinking about drawbacks of updating 
 	@Override
 	public boolean updateCustomer(Customer c, int cust_id) {
-		//Customer cust = custrepo.findById(cust_id).get();
+		Customer cust = custrepo.findById(cust_id).get();
+		cust.setAdhar_no(c.getAdhar_no());
+		cust.setCity(c.getCity());
+		cust.setCust_address(c.getCust_address());
+		cust.setCust_dob(c.getCust_dob());
+		cust.setCust_email(c.getCust_email());
+		cust.setCust_name(c.getCust_name());
+		cust.setCust_passwd(c.getCust_passwd());
+		cust.setPincode(c.getPincode());
+		cust.setCust_phone_no(c.getCust_phone_no());
 		return false;
 	}
 

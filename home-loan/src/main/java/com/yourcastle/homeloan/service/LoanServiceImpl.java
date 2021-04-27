@@ -16,13 +16,16 @@ public class LoanServiceImpl implements LoanService {
 	@Autowired
 	private LoanRepository loanrepo;
 	
+	// -----  we did it wrong ----- need to add these in customer --- at particular customer id; //we dont need loan as a service!!
+	// sth wrong with the plan --- need to discuss
+	
 	@Override
 	public int addLoan(Loan l) {
 		loanrepo.save(l);
 		return l.getLoan_id();    //sounds better if it returns loan name
 	}
 
-//	@Override
+//	@Override //n
 //	public Loan removeLoan(int loan_id) {
 //		return loanrepo.deleteById(loan_id);
 //	                //returning null
