@@ -6,8 +6,11 @@ package com.yourcastle.homeloan.rest;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
@@ -81,6 +85,24 @@ public class CustomerController {
 		cap=service.getCapital(capId);
 		return cap;
 	}
+	
+	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
+	  public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session){
+		    Customer user = service.validate(login);
+		    if(user != null) {
+		    	session.setAttribute("CUSTOMER", user);
+			    return new ResponseEntity<Customer>(user, HttpStatus.OK);
+			}
+		    else
+		    	return new ResponseEntity<String>("Invalid", HttpStatus.NOT_FOUND);
+		
+		}
+		
+		@GetMapping("/logout")
+		public String logout(HttpSession session) {
+			session.invalidate(); //destroy session
+			return "Logout successfull";
+		}
 	
 	
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
@@ -124,6 +125,17 @@ public class CustomerServiceImpl implements CustomerService{
 	public Capital getCapital(int capId) throws CapitalNotFoundException {
 		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
 
+	}
+
+	@Override
+	public Customer validate(Login login) {
+		return custrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
+	}
+
+	@Override
+	public List<Customer> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return custrepo.findAll();
 	}
 
 

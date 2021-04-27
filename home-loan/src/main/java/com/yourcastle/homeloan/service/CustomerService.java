@@ -7,6 +7,7 @@ package com.yourcastle.homeloan.service;
 import java.util.Collection;
 import java.util.List;
 
+import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
@@ -27,11 +28,13 @@ public interface CustomerService {
 	
 	int addCapital(Capital cap,  int cust_id);
 	boolean updateCapital(Capital cap);
-
 	Capital getCapital(int capId) throws CapitalNotFoundException;
 	
 	int addLoan(Loan loan,  int cust_id);
 	Loan getLoan(int loan_id);
+	
+    Customer validate(Login login);
+	List<Customer> getAllCustomers();
 
 	
 }
