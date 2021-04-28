@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yourcastle.homeloan.bean.Login;
+import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.repo.AdminRepository;
@@ -49,6 +51,12 @@ public class AdminServiceImpl implements AdminService{
 	public boolean updatecustomerLoanStatus(int cust_id) {
 		
 		return false;
+	}
+
+	@Override
+	public Admin validate(Login login) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
