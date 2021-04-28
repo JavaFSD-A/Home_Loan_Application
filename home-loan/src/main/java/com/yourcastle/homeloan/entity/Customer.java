@@ -3,9 +3,8 @@
  */
 package com.yourcastle.homeloan.entity;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,13 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -37,7 +32,7 @@ public class Customer {
 	private Date cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	@Column(name = "phone_no", length = 10, unique = true)
+	@Column(name = "phone_no", length = 10)
 	private Long phoneNo;
 	@Column(length = 20)
 	private String passwd;
@@ -52,9 +47,11 @@ public class Customer {
 	@Column(length = 12)
 	private Long  adhar_no;
 	
+	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Loan cust_loan;
     
+	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
 	
@@ -128,11 +125,11 @@ public class Customer {
 		this.phoneNo = phoneNo;
 	}
 
-	public String getCust_passwd() {
+	public String getPasswd() {
 		return passwd;
 	}
 
-	public void setCust_passwd(String passwd) {
+	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
 

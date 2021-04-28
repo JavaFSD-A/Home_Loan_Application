@@ -39,12 +39,9 @@ public class CustomerServiceImpl implements CustomerService{
     
 	@Autowired
     private LoanRepository loanrepo;
-	
-	
 
 	@Override
 	public int addCustomer(Customer c){
-		   
 		    
 			custrepo.save(c);
 		    return c.getCust_id();
