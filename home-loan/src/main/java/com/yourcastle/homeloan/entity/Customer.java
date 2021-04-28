@@ -123,11 +123,11 @@ public class Customer {
 		this.phoneNo = phoneNo;
 	}
 
-	public String getCust_passwd() {
+	public String getPasswd() {
 		return passwd;
 	}
 
-	public void setCust_passwd(String passwd) {
+	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
 
