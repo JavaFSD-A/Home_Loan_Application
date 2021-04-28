@@ -1,13 +1,10 @@
-package com.yourcastle.homeloan.entity;
+package com.yourcastle.homeloan.bean;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class EmiCalculator {
 
-	@Id
-	private int emi_id;
+
 	private double intrest_rate;
 	private int tenure;
 	private double principle_amt;
@@ -19,32 +16,6 @@ public class EmiCalculator {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EmiCalculator(int emi_id, double intrest_rate, int tenure, double principle_amt, int num_instalment,
-			double emi_to_pay) {
-		super();
-		this.emi_id = emi_id;
-		this.intrest_rate = intrest_rate;
-		this.tenure = tenure;
-		this.principle_amt = principle_amt;
-		this.num_instalment = num_instalment;
-		this.emi_to_pay = emi_to_pay;
-	}
-
-	public EmiCalculator(int emi_id, double intrest_rate, double remaning_loan_amt, double emi_to_pay) {
-		super();
-		this.emi_id = emi_id;
-		this.intrest_rate = intrest_rate;
-		this.remaning_loan_amt = remaning_loan_amt;
-		this.emi_to_pay = emi_to_pay;
-	}
-
-	public int getEmi_id() {
-		return emi_id;
-	}
-
-	public void setEmi_id(int emi_id) {
-		this.emi_id = emi_id;
-	}
 
 	public double getIntrest_rate() {
 		return intrest_rate;

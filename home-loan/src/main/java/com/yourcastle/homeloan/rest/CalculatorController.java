@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yourcastle.homeloan.entity.EligiblityCalculator;
-import com.yourcastle.homeloan.entity.EmiCalculator;
+import com.yourcastle.homeloan.bean.EligiblityCalculator;
+import com.yourcastle.homeloan.bean.EmiCalculator;
 import com.yourcastle.homeloan.service.CalculatorService;
 
 @RestController
@@ -17,7 +17,7 @@ public class CalculatorController {
 	@Autowired
 	private CalculatorService service;
 	
-	@PostMapping(value = "/check", consumes = "application/json")
+	@PostMapping(value = "/eligiblityCheck", consumes = "application/json")
 	public String checkEligiblity(@RequestBody EligiblityCalculator e) {
 		double elg = service.checkEligiblity(e);
 		if( e.isEligiblity() == true)

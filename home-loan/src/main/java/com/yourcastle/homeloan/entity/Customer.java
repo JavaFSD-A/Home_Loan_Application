@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -36,10 +37,10 @@ public class Customer {
 	private Date cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	@Column(length = 10)
-	private Long cust_phone_no;
+	@Column(name = "phone_no", length = 10, unique = true)
+	private Long phoneNo;
 	@Column(length = 20)
-	private String cust_passwd;
+	private String passwd;
 	@Column(length = 15)         // respecting gender fluidity
 	private String cust_gender;
 	@Column(length = 40)
@@ -66,16 +67,16 @@ public class Customer {
 	}
 
 	
-	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, Long cust_phone_no,
-			String cust_passwd, String cust_gender, String cust_address, String city, int pincode, Long adhar_no,
+	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, Long phoneNo,
+			String passwd, String cust_gender, String cust_address, String city, int pincode, Long adhar_no,
 			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
 		super();
 		this.cust_id = cust_id;
 		this.cust_name = cust_name;
 		this.cust_dob = cust_dob;
 		this.cust_email = cust_email;
-		this.cust_phone_no = cust_phone_no;
-		this.cust_passwd = cust_passwd;
+		this.phoneNo = phoneNo;
+		this.passwd = passwd;
 		this.cust_gender = cust_gender;
 		this.cust_address = cust_address;
 		this.city = city;
@@ -119,20 +120,20 @@ public class Customer {
 		this.cust_email = cust_email;
 	}
 
-	public Long getCust_phone_no() {
-		return cust_phone_no;
+	public Long getPhoneNo() {
+		return phoneNo;
 	}
 
-	public void setCust_phone_no(Long cust_phone_no) {
-		this.cust_phone_no = cust_phone_no;
+	public void setPhoneNo(Long phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public String getCust_passwd() {
-		return cust_passwd;
+		return passwd;
 	}
 
-	public void setCust_passwd(String cust_passwd) {
-		this.cust_passwd = cust_passwd;
+	public void setCust_passwd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public String getCust_gender() {
