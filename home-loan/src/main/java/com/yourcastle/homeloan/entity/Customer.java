@@ -47,9 +47,11 @@ public class Customer {
 	@Column(length = 12)
 	private Long  adhar_no;
 	
+	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Loan cust_loan;
     
+	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
 	

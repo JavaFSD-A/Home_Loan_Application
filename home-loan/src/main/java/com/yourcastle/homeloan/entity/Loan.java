@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="loan")
 public class Loan {
@@ -28,6 +30,7 @@ public class Loan {
 	private double loan_emi;
 	
 	@OneToOne
+	@JsonBackReference
 	@JoinColumn(name="cust_id")
 	private Customer customer;
 

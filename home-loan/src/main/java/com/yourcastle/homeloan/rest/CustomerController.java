@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey, Anju, Satya
+ * @author tarishi geetey, Anju, Satya, Vyshu
  */
 
 package com.yourcastle.homeloan.rest;
@@ -123,7 +123,7 @@ public class CustomerController {
 	
 	///////////////////////////////// LOAN //////////////////////////////////////////////////////////
 
-	@PostMapping(value = "/addLoan{cust_id}", consumes = "application/json")
+	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json")
 	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
 		int loanId;
 		if (session.getAttribute("CUSTOMER") != null) {
@@ -133,7 +133,7 @@ public class CustomerController {
 		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/get/{loanid}", produces = "application/json")
+	@GetMapping(value = "/getLoan/{loanid}", produces = "application/json")
 	public ResponseEntity<?> getLoan(@PathVariable("loanid") int loanid, HttpSession session) {
 		if (session.getAttribute("CUSTOMER") != null)
 			return new ResponseEntity<Loan>(service.getLoan(loanid), HttpStatus.OK);
