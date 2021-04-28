@@ -32,7 +32,7 @@ public class Customer {
 	private Date cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	@Column(name = "phone_no", length = 10, unique = true)
+	@Column(name = "phone_no", length = 10)
 	private Long phoneNo;
 	@Column(length = 20)
 	private String passwd;
