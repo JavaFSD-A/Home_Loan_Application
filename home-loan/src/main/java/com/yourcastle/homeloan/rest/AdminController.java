@@ -51,6 +51,21 @@ public class AdminController {
 		return list;
 	}
 	
+	@PostMapping(value = "/updateStatus/{custId}")
+	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id){
+		boolean status;
+		try {
+			status = service.updatecustomerLoanStatus(cust_id);
+			if(status == true)
+				return new ResponseEntity<String>("Accepted", HttpStatus.OK);
+			return new ResponseEntity<String>("Rejected", HttpStatus.OK);
+		} catch (CustomerNotFoundException e) {
+			// TODO Auto-generated catch block
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+		
+	}
+	
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
 	  public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session){
 		    Admin admin = service.validate(login);

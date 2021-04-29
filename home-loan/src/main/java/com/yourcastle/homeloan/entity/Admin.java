@@ -27,26 +27,26 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idseq")
 	private int admin_id;
 	@Column(length = 30)
-	private String admin_name;
+	private String adminName;
 	@Column(length=15)
-	private String admin_password;
+	private String adminPassword;
 	@Column
 	private boolean admin_permission;
+	
 	@JsonManagedReference
-	@OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="cust_id")
+	@OneToMany(mappedBy ="admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Customer> cust_details=new ArrayList<Customer>();
 	
 	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(int admin_id, String admin_name, String admin_password, boolean admin_permission,
+	public Admin(int admin_id, String adminName, String adminPassword, boolean admin_permission,
 			List<Customer> customer) {
 		super();
 		this.admin_id = admin_id;
-		this.admin_name = admin_name;
-		this.admin_password = admin_password;
+		this.adminName = adminName;
+		this.adminPassword = adminPassword;
 		this.admin_permission = admin_permission;
 		this.cust_details = customer;
 	}
@@ -63,23 +63,36 @@ public class Admin {
 	public void setAdmin_id(int admin_id) {
 		this.admin_id = admin_id;
 	}
-	public String getAdmin_name() {
-		return admin_name;
-	}
-	public void setAdmin_name(String admin_name) {
-		this.admin_name = admin_name;
-	}
-	public String getAdmin_password() {
-		return admin_password;
-	}
-	public void setAdmin_password(String admin_password) {
-		this.admin_password = admin_password;
-	}
+	
 	public boolean isAdmin_permission() {
 		return admin_permission;
 	}
 	public void setAdmin_permission(boolean admin_permission) {
 		this.admin_permission = admin_permission;
+	}
+
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public String getAdminPassword() {
+		return adminPassword;
+	}
+
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
+	}
+
+	public List<Customer> getCust_details() {
+		return cust_details;
+	}
+
+	public void setCust_details(List<Customer> cust_details) {
+		this.cust_details = cust_details;
 	}
 	
 	

@@ -4,6 +4,7 @@
 package com.yourcastle.homeloan.entity;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,9 +14,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -29,7 +32,7 @@ public class Customer {
 	private int cust_id;
 	@Column(length =  30)
 	private String cust_name;
-	private Date cust_dob;
+	private LocalDate cust_dob;
 	@Column(length = 25)
 	private String cust_email;
 	@Column(name = "phone_no", length = 10)
@@ -59,14 +62,21 @@ public class Customer {
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private AuthDocument cust_auth_document;
 	
+	@JsonBackReference
+	@OneToOne
+	@JoinColumn(name = "admin_id")
+	private Admin admin;
+	
 	public Customer() {
 	
 	}
 
 	
-	public Customer(int cust_id, String cust_name, Date cust_dob, String cust_email, Long phoneNo,
-			String passwd, String cust_gender, String cust_address, String city, int pincode, Long adhar_no,
-			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document) {
+	
+
+	public Customer(int cust_id, String cust_name, LocalDate cust_dob, String cust_email, Long phoneNo, String passwd,
+			String cust_gender, String cust_address, String city, int pincode, Long adhar_no, Loan cust_loan,
+			Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
 		super();
 		this.cust_id = cust_id;
 		this.cust_name = cust_name;
@@ -82,7 +92,10 @@ public class Customer {
 		this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
 		this.cust_auth_document = cust_auth_document;
+		this.admin = admin;
 	}
+
+
 
 
 	public int getCust_id() {
@@ -101,11 +114,11 @@ public class Customer {
 		this.cust_name = cust_name;
 	}
 
-	public Date getCust_dob() {
+	public LocalDate getCust_dob() {
 		return cust_dob;
 	}
 
-	public void setCust_dob(Date cust_dob) {
+	public void setCust_dob(LocalDate cust_dob) {
 		this.cust_dob = cust_dob;
 	}
 
@@ -198,6 +211,18 @@ public class Customer {
 
 	public void setCust_auth_document(AuthDocument cust_auth_document) {
 		this.cust_auth_document = cust_auth_document;
+	}
+
+
+
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 	
 	
