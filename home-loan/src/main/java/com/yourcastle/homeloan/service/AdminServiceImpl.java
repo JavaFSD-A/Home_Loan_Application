@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public Admin validate(Login login) {
-		return null;
+		return adminrepo.findByAdminPassword(login.getLogin_passwd());
 	}
 
 	

@@ -12,5 +12,5 @@ import com.yourcastle.homeloan.entity.Loan;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	
-	Admin findByAdminNameAndAdminPassword(String adminName, String adminPassword);
+	Admin findByAdminPassword(String adminPassword);
 }

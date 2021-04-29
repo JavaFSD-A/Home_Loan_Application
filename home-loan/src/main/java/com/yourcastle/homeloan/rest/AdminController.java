@@ -52,14 +52,21 @@ public class AdminController {
 	}
 	
 	@PostMapping(value = "/updateStatus/{custId}")
-	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id){
+	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id, HttpSession session){
 		boolean status;
 		try {
+			if (session.getAttribute("ADMIN") != null) {
 			status = service.updatecustomerLoanStatus(cust_id);
-			if(status == true)
+			if(status == true) {
 				return new ResponseEntity<String>("Accepted", HttpStatus.OK);
+			}
+			else {
 			return new ResponseEntity<String>("Rejected", HttpStatus.OK);
-		} catch (CustomerNotFoundException e) {
+		}   
+			}
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+			
+			} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
