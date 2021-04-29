@@ -1,9 +1,8 @@
 /** 
- * @author tarishi geetey, Anju, Satya
+ * @author tarishi geetey, Anju, Satya, Vyshu
  */
 
 package com.yourcastle.homeloan.rest;
-
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,12 +22,12 @@ import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
+import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
-
 
 @RestController
 @RequestMapping("/customer")
@@ -36,78 +36,128 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
-	
+	/////////////////////////////////////// CUSTOMER //////////////////////////////////////////////////
+
 	@PostMapping(value = "/addCustomer", consumes = "application/json")
 	public ResponseEntity<?> addCustomer(@RequestBody Customer cust) {
-			int custId;
-			try {
-				custId = service.addCustomer(cust);
-			} catch (CustomerAlreadyExists e) {
-				throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,e.getMessage());
-			}
-			return new ResponseEntity<String>("New Customer added with Customer ID " + custId, HttpStatus.OK) ;			
+		int custId;
+		try {
+			custId = service.addCustomer(cust);
+			return new ResponseEntity<String>("New Customer added with Customer ID " + custId, HttpStatus.OK);
+		} catch (CustomerAlreadyExists e) {
+			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, e.getMessage());
+		}
 	}
+	
+	@GetMapping(value = "/get", produces = "application/json")
+	public ResponseEntity<?> getCustomer(@RequestParam(value = "cust_id") int cust_id, HttpSession session) {
+		Customer cust = null;
+			try {
+				if (session.getAttribute("CUSTOMER") != null) {
+				cust = service.getCustomer(cust_id);
+				return new ResponseEntity<Customer>(cust, HttpStatus.OK);
+			} 
+			return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+			}catch (CustomerNotFoundException e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+			}
+	}
+	
+	
+
+	///////////////////////////////////// AUTHDOCUMENT ////////////////////////////////////////////////////
 	
 	@PostMapping(value = "/addAuthDocument/{custId}", consumes = "application/json")
-	public String addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId) {
-		int authId = service.addAuthDocument(ath, custId);
-		return "New Document added with Customer ID " + authId ;
-		
-	}
-	
-	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
-	public String addCapital(@RequestBody Capital cap, @PathVariable int custId) {
-		int capId = service.addCapital(cap, custId);
-		return "New Capital document added with Customer ID " + capId ;
-		
-	}
-	
-	@GetMapping(value = "/get/{cust_id}", produces = "application/json")
-	public Customer getCustomer(@PathVariable("cust_id") int cust_id) {
-		Customer cust = null;
-		try {
-			cust= service.getCustomer(cust_id);
-		} catch (CustomerNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId,
+			HttpSession session) {
+		int authId;
+		if (session.getAttribute("CUSTOMER") != null) {
+			authId = service.addAuthDocument(ath, custId);
+			return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
 		}
-		return cust;
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+
 	}
 	
-	@GetMapping(value = "/getAuthDocument", produces = "application/json")
-	public AuthDocument getAuthDocument(@PathVariable("auth_id") int auth_id) {
+
+	@GetMapping(value = "/getAuthDocument/{auth_id}", produces = "application/json")
+	public ResponseEntity<?> getAuthDocument(@PathVariable("auth_id") int auth_id, HttpSession session) {
 		AuthDocument ad = null;
+
 		try {
-			ad= service.getAllAuthDocument(auth_id);
+			if (session.getAttribute("CUSTOMER") != null) {
+				ad = service.getAllAuthDocument(auth_id);
+				return new ResponseEntity<AuthDocument>(ad, HttpStatus.OK);
+			}
+			return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
 		} catch (DocumentNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
-		return ad;
 	}
 	
+	
+	///////////////////////////////////////// CAPITAL //////////////////////////////////////////////////////
+
+	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
+	public ResponseEntity<?> addCapital(@RequestBody Capital cap, @PathVariable int custId, HttpSession session) {
+		int capId;
+		if (session.getAttribute("CUSTOMER") != null) {
+			capId = service.addCapital(cap, custId);
+			return new ResponseEntity<String>("New Capital document added with Customer ID " + capId, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+
+	}
+
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
-	public Capital getAllCapital(@PathVariable("capId") int capId) throws CapitalNotFoundException {
-		Capital cap=null;
-		cap=service.getCapital(capId);
-		return cap;
+	public ResponseEntity<?> getAllCapital(@PathVariable("capId") int capId, HttpSession session)
+			throws CapitalNotFoundException {
+		Capital cap = null;
+		if (session.getAttribute("CUSTOMER") != null) {
+			cap = service.getCapital(capId);
+			return new ResponseEntity<Capital>(cap, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+
 	}
 	
+	///////////////////////////////// LOAN //////////////////////////////////////////////////////////
+
+	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json")
+	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
+		int loanId;
+		if (session.getAttribute("CUSTOMER") != null) {
+			loanId = service.addLoan(loan, cust_id);
+			return new ResponseEntity<>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/getLoan/{loanid}", produces = "application/json")
+	public ResponseEntity<?> getLoan(@PathVariable("loanid") int loanid, HttpSession session) {
+		if (session.getAttribute("CUSTOMER") != null)
+			return new ResponseEntity<Loan>(service.getLoan(loanid), HttpStatus.OK);
+
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+	}
+	
+	
+	////////////////////////////////// LOGIN/LOGOUT //////////////////////////////////////////////////////////
+
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
-	  public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session){
-		    Customer customer = service.validate(login);
-		    if(customer != null) {
-		    	session.setAttribute("CUSTOMER", customer);
-			    return new ResponseEntity<Customer>(customer, HttpStatus.OK);
-			}
-		    else
-		    	return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
-		
-		}
-		
-		@GetMapping("/logout")
-		public String logout(HttpSession session) {
-			session.invalidate(); //destroy session
-			return "Logout successfull";
-		}
-	
-	
+	public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session) {
+		Customer customer = service.validate(login);
+		if (customer != null) {
+			session.setAttribute("CUSTOMER", customer);
+			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+		} else
+			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "Logout successfull";
+	}
+
 }
