@@ -31,6 +31,12 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	@PostMapping(value = "/addAdmin", consumes = "application/json")
+	public String addAdmin(@RequestBody Admin admin) {
+		int aid = service.addAdmin(admin);
+		return "successfully added";
+	}
+	
 	@GetMapping(value = "/getCustomer/{cust_id}", produces = "application/json")
 	public Customer getCustomerbyId(@PathVariable("cust_id") int cust_id) 
 	{

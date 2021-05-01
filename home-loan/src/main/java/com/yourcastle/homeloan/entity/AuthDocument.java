@@ -25,7 +25,7 @@ public class AuthDocument {
 	@Id
 	@GeneratedValue
 	private int auth_id;
-	@Column(length = 50)
+	@Column(length = 50, unique = true)
 	private String auth_aadhar;
 	@Column(length = 50)
 	private String auth_pan;

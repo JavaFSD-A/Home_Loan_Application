@@ -20,7 +20,7 @@ public class Capital {
 	@Id
 	@GeneratedValue
 	private int cap_id;
-	@Column(length = 20)
+	@Column(length = 20, unique = true)
 	private String property_name;
 	@Column(length = 20)
 	private String location;

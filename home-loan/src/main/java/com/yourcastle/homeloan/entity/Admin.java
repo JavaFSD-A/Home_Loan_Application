@@ -26,9 +26,10 @@ public class Admin {
 	@Column
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idseq")
 	private int admin_id;
-	@Column(length = 30)
+	@Column(length = 30, unique = true)
 	private String adminName;
 	@Column(length=15)
+	private String email;
 	private String adminPassword;
 	@Column
 	private boolean admin_permission;
@@ -40,17 +41,7 @@ public class Admin {
 	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Admin(int admin_id, String adminName, String adminPassword, boolean admin_permission,
-			List<Customer> customer) {
-		super();
-		this.admin_id = admin_id;
-		this.adminName = adminName;
-		this.adminPassword = adminPassword;
-		this.admin_permission = admin_permission;
-		this.cust_details = customer;
-	}
-
+	
 	public List<Customer> getCustomer() {
 		return cust_details;
 	}
@@ -94,10 +85,17 @@ public class Admin {
 	public void setCust_details(List<Customer> cust_details) {
 		this.cust_details = cust_details;
 	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
 	
-	
-	
-	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 
 }

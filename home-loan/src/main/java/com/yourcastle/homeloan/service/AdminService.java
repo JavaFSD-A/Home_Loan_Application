@@ -19,5 +19,7 @@ public interface AdminService {
 	public boolean updatecustomerLoanStatus(int cust_id) throws CustomerNotFoundException;
 
 	public Admin validate(Login login);
-
+	
+	public int addAdmin(Admin admin);
+	
 }
