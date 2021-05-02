@@ -122,5 +122,16 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 
+	@Override
+	public boolean foreclousreRequest(int cust_id, int flag) {
+		Customer customer = custrepo.findById(cust_id).get();
+		if(flag == 1) {
+			customer.setForeclousre(flag);
+		    return true;
+		}
+		return false;
+	}
+
+
 	
 }

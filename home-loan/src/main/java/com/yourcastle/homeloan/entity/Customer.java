@@ -49,6 +49,7 @@ public class Customer {
 	private int pincode;
 	@Column(length = 12)
 	private Long  adhar_no;
+	private int foreclousre = 0;
 	
 	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -72,11 +73,10 @@ public class Customer {
 	}
 
 	
-	
 
 	public Customer(int cust_id, String cust_name, LocalDate cust_dob, String cust_email, Long phoneNo, String passwd,
-			String cust_gender, String cust_address, String city, int pincode, Long adhar_no, Loan cust_loan,
-			Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
+			String cust_gender, String cust_address, String city, int pincode, Long adhar_no, int foreclousre,
+			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
 		super();
 		this.cust_id = cust_id;
 		this.cust_name = cust_name;
@@ -89,12 +89,12 @@ public class Customer {
 		this.city = city;
 		this.pincode = pincode;
 		this.adhar_no = adhar_no;
+		this.foreclousre = foreclousre;
 		this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
 		this.cust_auth_document = cust_auth_document;
 		this.admin = admin;
 	}
-
 
 
 
@@ -223,6 +223,18 @@ public class Customer {
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+
+
+
+	public int getForeclousre() {
+		return foreclousre;
+	}
+
+
+
+	public void setForeclousre(int foreclousre) {
+		this.foreclousre = foreclousre;
 	}
 	
 	

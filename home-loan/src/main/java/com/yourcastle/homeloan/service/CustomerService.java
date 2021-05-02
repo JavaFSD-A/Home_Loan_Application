@@ -36,6 +36,8 @@ public interface CustomerService {
     Customer validate(Login login);
 	List<Customer> getAllCustomers();
 	Customer getByPhoneNo(long phoneNo);
+	
+	boolean foreclousreRequest(int cust_id, int flag) throws CustomerNotFoundException;
 
 	
 }

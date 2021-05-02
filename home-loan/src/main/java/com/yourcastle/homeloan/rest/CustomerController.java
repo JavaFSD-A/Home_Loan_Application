@@ -63,6 +63,19 @@ public class CustomerController {
 			}
 	}
 	
+	@PostMapping(value = "/applyForceclousre/{cust_id}")
+	public ResponseEntity<?> addCustomer(@PathVariable("cust_id") int cust_id,HttpSession session) {
+		try {
+			if (session.getAttribute("CUSTOMER") != null) {
+				service.foreclousreRequest(cust_id, 1);
+			return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
+		} 
+		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+		}catch (CustomerNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
 	
 
 	///////////////////////////////////// AUTHDOCUMENT ////////////////////////////////////////////////////

@@ -31,8 +31,6 @@ public class Admin {
 	@Column(length=15)
 	private String email;
 	private String adminPassword;
-	@Column
-	private boolean admin_permission;
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy ="admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -53,13 +51,6 @@ public class Admin {
 	}
 	public void setAdmin_id(int admin_id) {
 		this.admin_id = admin_id;
-	}
-	
-	public boolean isAdmin_permission() {
-		return admin_permission;
-	}
-	public void setAdmin_permission(boolean admin_permission) {
-		this.admin_permission = admin_permission;
 	}
 
 	public String getAdminName() {
