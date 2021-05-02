@@ -21,18 +21,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.yourcastle.homeloan.entity.Mail;
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.NotAppliedForLoan;
 import com.yourcastle.homeloan.service.AdminService;
+import com.yourcastle.homeloan.service.MailServiceImpl;
 
 @RestController
 public class AdminController {
 	
 	@Autowired
 	private AdminService service;
+	
+	@Autowired 
+	private MailServiceImpl mailservice;
 	
 	@PostMapping(value = "/addAdmin", consumes = "application/json")
 	public String addAdmin(@RequestBody Admin admin) {
@@ -65,13 +70,14 @@ public class AdminController {
 	//////////////////////////////// UPDATES AND PERMISSIONS /////////////////////////////////////////
 	
 	@PostMapping(value = "/updateStatus/{custId}")
-	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id, HttpSession session){
+	public ResponseEntity<?> updateLoanStatus(@RequestBody Mail mail, @PathVariable("custId") int cust_id, HttpSession session){
 		boolean status;
 		try {
 			if (session.getAttribute("ADMIN") != null) {
 			status = service.updatecustomerLoanStatus(cust_id);
 			if(status == true) {
 				service.acceptLoanRequest(cust_id);
+				mailservice.sendEmail(mail);
 				return new ResponseEntity<String>("Accepted", HttpStatus.OK);
 			}
 			else {
