@@ -72,8 +72,6 @@ public class Customer {
 	
 	}
 
-	
-
 	public Customer(int cust_id, String cust_name, LocalDate cust_dob, String cust_email, Long phoneNo, String passwd,
 			String cust_gender, String cust_address, String city, int pincode, Long adhar_no, int foreclousre,
 			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
