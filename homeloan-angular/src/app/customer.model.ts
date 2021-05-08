@@ -1,14 +1,15 @@
 export class CustomerModel{
-    custid : number;
-    name : string;
-    dob : Date;
-    email : string;
-    passwd : string;
-    phoneNo : number;
-    gender : string;
-    address : string;
+    cust_id : number;
+    custName : string;
+    cust_dob : Date;
+    cust_email : string;
+    phoneNo : string;
+    passwd : number;
+    cust_gender : string[];
+    cust_address : string;
     city : string;
     state : string;
     pincode : number;
     adharno : number; 
+    foreclousre : number;
 }

@@ -6,6 +6,7 @@ package com.yourcastle.homeloan.service;
 
 import java.util.List;
 
+
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
 import com.yourcastle.homeloan.entity.Capital;
@@ -34,8 +35,10 @@ public interface CustomerService {
 	Loan getLoan(int loan_id);
 	
     Customer validate(Login login);
+    
 	List<Customer> getAllCustomers();
-	Customer getByPhoneNo(long phoneNo);
+	
+	Customer getByPhoneNo(String phoneNo);
 	
 	boolean foreclousreRequest(int cust_id, int flag) throws CustomerNotFoundException;
 

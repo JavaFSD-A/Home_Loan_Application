@@ -1,6 +1,7 @@
 package com.yourcastle.homeloan.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import com.yourcastle.homeloan.bean.EligiblityCalculator;
 import com.yourcastle.homeloan.bean.EmiCalculator;
 import com.yourcastle.homeloan.service.CalculatorService;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {

@@ -4,6 +4,7 @@
 
 package com.yourcastle.homeloan.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,19 +106,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 	@Override
-	public Customer validate(Login login) {
-		return custrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
-	}
-
-	@Override
 	public List<Customer> getAllCustomers() {
 		return custrepo.findAll();
 	}
 
 
 	@Override
-	public Customer getByPhoneNo(long phoneNo) {
-		// TODO Auto-generated method stub
+	public Customer getByPhoneNo(String phoneNo) {
 		return custrepo.findByPhoneNo(phoneNo);
 	}
 
@@ -133,5 +128,28 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 
+	@Override
+	public Customer validate(Login login) {
+		// TODO Auto-generated method stub
+		return  custrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

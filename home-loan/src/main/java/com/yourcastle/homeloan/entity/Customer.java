@@ -31,18 +31,20 @@ public class Customer {
 	@Column(name = "customer_id")
 	private int cust_id;
 	@Column(length =  30)
-	private String cust_name;
+	private String custName;
 	private LocalDate cust_dob;
 	@Column(length = 25)
 	private String cust_email;
 	@Column(name = "phone_no", length = 10, unique = true)
-	private Long phoneNo;
+	private String phoneNo;
 	@Column(length = 20)
 	private String passwd;
 	@Column(length = 15)         // respecting gender fluidity
 	private String cust_gender;
 	@Column(length = 40)
 	private String cust_address;
+	@Column(length = 15)
+	private String state;
 	@Column(length = 15)
 	private String city;
 	@Column(length = 6)
@@ -72,18 +74,20 @@ public class Customer {
 	
 	}
 
-	public Customer(int cust_id, String cust_name, LocalDate cust_dob, String cust_email, Long phoneNo, String passwd,
-			String cust_gender, String cust_address, String city, int pincode, Long adhar_no, int foreclousre,
-			Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
+
+	public Customer(int cust_id, String custName, LocalDate cust_dob, String cust_email, String phoneNo, String passwd,
+			String cust_gender, String cust_address, String state, String city, int pincode, Long adhar_no,
+			int foreclousre, Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
 		super();
 		this.cust_id = cust_id;
-		this.cust_name = cust_name;
+		this.custName = custName;
 		this.cust_dob = cust_dob;
 		this.cust_email = cust_email;
 		this.phoneNo = phoneNo;
 		this.passwd = passwd;
 		this.cust_gender = cust_gender;
 		this.cust_address = cust_address;
+		this.state = state;
 		this.city = city;
 		this.pincode = pincode;
 		this.adhar_no = adhar_no;
@@ -96,6 +100,24 @@ public class Customer {
 
 
 
+
+
+	public String getState() {
+		return state;
+	}
+
+
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+
+
 	public int getCust_id() {
 		return cust_id;
 	}
@@ -104,12 +126,12 @@ public class Customer {
 		this.cust_id = cust_id;
 	}
 
-	public String getCust_name() {
-		return cust_name;
+	public String getCustName() {
+		return custName;
 	}
 
-	public void setCust_name(String cust_name) {
-		this.cust_name = cust_name;
+	public void setCustName(String custName) {
+		this.custName = custName;
 	}
 
 	public LocalDate getCust_dob() {
@@ -128,11 +150,11 @@ public class Customer {
 		this.cust_email = cust_email;
 	}
 
-	public Long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setPhoneNo(Long phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 

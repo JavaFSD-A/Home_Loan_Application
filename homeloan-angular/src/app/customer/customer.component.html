@@ -1,0 +1,164 @@
+<form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
+  <table class="table table-dark">
+    <tr>
+      <td>Name</td>
+      <td>
+        <input
+          [(ngModel)]="customer.custName"
+          name="custName"
+          required
+          #custName="ngModel"
+          placeholder="Enter Name"
+        />
+        <span *ngIf="custName.invalid" class="alert-danger">
+          Name is required
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Date of Birth</td>
+      <td>
+        <input
+          [(ngModel)]="customer.cust_dob"
+          name="cust_dob"
+          required
+          #cust_dob="ngModel"
+          placeholder="Enter DoB"
+        />
+        <span *ngIf="cust_dob.invalid" class="alert-danger"> DoB is required </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td>
+        <select
+          [(ngModel)]="customer.cust_gender"
+          name="cust_gender"
+          #cust_gender="ngModel"
+        >
+          <option *ngFor="let g of cust_gender" [value]="g">{{g}}</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Phone Number</td>
+      <td>
+        <input
+          [(ngModel)]="customer.phoneNo"
+          name="phoneNo"
+          #phoneNo="ngModel"
+          required
+          placeholder="Enter Phone No. "
+        />
+        <span *ngIf="phoneNo.invalid" class="alert-danger">
+          Phone No. is required
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+        <input
+          [(ngModel)]="customer.cust_address"
+          name="cust_address"
+          required
+          #cust_address="ngModel"
+          placeholder="Enter Address"
+        />
+        <span *ngIf="cust_address.invalid" class="alert-danger">
+          Address is required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>City</td>
+      <td>
+        <input
+          [(ngModel)]="customer.city"
+          name="city"
+          required
+          #city="ngModel"
+          placeholder="Enter City"
+        />
+        <span *ngIf="city.invalid" class="alert-danger">
+          City is required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>State</td>
+      <td>
+        <input
+          [(ngModel)]="customer.state"
+          name="state"
+          required
+          #state="ngModel"
+          placeholder="Enter State"
+        />
+        <span *ngIf="state.invalid" class="alert-danger">
+          State is required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Pincode</td>
+      <td>
+        <input
+          [(ngModel)]="customer.pincode"
+          name="pincode"
+          required
+          #pincode="ngModel"
+          placeholder="Enter Address"
+        />
+        <span *ngIf="pincode.invalid" class="alert-danger">
+          Pincode is required
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>
+        <input
+          [(ngModel)]="customer.cust_email"
+          name="cust_email"
+          #cust_email="ngModel"
+          required
+          placeholder="Enter email id"
+        />
+        <span *ngIf="cust_email.invalid" class="alert-danger">
+          email is required
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td>
+        <input
+          [(ngModel)]="customer.passwd"
+          name="passwd"
+          #passwd="ngModel"
+          required
+          placeholder="Enter password "
+        />
+        <span *ngIf="passwd.invalid" class="alert-danger">
+          Password is required
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!addfrm.valid"
+        >
+          Save User
+        </button>
+      </th>
+    </tr>
+  </table>
+</form>
