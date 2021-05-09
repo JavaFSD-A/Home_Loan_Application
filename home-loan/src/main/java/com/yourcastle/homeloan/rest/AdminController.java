@@ -31,7 +31,7 @@ import com.yourcastle.homeloan.exception.NotAppliedForLoan;
 import com.yourcastle.homeloan.service.AdminService;
 import com.yourcastle.homeloan.service.MailServiceImpl;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 public class AdminController {
 	

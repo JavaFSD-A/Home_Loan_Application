@@ -30,7 +30,7 @@ import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -50,16 +50,13 @@ public class CustomerController {
 			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, e.getMessage());
 		}
 	}
-	
-	@GetMapping(value = "/get", produces = "application/json")
-	public ResponseEntity<?> getCustomer(@RequestParam(value = "cust_id") int cust_id, HttpSession session) {
+
+	@GetMapping(value = "/get/{cust_id}", produces = "application/json")
+	public ResponseEntity<?> getCustomer(@PathVariable(value = "cust_id") int cust_id, HttpSession session) {
 		Customer cust = null;
 			try {
-				if (session.getAttribute("CUSTOMER") != null) {
 				cust = service.getCustomer(cust_id);
 				return new ResponseEntity<Customer>(cust, HttpStatus.OK);
-			} 
-			return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
 			}catch (CustomerNotFoundException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 			}
@@ -68,11 +65,9 @@ public class CustomerController {
 	@PostMapping(value = "/applyForceclousre/{cust_id}")
 	public ResponseEntity<?> addCustomer(@PathVariable("cust_id") int cust_id,HttpSession session) {
 		try {
-			if (session.getAttribute("CUSTOMER") != null) {
+			
 				service.foreclousreRequest(cust_id, 1);
 			return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
-		} 
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
 		}catch (CustomerNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
@@ -86,12 +81,10 @@ public class CustomerController {
 	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId,
 			HttpSession session) {
 		int authId;
-		if (session.getAttribute("CUSTOMER") != null) {
+	
 			authId = service.addAuthDocument(ath, custId);
 			return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
-
+		
 	}
 	
 
@@ -100,11 +93,9 @@ public class CustomerController {
 		AuthDocument ad = null;
 
 		try {
-			if (session.getAttribute("CUSTOMER") != null) {
 				ad = service.getAllAuthDocument(auth_id);
 				return new ResponseEntity<AuthDocument>(ad, HttpStatus.OK);
-			}
-			return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+			
 		} catch (DocumentNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
@@ -116,24 +107,17 @@ public class CustomerController {
 	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
 	public ResponseEntity<?> addCapital(@RequestBody Capital cap, @PathVariable int custId, HttpSession session) {
 		int capId;
-		if (session.getAttribute("CUSTOMER") != null) {
 			capId = service.addCapital(cap, custId);
 			return new ResponseEntity<String>("New Capital document added with Customer ID " + capId, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
-
 	}
 
 	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
 	public ResponseEntity<?> getAllCapital(@PathVariable("capId") int capId, HttpSession session)
 			throws CapitalNotFoundException {
 		Capital cap = null;
-		if (session.getAttribute("CUSTOMER") != null) {
 			cap = service.getCapital(capId);
 			return new ResponseEntity<Capital>(cap, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
-
+		
 	}
 	
 	///////////////////////////////// LOAN //////////////////////////////////////////////////////////
@@ -141,20 +125,15 @@ public class CustomerController {
 	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json")
 	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
 		int loanId;
-		if (session.getAttribute("CUSTOMER") != null) {
 			loanId = service.addLoan(loan, cust_id);
 			return new ResponseEntity<>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
+		
 	}
 
 	@GetMapping(value = "/getLoan/{loanid}", produces = "application/json")
 	public ResponseEntity<?> getLoan(@PathVariable("loanid") int loanid, HttpSession session) {
-		if (session.getAttribute("CUSTOMER") != null)
 			return new ResponseEntity<Loan>(service.getLoan(loanid), HttpStatus.OK);
-
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
-	}
+			}
 	
 	
 	////////////////////////////////// LOGIN/LOGOUT //////////////////////////////////////////////////////////
@@ -163,7 +142,9 @@ public class CustomerController {
 	public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session) {
 		Customer customer = service.validate(login);
 		if (customer != null) {
+			//System.out.println("ok");
 			session.setAttribute("CUSTOMER", customer);
+			System.out.println(session.getAttribute("CUSTOMER"));
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
