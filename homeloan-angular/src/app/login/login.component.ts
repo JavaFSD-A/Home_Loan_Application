@@ -13,7 +13,6 @@ import { CustomerService } from '../services/customer.service';
 export class LoginComponent implements OnInit {
 
   auth : LoginModel;
-
   constructor(private service : CustomerService, private router : Router) {
     this.auth = new LoginModel();
    }
@@ -29,10 +28,13 @@ export class LoginComponent implements OnInit {
        customer = result;
   
     if(customer != null){
+      console.log("Logged in");
        localStorage.setItem("customer", JSON.stringify(customer));
        this.router.navigate(['customerlist']);
-     }else
+      }else{
      alert("Login Failed");
+      }
     });
   }
+
 }
