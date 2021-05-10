@@ -5,7 +5,7 @@ export class CustomerModel{
     cust_email : string;
     phoneNo : string;
     passwd : number;
-    cust_gender : string[];
+    cust_gender : string;
     cust_address : string;
     city : string;
     state : string;

@@ -1,0 +1,87 @@
+<form (ngSubmit)="addCapital()" #addfrm="ngForm">
+  <table class="table table-dark">
+    <tr>
+      <td>PropertyName</td>
+    </tr>
+    <td>
+      <input
+        name="property_name"
+        #property_name="ngModel"
+        [(ngModel)]="capital.property_name"
+        required
+        class="form-control"
+      />
+      <span
+        *ngIf="property_name.dirty && property_name.invalid"
+        class="alert alert-danger"
+        >Property Name is empty</span
+      >
+    </td>
+    <tr>
+      <td>Property Value</td>
+    </tr>
+    <td>
+      <input
+        name="property_value"
+        #property_value="ngModel"
+        [(ngModel)]="capital.property_value"
+        required
+        class="form-control"
+      />
+
+      <span
+        *ngIf="property_value.dirty && property_value.invalid"
+        class="alert alert-danger"
+        >Property Value is required</span
+      >
+    </td>
+
+    <tr>
+      <td>Location</td>
+    </tr>
+    <td>
+      <input
+        name="location"
+        #location="ngModel"
+        [(ngModel)]="capital.location"
+        required
+        class="form-control"
+      />
+      <span
+        *ngIf="location.dirty && location.invalid"
+        class="alert alert-danger"
+        >Location is required</span
+      >
+    </td>
+    <tr>
+      <td>Monthly_income</td>
+    </tr>
+    <td>
+      <input
+        name="monthly_income"
+        #monthly_income="ngModel"
+        [(ngModel)]="capital.monthly_income"
+        required
+        class="form-control"
+      />
+
+      <span
+        *ngIf="monthly_income.dirty && monthly_income.invalid"
+        class="alert alert-danger"
+        >Income is required</span
+      >
+    </td>
+
+    <tr>
+      <th colspan="2">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!addfrm.valid"
+        >
+          Submit
+        </button>
+      </th>
+    </tr>
+  </table>
+</form>

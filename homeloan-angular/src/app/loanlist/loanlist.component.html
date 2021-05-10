@@ -1,0 +1,41 @@
+<button class="btn btn-success" (click)="getLoanById()">Loan Deatails</button>
+<br /><br />
+<div [hidden]="!found">
+  <table class="table table-dark">
+    <tr>
+      <td>Loan Id</td>
+      <td>{{ loan.loan_id }}</td>
+    </tr>
+    <tr>
+      <td>Loan Name</td>
+      <td>{{ loan.loan_name }}</td>
+    </tr>
+
+    <tr>
+        <td>Loan Principal</td>
+        <td>{{ loan.loan_principal }}</td>
+      </tr>
+
+      <tr>
+        <td>Loan Intrest Rate</td>
+        <td>{{ loan.loan_interest_rate }}</td>
+      </tr>
+
+      <tr>
+        <td>Loan tenure</td>
+        <td>{{ loan.loan_tenure }}</td>
+      </tr>
+
+      <tr>
+        <td>Loan Status</td>
+        <td>{{ loan.loan_status }}</td>
+      </tr>
+
+      <tr>
+        <td>Calculated EMI</td>
+        <td>{{ loan.loan_emi }}</td>
+      </tr>
+
+      
+  </table>
+</div>

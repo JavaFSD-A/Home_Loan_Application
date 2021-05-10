@@ -16,8 +16,6 @@ public class EligiblityCalculator {
 	}
 	
 
-
-
 	public int getAge() {
 		return age;
 	}

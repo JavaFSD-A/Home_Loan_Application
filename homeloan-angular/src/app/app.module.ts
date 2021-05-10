@@ -8,12 +8,22 @@ import { FormsModule } from '@angular/forms';
 import { CustomerComponent } from './customer/customer.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { LoanComponent } from './loan/loan.component';
+import { LoanlistComponent } from './loanlist/loanlist.component';
+import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.component';
+import { CapitallistComponent } from './capitallist/capitallist.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     LoginComponent,
-    CustomerlistComponent
+    CustomerlistComponent,
+    LoanComponent,
+    LoanlistComponent,
+    CapitaldetailsComponent,
+    CapitallistComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,

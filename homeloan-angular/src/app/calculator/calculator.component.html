@@ -1,0 +1,82 @@
+<!-- <form #addfrm="ngForm">
+    <table class="table table-dark">
+      <tr>
+        <td>Age</td>
+        <td>
+          <input
+            [(ngModel)]="calculator.age"
+            name="age"
+            required
+            #age="ngModel"
+            placeholder="Enter Age"
+          />
+          <span *ngIf="age.invalid" class="alert-danger">
+            Age is required
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Tenure</td>
+        <td>
+          <input
+            [(ngModel)]="calculator.tenure_yr"
+            name="tenure_yr"
+            required
+            #tenure_yr="ngModel"
+            placeholder="Enter tenure"
+          />
+          <span *ngIf="tenure_yr.invalid" class="alert-danger"> DoB is required </span>
+        </td>
+      </tr>
+  
+      <tr>
+        <td>Monthly Income</td>
+        <td>
+          <input
+            [(ngModel)]="calculator.income_per_mth"
+            name="income_per_mth"
+            #income_per_mth="ngModel"
+            required
+            placeholder="Enter maonthly Income"
+          />
+          <span *ngIf="income_per_mth.invalid" class="alert-danger">
+            Phone No. is required
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>ROI</td>
+        <td>
+          <input
+            [(ngModel)]="calculator.roi"
+            name="roi"
+            required
+            #roi="ngModel"
+            placeholder="Enter ROI"
+          />
+          <span *ngIf="roi.invalid" class="alert-danger">
+            Address is required
+          </span>
+        </td>
+      </tr>
+
+      <tr>
+          <td>Eligiblity</td>
+          <td>{{calculator.eligiblity}}</td>
+      </tr>
+
+      <tr>
+        <th colspan="2">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!addfrm.valid"
+            onclick="eligiblity()"
+          >
+          Check
+          </button>
+        </th>
+      </tr>
+    </table>
+  </form>
+   -->

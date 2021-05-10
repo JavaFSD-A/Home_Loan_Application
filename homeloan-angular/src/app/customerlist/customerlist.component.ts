@@ -1,36 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../customer.model';
+import { LoanModel } from '../loan.model';
 import { CustomerService } from '../services/customer.service';
+
 
 @Component({
   selector: 'app-customerlist',
   templateUrl: './customerlist.component.html',
-  styleUrls: ['./customerlist.component.css']
+  styleUrls: ['./customerlist.component.css'],
 })
 export class CustomerlistComponent implements OnInit {
+  customer_id: number;
+  customer: CustomerModel;
+  found: boolean;
+  loan : LoanModel;
 
-  customer_id : number;
-  customer : CustomerModel;
-  found : boolean;
-
-  constructor(private service : CustomerService, private route : Router) { 
-
-  }
+  constructor(
+    private service: CustomerService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem("customer") == null){
+    if (localStorage.getItem('customer') == null) {
       this.route.navigate(['login']);
-
     }
   }
 
-  getCustomerById(){
-    this.service.customerById().then((list : CustomerModel) =>{
+  getCustomerById() {
+    this.service.customerById().then((list: CustomerModel) => {
       this.customer = list;
       this.found = true;
       console.log(this.customer);
     });
+  }
+
+  foreclouser() {
+    this.service.requestForeclouser();
+    this.route.navigate(['customerlist']);
   }
 
 }

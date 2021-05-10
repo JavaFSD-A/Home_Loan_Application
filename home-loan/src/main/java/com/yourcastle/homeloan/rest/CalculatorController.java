@@ -19,7 +19,7 @@ public class CalculatorController {
 	@Autowired
 	private CalculatorService service;
 	
-	@PostMapping(value = "/eligiblityCheck", consumes = "application/json")
+	@PostMapping(value = "/eligiblityCheck", consumes = "application/json", produces = "application/json")
 	public String checkEligiblity(@RequestBody EligiblityCalculator e) {
 		double elg = service.checkEligiblity(e);
 		if( e.isEligiblity() == true)

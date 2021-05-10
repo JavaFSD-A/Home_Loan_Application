@@ -1,9 +1,12 @@
 <button class="btn btn-success" (click)="getCustomerById()">
   Personal Details
 </button>
+<a class="nav-item nav-link" [routerLink]="['loanlist']">Loan</a>
 <button class="btn btn-success">Capital Details</button>
-<button class="btn btn-success">Loan Deatails</button>
 <button class="btn btn-success">Documents</button>
+<button class="btn btn-success" (click)="foreclouser()">
+    Apply foreclouser
+  </button>
 <br /><br /><br />
 
 <div [hidden]="!found">
@@ -55,5 +58,12 @@
       <td>Pincode</td>
       <td>{{ customer.pincode }}</td>
     </tr>
+    <tr>
+      <td>
+        Foreclouser Status
+      </td>
+      <td>{{ customer.foreclousre }}</td>
+    </tr>
   </table>
 </div>
+

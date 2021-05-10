@@ -32,7 +32,8 @@ public interface CustomerService {
 	Capital getCapital(int capId) throws CapitalNotFoundException;
 	
 	int addLoan(Loan loan,  int cust_id);
-	Loan getLoan(int loan_id);
+	
+	Loan getLoan(int cust_id);
 	
     Customer validate(Login login);
     

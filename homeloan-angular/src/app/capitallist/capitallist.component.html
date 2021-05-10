@@ -1,0 +1,30 @@
+<button class="btn btn-success" (click)="getCapitalById()">Capital Deatails</button>
+<br /><br />
+<div [hidden]="!found">
+  <table class="table table-dark">
+    <tr>
+      <td>Capital Id</td>
+      <td>{{ capital.cap_id }}</td>
+    </tr>
+    <tr>
+      <td>Property  Name</td>
+      <td>{{ capital.property_name }}</td>
+    </tr>
+
+    <tr>
+        <td>Property Value</td>
+        <td>{{ capital.property_value }}</td>
+      </tr>
+
+      <tr>
+        <td>Property location</td>
+        <td>{{ capital.location }}</td>
+      </tr>
+
+      <tr>
+        <td>Monthly Income</td>
+        <td>{{ capital.monthly_income }}</td>
+      </tr>
+      
+  </table>
+</div>

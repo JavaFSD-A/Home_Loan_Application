@@ -1,0 +1,40 @@
+
+<form (ngSubmit)="addLoan()" #addfrm="ngForm">
+    <div class = "form-group">
+        <label for ="loan_name">Loan Name</label>
+        <select  class = "form-control" name = "loan_name" [(ngModel)] = "loan.loan_name" #loan_name = 'ngModel'
+        required placeholder = "select">
+        <option *ngFor = "let names of loan_names" [value] = "names">{{ names }}</option>
+    </select>
+    </div>
+    <div class = form-group>
+        <label for ="loan_tenure">Loan Tenure</label>
+        <select class = "form-control" name = "loan_tenure" [(ngModel)] = "loan.loan_tenure" #loan_tenure ='ngModel'
+        required placeholder = "select">
+        <option *ngFor = "let t of loan_tenures" [value] = "t">{{ t }}</option>
+    </select>
+    </div>
+    <div class = "form-group">
+        <label for = "loan_principal">Principal Amount</label>
+        <input class = "form-control" name = "loan_principal" [(ngModel)] = "loan.loan_principal"
+        #loan_principal = 'ngModel' required placeholder="Enter Principal Amount">
+        <span *ngIf = "loan_principal.dirty && loan_principal.invalid" class ="alert-danger">Principal is invalid</span>
+    </div>
+    <div>
+        <label for = "form-group">rate of Interest</label>
+        <input class = "form-control" name = "loan_interest_rate" [(ngModel)] = "loan.loan_interest_rate"
+        #loan_interest_rate = 'ngModel' required placeholder = "Rate of Interest">
+        <span *ngIf = "loan_interest_rate.dirty && loan_interest_rate.invalid" class ="alert-danger">
+            Rate of Interest is Invalid
+        </span>
+    </div>
+    <div>
+        <button
+                type="submit"
+                class="btn btn-success"
+                [disabled]="!addfrm.valid"
+              >
+                Save loan
+              </button>
+    </div>
+</form>

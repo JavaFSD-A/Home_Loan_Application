@@ -51,7 +51,7 @@ public class Customer {
 	private int pincode;
 	@Column(length = 12)
 	private Long  adhar_no;
-	private int foreclousre = 0;
+	private int foreclousre;
 	
 	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

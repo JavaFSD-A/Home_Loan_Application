@@ -37,8 +37,8 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService service;
-	
-	/////////////////////////////////////// CUSTOMER //////////////////////////////////////////////////
+
+	/////////////////////////////////////// CUSTOMER /////////////////////////////////////// //////////////////////////////////////////////////
 
 	@PostMapping(value = "/", consumes = "application/json")
 	public ResponseEntity<?> addCustomer(@RequestBody Customer cust) {
@@ -54,95 +54,90 @@ public class CustomerController {
 	@GetMapping(value = "/get/{cust_id}", produces = "application/json")
 	public ResponseEntity<?> getCustomer(@PathVariable(value = "cust_id") int cust_id, HttpSession session) {
 		Customer cust = null;
-			try {
-				cust = service.getCustomer(cust_id);
-				return new ResponseEntity<Customer>(cust, HttpStatus.OK);
-			}catch (CustomerNotFoundException e) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-			}
-	}
-	
-	@PostMapping(value = "/applyForceclousre/{cust_id}")
-	public ResponseEntity<?> addCustomer(@PathVariable("cust_id") int cust_id,HttpSession session) {
 		try {
-			
-				service.foreclousreRequest(cust_id, 1);
-			return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
-		}catch (CustomerNotFoundException e) {
+			cust = service.getCustomer(cust_id);
+			return new ResponseEntity<Customer>(cust, HttpStatus.OK);
+		} catch (CustomerNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
-	
-	
 
-	///////////////////////////////////// AUTHDOCUMENT ////////////////////////////////////////////////////
-	
+	@GetMapping(value = "/applyForceclousre/{cust_id}", produces = "application/json")
+	public ResponseEntity<?> addForeclouser(@PathVariable("cust_id") int cust_id, HttpSession session) {
+		try {
+			if(service.foreclousreRequest(cust_id, 1) == true)
+				return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
+			return new ResponseEntity<String>("No Loan Assigned Can't Request", HttpStatus.OK);
+		} catch (CustomerNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+
+	///////////////////////////////////// AUTHDOCUMENT ///////////////////////////////////// ////////////////////////////////////////////////////
+
 	@PostMapping(value = "/addAuthDocument/{custId}", consumes = "application/json")
 	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId,
 			HttpSession session) {
 		int authId;
-	
-			authId = service.addAuthDocument(ath, custId);
-			return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
-		
+
+		authId = service.addAuthDocument(ath, custId);
+		return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
+
 	}
-	
 
 	@GetMapping(value = "/getAuthDocument/{auth_id}", produces = "application/json")
 	public ResponseEntity<?> getAuthDocument(@PathVariable("auth_id") int auth_id, HttpSession session) {
 		AuthDocument ad = null;
 
 		try {
-				ad = service.getAllAuthDocument(auth_id);
-				return new ResponseEntity<AuthDocument>(ad, HttpStatus.OK);
-			
+			ad = service.getAllAuthDocument(auth_id);
+			return new ResponseEntity<AuthDocument>(ad, HttpStatus.OK);
+
 		} catch (DocumentNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
-	
-	
-	///////////////////////////////////////// CAPITAL //////////////////////////////////////////////////////
+
+	///////////////////////////////////////// CAPITAL ///////////////////////////////////////// //////////////////////////////////////////////////////
 
 	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
 	public ResponseEntity<?> addCapital(@RequestBody Capital cap, @PathVariable int custId, HttpSession session) {
 		int capId;
-			capId = service.addCapital(cap, custId);
-			return new ResponseEntity<String>("New Capital document added with Customer ID " + capId, HttpStatus.OK);
+		capId = service.addCapital(cap, custId);
+		return new ResponseEntity<String>("New Capital document added with Customer ID " + capId, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/getCapital/{capId}", produces = "application/json")
-	public ResponseEntity<?> getAllCapital(@PathVariable("capId") int capId, HttpSession session)
+	@GetMapping(value = "/getCapital/{cust_id}", produces = "application/json")
+	public ResponseEntity<?> getAllCapital(@PathVariable("cust_id") int cust_id, HttpSession session)
 			throws CapitalNotFoundException {
 		Capital cap = null;
-			cap = service.getCapital(capId);
-			return new ResponseEntity<Capital>(cap, HttpStatus.OK);
-		
-	}
-	
-	///////////////////////////////// LOAN //////////////////////////////////////////////////////////
+		cap = service.getCapital(cust_id);
+		return new ResponseEntity<Capital>(cap, HttpStatus.OK);
 
-	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json")
+	}
+
+	///////////////////////////////// LOAN ///////////////////////////////// //////////////////////////////////////////////////////////
+
+	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
 		int loanId;
-			loanId = service.addLoan(loan, cust_id);
-			return new ResponseEntity<>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
-		
+		loanId = service.addLoan(loan, cust_id);
+		return new ResponseEntity<>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
+
 	}
 
-	@GetMapping(value = "/getLoan/{loanid}", produces = "application/json")
-	public ResponseEntity<?> getLoan(@PathVariable("loanid") int loanid, HttpSession session) {
-			return new ResponseEntity<Loan>(service.getLoan(loanid), HttpStatus.OK);
-			}
-	
-	
-	////////////////////////////////// LOGIN/LOGOUT //////////////////////////////////////////////////////////
+	@GetMapping(value = "/getLoan/{cust_id}", produces = "application/json")
+	public ResponseEntity<?> getLoan(@PathVariable("cust_id") int cust_id, HttpSession session) {
+		return new ResponseEntity<Loan>(service.getLoan(cust_id), HttpStatus.OK);
+	}
+
+	////////////////////////////////// LOGIN/LOGOUT ////////////////////////////////// //////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session) {
 		Customer customer = service.validate(login);
 		if (customer != null) {
-			//System.out.println("ok");
+			// System.out.println("ok");
 			session.setAttribute("CUSTOMER", customer);
 			System.out.println(session.getAttribute("CUSTOMER"));
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);

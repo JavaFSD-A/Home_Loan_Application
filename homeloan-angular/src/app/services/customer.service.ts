@@ -5,6 +5,8 @@ import { CustomerModel } from '../customer.model';
 import { delay, retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { CustomerComponent } from '../customer/customer.component';
+import { LoanModel } from '../loan.model';
+import { CapitalModel } from '../capital.model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +35,7 @@ export class CustomerService {
       .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
- 
+
   /**
    * POST /customer/
    * @param customer
@@ -48,7 +50,7 @@ export class CustomerService {
 
   /**
    * GET /customer/get/{id}
-   * @param id 
+   * @param id
    * @returns
    * @description display customer details by his/her id
    */
@@ -58,6 +60,69 @@ export class CustomerService {
     return await this.http
       .get<CustomerModel>(this.baseUri + '/get/' + customer.cust_id)
       .pipe(delay(1000))
+      .toPromise();
+  }
+
+  async requestForeclouser() {
+    let customer = JSON.parse(localStorage.getItem('customer'));
+    return this.http
+      .get<CustomerModel>(
+        this.baseUri + '/applyForceclousre/' + customer.cust_id
+      )
+      .pipe(delay(1000), catchError(this.handleError))
+      .toPromise();
+  }
+
+  /**
+   * POST /addloan/{cust_id}
+   * @param loan
+   * @returns
+   */
+  async createLoan(loan: LoanModel) {
+    let customer: CustomerModel;
+    customer = JSON.parse(localStorage.getItem('customer'));
+    return await this.http
+      .post(this.baseUri + '/addLoan/' + customer.cust_id, loan)
+      .subscribe((data) => (data = loan));
+  }
+
+  /**
+   * GET /getLoan/{cust_id}
+   * @returns
+   */
+
+  async findLoanById() {
+    let customer = JSON.parse(localStorage.getItem('customer'));
+    return await this.http
+      .get<LoanModel>(this.baseUri + '/getLoan/' + customer.cust_id)
+      .pipe(retry(1))
+      .toPromise();
+  }
+
+  /**
+   * POST /addCapital/{cust_id}
+   * @param capital
+   * @returns
+   */
+
+  async createCapital(capital: CapitalModel) {
+    let customer: CustomerModel;
+    customer = JSON.parse(localStorage.getItem('customer'));
+    return await this.http
+      .post(this.baseUri + '/addCapital/' + customer.cust_id, capital)
+      .subscribe((data) => (data = capital));
+  }
+
+  /**
+   * GET /getCapital/{cust_id}
+   * @returns 
+   */
+
+  async findCapitalById() {
+    let customer = JSON.parse(localStorage.getItem('customer'));
+    return await this.http
+      .get<CapitalModel>(this.baseUri + '/getCapital/' + customer.cust_id)
+      .pipe(retry(1))
       .toPromise();
   }
 
@@ -86,7 +151,7 @@ export class CustomerService {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.text}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

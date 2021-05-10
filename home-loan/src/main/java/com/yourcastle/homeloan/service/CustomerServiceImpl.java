@@ -84,9 +84,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	@Override
-	public Capital getCapital(int capId) throws CapitalNotFoundException {
-		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
-
+	public Capital getCapital(int cust_id) throws CapitalNotFoundException {
+		Customer customer = custrepo.findById(cust_id).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found at ID " + cust_id));;
+		Capital capital = customer.getCust_capital();
+		return capital;
 	}
 
 
@@ -100,8 +101,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Loan getLoan(int loan_id) {
-		return loanrepo.findById(loan_id).get();
+	public Loan getLoan(int cust_id) {
+		Customer customer = custrepo.findById(cust_id).get();
+		Loan loan = customer.getCust_loan();
+		return loan;
 	}
 
 
@@ -120,8 +123,8 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public boolean foreclousreRequest(int cust_id, int flag) {
 		Customer customer = custrepo.findById(cust_id).get();
-		if(flag == 1) {
-			customer.setForeclousre(flag);
+		if(flag == 1 && customer.getCust_loan() != null) {
+			customer.setForeclousre(1);
 		    return true;
 		}
 		return false;
