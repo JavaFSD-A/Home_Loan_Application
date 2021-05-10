@@ -13,6 +13,8 @@ import { LoanlistComponent } from './loanlist/loanlist.component';
 import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.component';
 import { CapitallistComponent } from './capitallist/capitallist.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from "./material/material.module"
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { CalculatorComponent } from './calculator/calculator.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
