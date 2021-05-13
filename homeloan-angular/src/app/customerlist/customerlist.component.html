@@ -1,8 +1,8 @@
 <button class="btn btn-success" (click)="getCustomerById()">
   Personal Details
 </button>
-<a class="nav-item nav-link" [routerLink]="['loanlist']">Loan</a>
-<button class="btn btn-success">Capital Details</button>
+<a class="nav-item nav-link" [routerLink]="['/loanlist']">Loan</a>
+<button class="btn btn-success" [routerLink]="['/capital']">Capital Details</button>
 <button class="btn btn-success">Documents</button>
 <button class="btn btn-success" (click)="foreclouser()">
     Apply foreclouser

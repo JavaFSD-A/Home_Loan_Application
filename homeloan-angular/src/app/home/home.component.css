@@ -1,0 +1,22 @@
+  .carousel-item {
+    width: 100%;
+     height: 400px;
+   }
+   
+   .carousel-item img{
+     position: absolute;
+     margin-left: 0;
+     margin-top: 0;
+     margin-right: 0;
+     object-fit: fill;
+     width: 1000px;
+     height: 400px;
+   }
+   
+   h2{
+     background-color: darkgray;
+   }
+   p, h1{
+     background-color: white;
+     color: black;
+   }

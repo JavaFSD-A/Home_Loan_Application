@@ -14,7 +14,12 @@ import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.compone
 import { CapitallistComponent } from './capitallist/capitallist.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from "./material/material.module"
+import { MaterialModule } from "./material/material.module";
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +30,10 @@ import { MaterialModule } from "./material/material.module"
     LoanlistComponent,
     CapitaldetailsComponent,
     CapitallistComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,8 @@ import { MaterialModule } from "./material/material.module"
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MatCarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

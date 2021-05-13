@@ -1,40 +1,51 @@
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+      <mat-card-title style="text-align:center;">Registration Step-2</mat-card-title>
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+  
+        <mat-tab label="location Detials">
+          <mat-card-content>
+            <form (ngSubmit)="addLoan()" #addfrm="ngForm">
 
-<form (ngSubmit)="addLoan()" #addfrm="ngForm">
-    <div class = "form-group">
-        <label for ="loan_name">Loan Name</label>
-        <select  class = "form-control" name = "loan_name" [(ngModel)] = "loan.loan_name" #loan_name = 'ngModel'
-        required placeholder = "select">
-        <option *ngFor = "let names of loan_names" [value] = "names">{{ names }}</option>
-    </select>
-    </div>
-    <div class = form-group>
-        <label for ="loan_tenure">Loan Tenure</label>
-        <select class = "form-control" name = "loan_tenure" [(ngModel)] = "loan.loan_tenure" #loan_tenure ='ngModel'
-        required placeholder = "select">
-        <option *ngFor = "let t of loan_tenures" [value] = "t">{{ t }}</option>
-    </select>
-    </div>
-    <div class = "form-group">
-        <label for = "loan_principal">Principal Amount</label>
-        <input class = "form-control" name = "loan_principal" [(ngModel)] = "loan.loan_principal"
-        #loan_principal = 'ngModel' required placeholder="Enter Principal Amount">
-        <span *ngIf = "loan_principal.dirty && loan_principal.invalid" class ="alert-danger">Principal is invalid</span>
-    </div>
-    <div>
-        <label for = "form-group">rate of Interest</label>
-        <input class = "form-control" name = "loan_interest_rate" [(ngModel)] = "loan.loan_interest_rate"
-        #loan_interest_rate = 'ngModel' required placeholder = "Rate of Interest">
-        <span *ngIf = "loan_interest_rate.dirty && loan_interest_rate.invalid" class ="alert-danger">
-            Rate of Interest is Invalid
-        </span>
-    </div>
-    <div>
-        <button
-                type="submit"
-                class="btn btn-success"
-                [disabled]="!addfrm.valid"
-              >
-                Save loan
+                <mat-form-field appearance="fill">
+                    <mat-label>Loan Name</mat-label>
+                    <mat-select [(ngModel)] = "loan.loan_name" name = "loan_name" #loan_name = 'ngModel'>
+                      <mat-option *ngFor="let names of loan_names" [value] = "names">
+                        {{ names }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Loan Tenure</mat-label>
+                    <mat-select [(ngModel)] = "loan.loan_tenure" name = "loan_tenure" #loan_tenure ='ngModel'>
+                      <mat-option *ngFor= "let t of loan_tenures" [value] = "t">
+                        {{ t }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              
+              <mat-form-field>
+                <input matInput name="loan_principal" placeholder="Enter Principal Amount" #loan_principal = 'ngModel'
+                [(ngModel)] = "loan.loan_principal" required>
+                <mat-error *ngIf="loan_principal.invalid">
+                  loan_principal is required
+                </mat-error>
+  
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="loan_interest_rate" placeholder="Rate of Interest" #loan_interest_rate = 'ngModel'
+                [(ngModel)] = "loan.loan_interest_rate" required>
+                <mat-error *ngIf="loan_interest_rate.invalid">
+                  loan_interest_rate is required
+                </mat-error>
+  
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+                Submit
               </button>
-    </div>
-</form>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>

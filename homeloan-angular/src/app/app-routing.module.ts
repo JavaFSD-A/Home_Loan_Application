@@ -5,6 +5,7 @@ import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.compone
 import { CapitallistComponent } from './capitallist/capitallist.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { HomeComponent } from './home/home.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoanlistComponent } from './loanlist/loanlist.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'customer', component: CustomerComponent},
   {path: 'customerlist', component: CustomerlistComponent},
   {path: 'loan', component: LoanComponent},
