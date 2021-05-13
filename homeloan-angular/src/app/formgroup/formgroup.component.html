@@ -1,0 +1,33 @@
+
+<mat-horizontal-stepper>
+    <mat-step>
+        <ng-template matStepLabel>Step 1</ng-template>
+        <div class="container">
+          <app-customer></app-customer>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Step 2</ng-template>
+        <div>
+          <app-loan></app-loan>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Step 3</ng-template>
+        <div>
+          <p>Auth</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Step 4</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  

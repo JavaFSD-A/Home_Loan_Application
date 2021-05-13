@@ -5,6 +5,7 @@ import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.compone
 import { CapitallistComponent } from './capitallist/capitallist.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { FormgroupComponent } from './formgroup/formgroup.component';
 import { HomeComponent } from './home/home.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoanlistComponent } from './loanlist/loanlist.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'loanlist', component: LoanlistComponent},
   {path: 'capital', component: CapitaldetailsComponent},
   {path: 'capitallist', component: CapitallistComponent},
+  {path: 'formgroup', component: FormgroupComponent},
   {path: 'calculator', component: CalculatorComponent},
   {path: '**', redirectTo: '/customer', pathMatch: 'full'}
 

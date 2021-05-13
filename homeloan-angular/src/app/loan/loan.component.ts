@@ -28,7 +28,6 @@ export class LoanComponent implements OnInit {
 
   addLoan(){
     this.service.createLoan(this.loan);
-    this.route.navigate(['list']);
   }
 
 }

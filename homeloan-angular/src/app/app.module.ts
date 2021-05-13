@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { FormgroupComponent } from './formgroup/formgroup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
     CalculatorComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    FormgroupComponent
   ],
   imports: [
     BrowserModule,

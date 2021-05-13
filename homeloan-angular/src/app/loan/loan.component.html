@@ -3,7 +3,7 @@
       <mat-card-title style="text-align:center;">Registration Step-2</mat-card-title>
       <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
   
-        <mat-tab label="location Detials">
+        <mat-tab label="Loan Detials">
           <mat-card-content>
             <form (ngSubmit)="addLoan()" #addfrm="ngForm">
 
@@ -41,7 +41,7 @@
   
               </mat-form-field>
               <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
-                Submit
+                Save
               </button>
             </form>
           </mat-card-content>

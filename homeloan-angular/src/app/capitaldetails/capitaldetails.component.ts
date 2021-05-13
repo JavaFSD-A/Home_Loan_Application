@@ -23,7 +23,6 @@ export class CapitaldetailsComponent implements OnInit {
 
   addCapital(){
     this.service.createCapital(this.capital);
-    this.route.navigate(['list']);
   }
 
 }

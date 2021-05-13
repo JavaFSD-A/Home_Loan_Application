@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
 
   constructor(private service : CustomerService, private route : Router) {
     this.customer = new CustomerModel();
-    this.cust_gender = ["Male", "Female", "Rainbow", "Prefer not to tell"];
+    this.cust_gender = ["Male","Female","Rainbow","Prefer not to tell"];
    }
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class CustomerComponent implements OnInit {
 
   saveCustomer(){
     this.service.createCustomer(this.customer);
-    this.route.navigate(['login']);
   }
 
 
