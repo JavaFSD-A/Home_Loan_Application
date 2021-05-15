@@ -1,3 +1,6 @@
+import { CapitalModel } from "./capital.model";
+import { LoanModel } from "./loan.model";
+
 export class CustomerModel{
     cust_id : number;
     custName : string;
@@ -11,5 +14,7 @@ export class CustomerModel{
     state : string;
     pincode : number;
     adharno : number; 
-    foreclousre : number;
+    foreclousre : 'Not Applied';
+    cust_loan : LoanModel;
+    cust_capital : CapitalModel;
 }

@@ -30,7 +30,9 @@ public class Admin {
 	private String adminName;
 	@Column(length=15)
 	private String email;
-	private String adminPassword;
+	@Column(name = "phone_no", length = 10, unique = true)
+	private String phoneNo;
+	private String passwd;
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy ="admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -40,6 +42,14 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
 	public List<Customer> getCustomer() {
 		return cust_details;
 	}
@@ -61,12 +71,13 @@ public class Admin {
 		this.adminName = adminName;
 	}
 
-	public String getAdminPassword() {
-		return adminPassword;
+
+	public String getPasswd() {
+		return passwd;
 	}
 
-	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public List<Customer> getCust_details() {

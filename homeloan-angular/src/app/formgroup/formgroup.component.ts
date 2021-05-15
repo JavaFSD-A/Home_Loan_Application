@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-formgroup',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormgroupComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private service: CustomerService,
+    private route: Router
+  ) {}
+
 
   ngOnInit(): void {
+  }
+
+  submit(){
+    this.route.navigate(['login']);
+    alert("Your Details are Saved!! Login to continue");
+
   }
 
 }

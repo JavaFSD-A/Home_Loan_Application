@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../customer.model';
 import { LoanModel } from '../loan.model';
+import { LoanComponent } from '../loan/loan.component';
+import { LoanlistComponent } from '../loanlist/loanlist.component';
 import { CustomerService } from '../services/customer.service';
 
 
@@ -37,7 +39,6 @@ export class CustomerlistComponent implements OnInit {
 
   foreclouser() {
     this.service.requestForeclouser();
-    this.route.navigate(['customerlist']);
   }
 
 }

@@ -19,9 +19,9 @@ public interface AdminService {
 	
 	public boolean updatecustomerLoanStatus(int cust_id) throws CustomerNotFoundException;
 	
-	public void acceptLoanRequest(int cust_id) throws CustomerNotFoundException;
+	public String acceptLoanRequest(int cust_id) throws CustomerNotFoundException;
 	
-	public void rejecectLoanRequest(int cust_id) throws CustomerNotFoundException;
+	public String rejecectLoanRequest(int cust_id) throws CustomerNotFoundException;
 
 	public Admin validate(Login login);
 	

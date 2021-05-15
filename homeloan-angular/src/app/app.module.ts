@@ -20,6 +20,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import { FormgroupComponent } from './formgroup/formgroup.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdmindashbordComponent } from './admindashbord/admindashbord.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { FormgroupComponent } from './formgroup/formgroup.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    FormgroupComponent
+    FormgroupComponent,
+    AdminComponent,
+    AdmindashbordComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

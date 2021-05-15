@@ -1,4 +1,4 @@
-<!-- <form #addfrm="ngForm">
+<form  (ngSubmit)="eligiblity()" #addfrm="ngForm">
     <table class="table table-dark">
       <tr>
         <td>Age</td>
@@ -71,7 +71,6 @@
             type="submit"
             class="btn btn-success"
             [disabled]="!addfrm.valid"
-            onclick="eligiblity()"
           >
           Check
           </button>
@@ -79,4 +78,4 @@
       </tr>
     </table>
   </form>
-   -->
+  

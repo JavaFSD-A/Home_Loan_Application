@@ -1,46 +1,102 @@
-<form (ngSubmit)="authentication()" #logfrm="ngForm">
-  <table class="table table-dark">
-    <tr>
-      <td>Phone no</td>
-      <td>
-        <input
-          name="phone_no"
-          #phone_no="ngModel"
-          [(ngModel)]="auth.phone_no"
-          required
-          class="form-control"
-        />
-        <span *ngIf="phone_no.dirty && phone_no.invalid" class="alert-danger">
-          User ID is empty or invalid</span
-        >
-      </td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td>
-        <input
-          type="password"
-          name="login_passwd"
-          #login_passwd="ngModel"
-          [(ngModel)]="auth.login_passwd"
-          required
-          class="form-control"
-        />
-        <span *ngIf="login_passwd.dirty && login_passwd.invalid" class="alert-danger">
-          Empty or Invalid Password
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <th colspan="2">
-        <button
-          class="btn btn-success"
-          type="submit"
-          [disabled]="!logfrm.valid"
-        >
-          Login
-        </button>
-      </th>
-    </tr>
-  </table>
-</form>
+<mat-tab-group>
+  <mat-tab label="Login as Customer">
+    <form (ngSubmit)="authentication()" #logfrm="ngForm">
+      <table class="table table-dark">
+        <tr>
+          <td>Phone no</td>
+          <td>
+            <input
+              name="phone_no"
+              #phone_no="ngModel"
+              [(ngModel)]="auth.phone_no"
+              required
+              class="form-control"
+            />
+            <span *ngIf="phone_no.dirty && phone_no.invalid" class="alert-danger">
+              User ID is empty or invalid</span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td>
+            <input
+              type="password"
+              name="login_passwd"
+              #login_passwd="ngModel"
+              [(ngModel)]="auth.login_passwd"
+              required
+              class="form-control"
+            />
+            <span *ngIf="login_passwd.dirty && login_passwd.invalid" class="alert-danger">
+              Empty or Invalid Password
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <button
+              class="btn btn-success"
+              type="submit"
+              [disabled]="!logfrm.valid"
+            >
+              Login
+            </button>
+          </th>
+        </tr>
+      </table>
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Login as Admin">
+    <form (ngSubmit)=adminAuthentication() #logfrm="ngForm">
+      <table class="table table-dark">
+        <tr>
+          <td>Phone no</td>
+          <td>
+            <input
+              name="phone_no"
+              #phone_no="ngModel"
+              [(ngModel)]="auth.phone_no"
+              required
+              class="form-control"
+            />
+            <span *ngIf="phone_no.dirty && phone_no.invalid" class="alert-danger">
+              User ID is empty or invalid</span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td>
+            <input
+              type="password"
+              name="login_passwd"
+              #login_passwd="ngModel"
+              [(ngModel)]="auth.login_passwd"
+              required
+              class="form-control"
+            />
+            <span *ngIf="login_passwd.dirty && login_passwd.invalid" class="alert-danger">
+              Empty or Invalid Password
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <button
+              class="btn btn-success"
+              type="submit"
+              [disabled]="!logfrm.valid"
+            >
+              Login
+            </button>
+          </th>
+        </tr>
+      </table>
+    </form>
+    
+    </mat-tab>
+</mat-tab-group>
+
+

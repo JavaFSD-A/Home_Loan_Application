@@ -67,7 +67,7 @@ public class CustomerController {
 		try {
 			if(service.foreclousreRequest(cust_id, 1) == true)
 				return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
-			return new ResponseEntity<String>("No Loan Assigned Can't Request", HttpStatus.OK);
+			return new ResponseEntity<String>("No Loan Assigned Can't Request/ Request already Submitted!!", HttpStatus.OK);
 		} catch (CustomerNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}

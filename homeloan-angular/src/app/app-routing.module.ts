@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { AdmindashbordComponent } from './admindashbord/admindashbord.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.component';
 import { CapitallistComponent } from './capitallist/capitallist.component';
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'loanlist', component: LoanlistComponent},
   {path: 'capital', component: CapitaldetailsComponent},
   {path: 'capitallist', component: CapitallistComponent},
+  {path: 'admin', component: AdminComponent},
   {path: 'formgroup', component: FormgroupComponent},
+  {path: 'admindashbord', component: AdmindashbordComponent},
   {path: 'calculator', component: CalculatorComponent},
   {path: '**', redirectTo: '/customer', pathMatch: 'full'}
 

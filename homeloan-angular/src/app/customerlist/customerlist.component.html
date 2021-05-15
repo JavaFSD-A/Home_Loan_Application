@@ -1,69 +1,79 @@
-<button class="btn btn-success" (click)="getCustomerById()">
-  Personal Details
-</button>
-<a class="nav-item nav-link" [routerLink]="['/loanlist']">Loan</a>
-<button class="btn btn-success" [routerLink]="['/capital']">Capital Details</button>
-<button class="btn btn-success">Documents</button>
-<button class="btn btn-success" (click)="foreclouser()">
-    Apply foreclouser
+ <div class="container">
+  <br>
+  <button class="btn btn-success" (click)="getCustomerById()">
+    Personal Details
   </button>
-<br /><br /><br />
+  <button class="btn btn-success" (click)="foreclouser()">
+    Apply for foreclousre
+  </button>
+  <br>
+  <div [hidden]="!found">
+    <br>
+    <table class="table table-dark">
+      <tr>
+        <td>Customer Id</td>
+        <td>{{ customer.cust_id }}</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>{{ customer.custName }}</td>
+      </tr>
+  
+      <tr>
+        <td>DOB</td>
+        <td>{{ customer.cust_dob }}</td>
+      </tr>
+  
+      <tr>
+        <td>Gender</td>
+        <td>{{ customer.cust_gender }}</td>
+      </tr>
+  
+      <tr>
+        <td>Phone No.</td>
+        <td>{{ customer.phoneNo }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ customer.cust_email }}</td>
+      </tr>
+  
+      <tr>
+        <td>Address</td>
+        <td>{{ customer.cust_address }}</td>
+      </tr>
+  
+      <tr>
+        <td>City</td>
+        <td>{{ customer.city }}</td>
+      </tr>
+  
+      <tr>
+        <td>State</td>
+        <td>{{ customer.state }}</td>
+      </tr>
+  
+      <tr>
+        <td>Pincode</td>
+        <td>{{ customer.pincode }}</td>
+      </tr>
+      <tr>
+        <td>
+          Foreclouser Status
+        </td>
+        <td>{{ customer.foreclousre }}</td>
+      </tr>
+    </table>
+  </div>
 
-<div [hidden]="!found">
-  <table class="table table-dark">
-    <tr>
-      <td>Customer Id</td>
-      <td>{{ customer.cust_id }}</td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>{{ customer.custName }}</td>
-    </tr>
+<div>
+  <br>
+  <app-capitallist></app-capitallist>
+</div>
 
-    <tr>
-      <td>DOB</td>
-      <td>{{ customer.cust_dob }}</td>
-    </tr>
-
-    <tr>
-      <td>Gender</td>
-      <td>{{ customer.cust_gender }}</td>
-    </tr>
-
-    <tr>
-      <td>Phone No.</td>
-      <td>{{ customer.phoneNo }}</td>
-    </tr>
-    <tr>
-      <td>Email</td>
-      <td>{{ customer.cust_email }}</td>
-    </tr>
-
-    <tr>
-      <td>Address</td>
-      <td>{{ customer.cust_address }}</td>
-    </tr>
-
-    <tr>
-      <td>City</td>
-      <td>{{ customer.city }}</td>
-    </tr>
-
-    <tr>
-      <td>State</td>
-      <td>{{ customer.state }}</td>
-    </tr>
-
-    <tr>
-      <td>Pincode</td>
-      <td>{{ customer.pincode }}</td>
-    </tr>
-    <tr>
-      <td>
-        Foreclouser Status
-      </td>
-      <td>{{ customer.foreclousre }}</td>
-    </tr>
-  </table>
+<div>
+  <br>
+  <app-loanlist></app-loanlist>
+</div>
 </div>
 

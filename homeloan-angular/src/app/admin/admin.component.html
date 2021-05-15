@@ -1,0 +1,24 @@
+  <div class= "container" >
+      <br>
+  <button type="button" class="btn btn-info" (click)="getAllCustomer()">Show All</button>
+  <br>
+  <br>
+  <div  class="container">
+      <table class="table">
+        <thead class="thead-dark">
+          <th>Customer Id</th>
+          <th>Customer Name</th>
+          <th>Customer Loan Name</th>
+          <th>Foreclouser Request</th>
+          <th>Clouser Update</th>
+          </thead>
+        <tr *ngFor="let c of customers;">
+            <td>{{c.cust_id}}</td>
+            <td>{{c.custName}}</td>
+            <td>{{c.cust_loan.loan_name}}</td>
+            <td>{{c.foreclouser}}</td>
+            <td><button type="button" class="btn btn-success" >Clouser</button></td>
+        </tr>
+      </table>
+  </div>
+</div>

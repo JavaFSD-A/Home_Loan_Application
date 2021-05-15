@@ -62,7 +62,7 @@ public class Mail {
     }
  
     public void setMailSubject(String mailSubject) {
-        this.mailSubject = "Loan Updates";
+        this.mailSubject = mailSubject;
     }
  
     public String getMailTo() {

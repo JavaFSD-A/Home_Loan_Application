@@ -14,6 +14,7 @@ import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
+import com.yourcastle.homeloan.entity.Mail;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.NotAppliedForLoan;
 import com.yourcastle.homeloan.repo.AdminRepository;
@@ -31,6 +32,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private LoanRepository loanrepo;
+	
 
 	@Override
 	public Customer getCustomerbyId(int cust_id) throws CustomerNotFoundException {
@@ -57,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Admin validate(Login login) {
-		return adminrepo.findByEmailAndAdminPassword(login.getEmail(), login.getLogin_passwd());
+		return adminrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
 	}
 
 	@Override
@@ -72,7 +74,8 @@ public class AdminServiceImpl implements AdminService {
 		Loan l = c.getCust_loan();
 		if (l != null) {
 			if (flag == 1) {
-				l.setLoan_status("Foreclosure");
+				l.setLoan_status("Foreclosure Accepted");
+				cusrepo.save(c);
 				return (Double.parseDouble(bal_principal) * Integer.parseInt(months_left) * l.getLoan_interest_rate());
 			}
 			return 0;
@@ -81,19 +84,24 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void acceptLoanRequest(int cust_id) throws CustomerNotFoundException {
+	public String acceptLoanRequest(int cust_id) throws CustomerNotFoundException {
 		Customer c = cusrepo.findById(cust_id)
 				.orElseThrow(() -> new CustomerNotFoundException("No Customer found with Customer ID : " + cust_id));
-		;
-		c.getCust_loan().setLoan_status("Accepted");
+		Loan l = c.getCust_loan();
+		l.setLoan_status("Accepted");
+		cusrepo.save(c);
+		String email = c.getCust_email();
+		return email;
 	}
 
 	@Override
-	public void rejecectLoanRequest(int cust_id) throws CustomerNotFoundException {
+	public String rejecectLoanRequest(int cust_id) throws CustomerNotFoundException {
 		Customer c = cusrepo.findById(cust_id)
 				.orElseThrow(() -> new CustomerNotFoundException("No Customer found with Customer ID : " + cust_id));
-		;
 		c.getCust_loan().setLoan_status("Rejected");
+		cusrepo.save(c);
+		String email = c.getCust_email();
+		return email;
 	}
 
 }

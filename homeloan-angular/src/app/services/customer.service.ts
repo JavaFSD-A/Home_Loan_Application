@@ -59,9 +59,14 @@ export class CustomerService {
     let customer = JSON.parse(localStorage.getItem('customer'));
     return await this.http
       .get<CustomerModel>(this.baseUri + '/get/' + customer.cust_id)
-      .pipe(delay(1000))
+      .pipe(delay(1000), catchError(this.handleError))
       .toPromise();
   }
+
+  /**
+   * @description Request Forclouser
+   * @returns 
+   */
 
   async requestForeclouser() {
     let customer = JSON.parse(localStorage.getItem('customer'));
@@ -95,7 +100,7 @@ export class CustomerService {
     let customer = JSON.parse(localStorage.getItem('customer'));
     return await this.http
       .get<LoanModel>(this.baseUri + '/getLoan/' + customer.cust_id)
-      .pipe(retry(1))
+      .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
 
@@ -122,7 +127,7 @@ export class CustomerService {
     let customer = JSON.parse(localStorage.getItem('customer'));
     return await this.http
       .get<CapitalModel>(this.baseUri + '/getCapital/' + customer.cust_id)
-      .pipe(retry(1))
+      .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
 

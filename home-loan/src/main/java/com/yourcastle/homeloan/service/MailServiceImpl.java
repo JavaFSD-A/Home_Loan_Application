@@ -21,17 +21,17 @@ public class MailServiceImpl implements MailService {
     JavaMailSender mailSender;
 	
 	@Override
-	public void sendEmail(Mail mail) {
+	public void sendEmail(String email, String message) {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		 
         try {
  
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
  
-            mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "YourCastle HomeLoan Application"));
-            mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setText(mail.getMailContent());
+            mimeMessageHelper.setSubject("Loan Status Update");
+            mimeMessageHelper.setFrom(new InternetAddress("testisthebest2000@gmail.com", "YourCastle HomeLoan Application"));
+            mimeMessageHelper.setTo(email);
+            mimeMessageHelper.setText(message);
  
             mailSender.send(mimeMessageHelper.getMimeMessage());
  
