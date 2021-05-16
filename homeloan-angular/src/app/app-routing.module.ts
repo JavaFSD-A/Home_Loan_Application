@@ -7,11 +7,14 @@ import { CapitaldetailsComponent } from './capitaldetails/capitaldetails.compone
 import { CapitallistComponent } from './capitallist/capitallist.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { EligiblitycalComponent } from './eligiblitycal/eligiblitycal.component';
+import { EmicalculatorComponent } from './emicalculator/emicalculator.component';
 import { FormgroupComponent } from './formgroup/formgroup.component';
 import { HomeComponent } from './home/home.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoanlistComponent } from './loanlist/loanlist.component';
 import { LoginComponent } from './login/login.component';
+
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -27,6 +30,8 @@ const routes: Routes = [
   {path: 'formgroup', component: FormgroupComponent},
   {path: 'admindashbord', component: AdmindashbordComponent},
   {path: 'calculator', component: CalculatorComponent},
+  {path: 'eligiblitycalculator', component: EligiblitycalComponent},
+  {path: 'emicalculator', component: EmicalculatorComponent},
   {path: '**', redirectTo: '/customer', pathMatch: 'full'}
 
 ];

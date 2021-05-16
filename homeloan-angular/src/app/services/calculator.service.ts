@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CalculatorModel } from '../calculator.model';
+import { CalculatorModel } from '../models/eligiblityCal.model';
 import { delay, retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { EmiCalculatorModel } from '../models/emiCal.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,15 +16,44 @@ export class CalculatorService {
   /**
    * Post /calculator/eligiblityCheck
    * @param calculator 
-   * @returns Eligiblity Check 
+   * @returns JSON of EligiblityCalculatorModel -- updated maxloan and eligiblity status
    */
   async eligiblityCheck(calculator : CalculatorModel) {
     
     return await this.http
       .post<CalculatorModel>(this.baseUri + '/eligiblityCheck', calculator)
-      .pipe(retry(1), catchError(this.handleError))
+      .pipe(retry(1))
       .toPromise();
   }
+
+   /**
+    *  Post /calculator/fixedEmi
+    * @description Calculating fixed emi
+    * @param emiCalModel 
+    * @returns  
+    */
+    async fixedEmi(emiCal : EmiCalculatorModel) {
+    
+      return await this.http
+        .post<EmiCalculatorModel>(this.baseUri + '/fixedEmi', emiCal)
+        .pipe(retry(1))
+        .toPromise();
+    }
+
+    /**
+    *  Post /calculator/fixedEmi
+    * @description Calculating fixed emi
+    * @param emiCalModel 
+    * @returns  
+    */
+     async reducingEmi(emiCal : EmiCalculatorModel) {
+    
+      return await this.http
+        .post<EmiCalculatorModel>(this.baseUri + '/reducingEmi', emiCal)
+        .pipe(retry(1))
+        .toPromise();
+    }
+
 
    /**
    * @descriptionHandleing Error Handler

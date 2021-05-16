@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CapitalModel } from '../capital.model';
+import { CapitalModel } from '../models/capital.model';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -17,8 +17,7 @@ export class CapitaldetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem("customer") == null)
-    this.route.navigate(['login']);
+    
 }
 
   addCapital(){

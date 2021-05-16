@@ -1,6 +1,7 @@
 import { CapitalModel } from "./capital.model";
 import { LoanModel } from "./loan.model";
 
+
 export class CustomerModel{
     cust_id : number;
     custName : string;

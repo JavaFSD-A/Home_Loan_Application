@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
-import { MaterialModule } from "../material/material.module";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

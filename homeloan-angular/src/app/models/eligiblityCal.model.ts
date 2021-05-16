@@ -3,5 +3,6 @@ export class CalculatorModel{
     tenure_yr : number;
     income_per_mth : number;
     roi : number;
-    eligiblity : boolean;
+    eligiblity : "??";
+    calculatedMaxVal : 0.0;
 }

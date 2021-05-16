@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoanModel } from '../loan.model';
+import { LoanModel } from '../models/loan.model';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -22,8 +22,7 @@ export class LoanComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem("customer") == null)
-    this.route.navigate(['login']);
+ 
 }
 
   addLoan(){

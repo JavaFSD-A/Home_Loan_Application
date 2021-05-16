@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { delay, retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { AdminModel } from '../admin.model';
-import { CustomerModel } from '../customer.model';
+import { CustomerModel } from '../models/customer.model';
 
 @Injectable({
   providedIn: 'root'

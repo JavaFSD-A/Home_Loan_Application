@@ -1,6 +1,8 @@
 package com.yourcastle.homeloan.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,25 +21,22 @@ public class CalculatorController {
 	@Autowired
 	private CalculatorService service;
 	
-	@PostMapping(value = "/eligiblityCheck", consumes = "application/json", produces = "application/text")
-	public String checkEligiblity(@RequestBody EligiblityCalculator e) {
-		double elg = service.checkEligiblity(e);
-		if( e.isEligiblity() == true)
-			return "Eligiblity : eligible \nMaximum loan value : " + elg;
-		else
-			return "Eligiblity : Not eligible";
+	@PostMapping(value = "/eligiblityCheck", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> checkEligiblity(@RequestBody EligiblityCalculator e) {
+		EligiblityCalculator elg = service.checkEligiblity(e);
+			return  new ResponseEntity<EligiblityCalculator>(elg, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/fixedEmi", consumes = "application/json")
-	public String calculateFixedEmi(@RequestBody EmiCalculator emi) {
-		double fixed = service.calculateFixedEmi(emi);
-		return "Calculated Fixed EMI : Rs." + fixed;
+	public ResponseEntity<?> calculateFixedEmi(@RequestBody EmiCalculator emi) {
+		EmiCalculator fixed = service.calculateFixedEmi(emi);
+		return new ResponseEntity<EmiCalculator>(fixed, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/reducingEmi", consumes = "application/json")
-	public String calculateReducingEmi(@RequestBody EmiCalculator emi) {
-		double reducing = service.calculateReducingEmi(emi);
-		return "Calculated Reducing EMI : Rs." + reducing;
+	public ResponseEntity<?> calculateReducingEmi(@RequestBody EmiCalculator emi) {
+		EmiCalculator reducing = service.calculateReducingEmi(emi);
+		return new ResponseEntity<EmiCalculator>(reducing, HttpStatus.OK);
 	}
 	
 }
