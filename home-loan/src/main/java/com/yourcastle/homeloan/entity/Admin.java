@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourcastle.homeloan.bean.BCryptEncription;
 @Entity
 @Table(name="admin_table")
 public class Admin {
@@ -77,7 +78,7 @@ public class Admin {
 	}
 
 	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+		this.passwd = BCryptEncription.passencoder(passwd);
 	}
 
 	public List<Customer> getCust_details() {
