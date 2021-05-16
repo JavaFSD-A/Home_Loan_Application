@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourcastle.homeloan.bean.BCryptEncription;
 
 @Entity
 @Table(name = "customers")
@@ -163,7 +164,7 @@ public class Customer {
 	}
 
 	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+		this.passwd = BCryptEncription.passencoder(passwd);
 	}
 
 	public String getCust_gender() {

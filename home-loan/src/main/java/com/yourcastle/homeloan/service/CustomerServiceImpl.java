@@ -4,12 +4,13 @@
 
 package com.yourcastle.homeloan.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
+
 
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
@@ -17,7 +18,7 @@ import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
-import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
+
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
