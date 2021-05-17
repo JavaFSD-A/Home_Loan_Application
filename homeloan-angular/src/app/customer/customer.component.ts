@@ -11,11 +11,12 @@ import { CustomerService } from '../services/customer.service';
 export class CustomerComponent implements OnInit {
 
   customer : CustomerModel;
-  cust_gender : string[];
-
+  cust_genders : string[];
+  states:string[];
   constructor(private service : CustomerService, private route : Router) {
     this.customer = new CustomerModel();
-    this.cust_gender = ["Male","Female","Rainbow","Prefer not to tell"];
+    this.cust_genders = ["Male", "Female", "Rainbow", "Prefer not to tell"];
+    this.states=["Andhra Pradesh","Karnataka","Kerala","Maharastra","New Delhi","Rajasthan","Tamil Nadu","Telengana","West Bengal"];
    }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class CustomerComponent implements OnInit {
 
   saveCustomer(){
     this.service.createCustomer(this.customer);
+    this.route.navigate(['login']);
   }
 
 

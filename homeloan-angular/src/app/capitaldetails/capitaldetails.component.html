@@ -1,9 +1,9 @@
-<div class="login-page">
+<div class="capital-page">
   <mat-card class="mat-elevation-z12">
     <mat-card-title style="text-align:center;">Registration Step-3</mat-card-title>
     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
 
-      <mat-tab label="Propety Detials">
+      <mat-tab label="Property Details">
         <mat-card-content>
           <form (ngSubmit)="addCapital()" #addfrm="ngForm">
             <mat-form-field>
@@ -41,7 +41,7 @@
 
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
-              Submit
+              Next
             </button>
           </form>
         </mat-card-content>
