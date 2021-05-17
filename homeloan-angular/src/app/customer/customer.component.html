@@ -1,164 +1,150 @@
-<form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
-  <table class="table table-dark">
-    <tr>
-      <td>Name</td>
-      <td>
-        <input
-          [(ngModel)]="customer.custName"
+<div class="customer-page">
+  <mat-card >
+    <mat-card-title style="text-align:center;">Registration Step-1</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+
+      <mat-tab label="Customer Details">
+        <mat-card-content>
+          <form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
+
+              
+                
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.custName"
           name="custName"
           required
           #custName="ngModel"
-          placeholder="Enter Name"
-        />
-        <span *ngIf="custName.invalid" class="alert-danger">
-          Name is required
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td>Date of Birth</td>
-      <td>
-        <input
-          [(ngModel)]="customer.cust_dob"
+          placeholder="Enter Name" required>
+              <mat-error *ngIf="custName.invalid">
+                Name is required
+              </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.cust_dob"
           name="cust_dob"
           required
           #cust_dob="ngModel"
-          placeholder="Enter DoB"
-        />
-        <span *ngIf="cust_dob.invalid" class="alert-danger"> DoB is required </span>
-      </td>
-    </tr>
-    <tr>
-      <td>Gender</td>
-      <td>
-        <select
-          [(ngModel)]="customer.cust_gender"
-          name="cust_gender"
-          #cust_gender="ngModel"
-        >
-          <option *ngFor="let g of cust_gender" [value]="g">{{g}}</option>
-        </select>
-      </td>
-    </tr>
+          placeholder="Enter DoB" required>
+              <mat-error *ngIf="cust_dob.invalid">
+                DoB is required
+              </mat-error>
 
-    <tr>
-      <td>Phone Number</td>
-      <td>
-        <input
-          [(ngModel)]="customer.phoneNo"
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                  <mat-label>Gender</mat-label>
+                  <mat-select  [(ngModel)]="customer.cust_gender"
+          name="cust_gender"
+          #cust_gender="ngModel">
+                    <mat-option  *ngFor="let g of cust_genders" [value]="g">{{g}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.phoneNo"
           name="phoneNo"
           #phoneNo="ngModel"
           required
-          placeholder="Enter Phone No. "
-        />
-        <span *ngIf="phoneNo.invalid" class="alert-danger">
-          Phone No. is required
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td>Address</td>
-      <td>
-        <input
-          [(ngModel)]="customer.cust_address"
-          name="cust_address"
-          required
-          #cust_address="ngModel"
-          placeholder="Enter Address"
-        />
-        <span *ngIf="cust_address.invalid" class="alert-danger">
-          Address is required
-        </span>
-      </td>
-    </tr>
+          placeholder="Enter Phone No. " required>
+              <mat-error *ngIf="phoneNo.invalid">
+                Phone Number is required
+              </mat-error>
 
-    <tr>
-      <td>City</td>
-      <td>
-        <input
-          [(ngModel)]="customer.city"
-          name="city"
-          required
-          #city="ngModel"
-          placeholder="Enter City"
-        />
-        <span *ngIf="city.invalid" class="alert-danger">
-          City is required
-        </span>
-      </td>
-    </tr>
-
-    <tr>
-      <td>State</td>
-      <td>
-        <input
-          [(ngModel)]="customer.state"
-          name="state"
-          required
-          #state="ngModel"
-          placeholder="Enter State"
-        />
-        <span *ngIf="state.invalid" class="alert-danger">
-          State is required
-        </span>
-      </td>
-    </tr>
-
-    <tr>
-      <td>Pincode</td>
-      <td>
-        <input
-          [(ngModel)]="customer.pincode"
-          name="pincode"
-          required
-          #pincode="ngModel"
-          placeholder="Enter Address"
-        />
-        <span *ngIf="pincode.invalid" class="alert-danger">
-          Pincode is required
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td>Email</td>
-      <td>
-        <input
-          [(ngModel)]="customer.cust_email"
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput  [(ngModel)]="customer.cust_email"
           name="cust_email"
           #cust_email="ngModel"
           required
-          placeholder="Enter email id"
-        />
-        <span *ngIf="cust_email.invalid" class="alert-danger">
-          email is required
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td>
-        <input
-          [(ngModel)]="customer.passwd"
+          placeholder="Enter email id" required>
+              <mat-error *ngIf="cust_email.invalid">
+                Email is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput  [(ngModel)]="customer.adharno"
+          name="adharno"
+          #adharno="ngModel"
+          required
+          placeholder="Enter Aadhar" required>
+              <mat-error *ngIf="adharno.invalid">
+                Aadhar is required
+              </mat-error>
+
+            </mat-form-field>
+            
+          </form>
+        </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Customer Details">
+        <mat-card-content>
+          <form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.cust_address"
+          name="cust_address"
+          required
+          #cust_address="ngModel"
+          placeholder="Enter Address" required>
+              <mat-error *ngIf="cust_address.invalid">
+                Address is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput  [(ngModel)]="customer.city"
+          name="city"
+          required
+          #city="ngModel"
+          placeholder="Enter City" required>
+              <mat-error *ngIf="city.invalid">
+                City is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                  <mat-label>State</mat-label>
+                  <mat-select  [(ngModel)]="customer.state"
+          name="state"
+          required
+          #state="ngModel"
+          placeholder="Enter State">
+                    <mat-option  *ngFor="let g of states" [value]="g">{{g}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            
+            <mat-form-field>
+              <input matInput   [(ngModel)]="customer.pincode"
+          name="pincode"
+          required
+          #pincode="ngModel"
+          placeholder="Enter Address" required>
+              <mat-error *ngIf="pincode.invalid">
+                Pincode is required
+              </mat-error>
+
+            </mat-form-field><mat-form-field>
+              <input matInput   [(ngModel)]="customer.passwd"
           name="passwd"
           #passwd="ngModel"
           required
-          placeholder="Enter password "
-        />
-        <span *ngIf="passwd.invalid" class="alert-danger">
-          Password is required
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <th colspan="2">
-        <button
-          type="submit"
-          class="btn btn-success"
-          [disabled]="!addfrm.valid"
-        >
-          Save User
-        </button>
-      </th>
-    </tr>
-  </table>
-</form>
+          placeholder="Enter password " required>
+              <mat-error *ngIf="passwd.invalid">
+                Password is required
+              </mat-error>
+
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+              Next
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+    
+  </mat-card>
+  
+</div>

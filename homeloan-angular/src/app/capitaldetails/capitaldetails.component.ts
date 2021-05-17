@@ -17,11 +17,13 @@ export class CapitaldetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+    if(localStorage.getItem("customer") == null)
+    this.route.navigate(['login']);
 }
 
   addCapital(){
     this.service.createCapital(this.capital);
+    this.route.navigate(['list']);
   }
 
 }
