@@ -1,0 +1,27 @@
+<button class="btn btn-success" (click)="getDocumentById()">Document Details</button>
+<br /><br />
+<div [hidden]="!found">
+  <table class="table table-dark">
+    <tr>
+      <td>Document Id</td>
+      <td>{{ authdoc.auth_id }}</td>
+    </tr>
+    <tr>
+      <td>Aadhar Card</td>
+      <td>{{ authdoc.auth_aadhar }}</td>
+    </tr>
+
+    <tr>
+        <td>Pan Card</td>
+        <td>{{ authdoc.auth_pan }}</td>
+      </tr>
+
+      <tr>
+        <td>Income Certificate</td>
+        <td>{{ authdoc.auth_income_certificate }}</td>
+      </tr>
+
+      
+  </table>
+</div>
+

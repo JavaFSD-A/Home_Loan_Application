@@ -63,8 +63,9 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 	@Override
-	public AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException {
-		AuthDocument ad =  authrepo.findById(auth_id).orElseThrow(() -> new DocumentNotFoundException("Document Not Found: "+ auth_id));
+	public AuthDocument getAllAuthDocument(int cust_id) throws CustomerNotFoundException {
+		Customer customer =  custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found: "+ cust_id));
+		AuthDocument ad = customer.getCust_auth_document();
 		return ad;
 	}
 
