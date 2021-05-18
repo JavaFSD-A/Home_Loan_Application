@@ -85,15 +85,16 @@ public class CustomerController {
 
 	}
 
-	@GetMapping(value = "/getAuthDocument/{auth_id}", produces = "application/json")
-	public ResponseEntity<?> getAuthDocument(@PathVariable("auth_id") int auth_id, HttpSession session) {
-		AuthDocument ad = null;
+	@GetMapping(value = "/getAuthDocument/{cust_id}", produces = "application/json")
+	public ResponseEntity<?> getAuthDocument(@PathVariable("cust_id") int cust_id, HttpSession session) {
+		
 
 		try {
-			ad = service.getAllAuthDocument(auth_id);
+			AuthDocument ad = null;
+			ad = service.getAllAuthDocument(cust_id);
 			return new ResponseEntity<AuthDocument>(ad, HttpStatus.OK);
 
-		} catch (DocumentNotFoundException e) {
+		} catch (CustomerNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}

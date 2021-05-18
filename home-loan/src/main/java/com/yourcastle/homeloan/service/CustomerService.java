@@ -25,7 +25,7 @@ public interface CustomerService {
 	
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	//boolean updateAuthDocument(AuthDocument ad);
-	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
+	AuthDocument getAllAuthDocument(int cust_id) throws CustomerNotFoundException;
 	
 	int addCapital(Capital cap,  int cust_id);
 	//boolean updateCapital(Capital cap);

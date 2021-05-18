@@ -6,6 +6,7 @@ import { delay, retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { LoanModel } from '../models/loan.model';
 import { CapitalModel } from '../models/capital.model';
+import { AuthdocModel } from '../models/authdoc.model';
 
 @Injectable({
   providedIn: 'root',
@@ -129,6 +130,33 @@ export class CustomerService {
       .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
+
+  /**
+   * POST /addAuthDocument/{custId}
+   * @param authdoc
+   * @returns
+   */
+
+   async createDocument(authdoc: AuthdocModel) {
+    let customer: CustomerModel;
+    customer = JSON.parse(localStorage.getItem('customer'));
+    return await this.http
+      .post(this.baseUri + '/addAuthDocument/' + customer.cust_id, authdoc)
+      .subscribe((data) => (data = authdoc));
+  }
+
+  /**
+   * GET /getAuthDocument/{cust_id}
+   * @returns 
+   */
+
+ async findDocumentById() {
+  let customer = JSON.parse(localStorage.getItem('customer'));
+  return await this.http
+    .get<AuthdocModel>(this.baseUri + '/getAuthDocument/' + customer.cust_id)
+    .pipe(retry(1), catchError(this.handleError))
+    .toPromise();
+}
 
   /**
    *  GET /customer/logout

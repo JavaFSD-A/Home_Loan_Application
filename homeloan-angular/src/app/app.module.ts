@@ -27,6 +27,8 @@ import { AdmindashbordComponent } from './admindashbord/admindashbord.component'
 import { SearchComponent } from './search/search.component';
 import { EligiblitycalComponent } from './eligiblitycal/eligiblitycal.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { AuthdocComponent } from './authdoc/authdoc.component';
+import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { CalculatorComponent } from './calculator/calculator.component';
     SearchComponent,
     EmicalculatorComponent,
     EligiblitycalComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    AuthdocComponent,
+    AuthdoclistComponent
   ],
   imports: [
     BrowserModule,
