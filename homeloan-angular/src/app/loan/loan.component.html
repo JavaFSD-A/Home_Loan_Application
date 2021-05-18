@@ -28,7 +28,7 @@
               <input matInput name="loan_principal" placeholder="Enter Principal Amount" #loan_principal = 'ngModel'
               [(ngModel)] = "loan.loan_principal" required>
               <mat-error *ngIf="loan_principal.invalid">
-                loan_principal is required
+                Loan Principal is required
               </mat-error>
 
             </mat-form-field>
@@ -36,7 +36,7 @@
               <input matInput name="loan_interest_rate" placeholder="Rate of Interest" #loan_interest_rate = 'ngModel'
               [(ngModel)] = "loan.loan_interest_rate" required>
               <mat-error *ngIf="loan_interest_rate.invalid">
-                loan_interest_rate is required
+                Loan Interest Rate is required
               </mat-error>
 
             </mat-form-field>

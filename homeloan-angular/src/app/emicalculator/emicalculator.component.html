@@ -1,153 +1,105 @@
+<div class="cal-page">
+  <mat-card class="mat-elevation-z12">
 <mat-tab-group>
   <mat-tab label="Fixed Emi">
     <form  (ngSubmit)="fixedEmi()" #addfrm="ngForm">
-      <table class="table table-dark">
-        <tr>
-          <td>Intrest Rate</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.intrest_rate"
-              name="intrest_rate"
-              required
-              #intrest_rate="ngModel"
-              placeholder="Enter ROI"
-            />
-            <span *ngIf="intrest_rate.invalid" class="alert-danger">
-              ROI is required
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>Tenure</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.tenure"
-              name="tenure"
-              required
-              #tenure="ngModel"
-              placeholder="Enter Tenure"
-            />
-            <span *ngIf="tenure.invalid" class="alert-danger"> Tenure is required </span>
-          </td>
-        </tr>
-    
-        <tr>
-          <td>Principal Amount</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.principle_amt"
-              name="principle_amt"
-              #principle_amt="ngModel"
-              required
-              placeholder="Enter maonthly Income"
-            />
-            <span *ngIf="principle_amt.invalid" class="alert-danger">
-              Principal Value is required
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>Number of Instalments</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.num_instalment"
-              name="num_instalment"
-              #num_instalment="ngModel"
-              required
-              placeholder="Enter Number of Instalments"
-            />
-            <span *ngIf="num_instalment.invalid" class="alert-danger">
-              Number of Instalments is required
-            </span>
-          </td>
-        </tr>
-          <tr>
-            <td>
-              <button
-                type="submit"
-                class="btn btn-success"
-                [disabled]="!addfrm.valid"
-              >
-              Check
-              </button>
-            </td>
-            <td>
-              <button
-                type="reset"
-                class="btn btn-success"
-              >
-              Reset
-              </button>
-            </td>
-          </tr>
-    
-        <div>
+      <mat-form-field>
+        <input matInput [(ngModel)]="emiCal.intrest_rate"
+        name="intrest_rate"
+       #intrest_rate="ngModel"
+        placeholder="Enter ROI" required>
+        <mat-error *ngIf="intrest_rate.invalid">
+          Name is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput  [(ngModel)]="emiCal.tenure"
+        name="tenure"
+        required
+        #tenure="ngModel"
+        placeholder="Enter Tenure">
+        <mat-error *ngIf="tenure.invalid">
+          Name is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput  [(ngModel)]="emiCal.principle_amt"
+        name="principle_amt"
+        #principle_amt="ngModel"
+        required
+        placeholder="Enter monthly Income">
+        <mat-error *ngIf="principle_amt.invalid">
+          Name is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput 
+        [(ngModel)]="emiCal.num_instalment"
+        name="num_instalment"
+        #num_instalment="ngModel"
+        required
+        placeholder="Enter Number of Installments">
+        <mat-error *ngIf="num_instalment.invalid">
+          Name is required
+        </mat-error>
+
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+        Check
+      </button>
+      <button mat-raised-button color="primary" type="reset"  class="login-button">
+        Reset
+      </button>
+      <div class="cal">
           <br>
-          <h2>Calculated Emi</h2>
+          <h2 >Calculated Emi</h2>
           <h1>{{emiCal.emi_to_pay}}</h1>
-        </div>
-      </table>
-    </form>
+      </div>
+      </form>
   </mat-tab>
 
   <mat-tab label="Reducing Emi">
     <form  (ngSubmit)="reducingEmi()" #emiform="ngForm">
-      <table class="table table-dark">
-        <tr>
-          <td>Intrest Rate</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.intrest_rate"
+      <mat-form-field>
+        <input matInput 
+        [(ngModel)]="emiCal.intrest_rate"
               name="intrest_rate"
               required
               #intrest_rate="ngModel"
-              placeholder="Enter ROI"
-            />
-            <span *ngIf="intrest_rate.invalid" class="alert-danger">
-              ROI is required
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>Remaning Loan Amount</td>
-          <td>
-            <input
-              [(ngModel)]="emiCal.remaning_loan_amt"
+              placeholder="Enter ROI">
+        <mat-error *ngIf="intrest_rate.invalid">
+          ROI is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput 
+        [(ngModel)]="emiCal.remaning_loan_amt"
               name="remaning_loan_amt"
               #remaning_loan_amt="ngModel"
               required
-              placeholder="Enter Remaning Loan Amount (Required for Reducing Emi)"
-            />
-            <span *ngIf="remaning_loan_amt.invalid" class="alert-danger">
-              Remaning Loan amount is required
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button
-              type="submit"
-              class="btn btn-success"
-              [disabled]="!emiform.valid"
-            >
-            Check
-            </button>
-          </td>
-          <td>
-            <button
-              type="reset"
-              class="btn btn-success"
-            >
-            Reset
-            </button>
-          </td>
-        </tr>
-        <div>
-          <br>
-          <h2>Calculated Emi</h2>
-          <h1>{{emiCal.emi_to_pay}}</h1>
-        </div>
-      </table>
+              placeholder="Enter Remaning Loan Amount (Required for Reducing Emi)">
+        <mat-error *ngIf="remaning_loan_amt.invalid">
+          Remaning Loan amount is required
+        </mat-error>
+
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!emiform.valid" class="login-button">
+        Check
+      </button>
+      <button mat-raised-button color="primary" type="reset"  class="login-button">
+        Reset
+      </button>
+      <div class="cal">
+        <br>
+        <h2>Calculated Emi</h2>
+        <h1>{{emiCal.emi_to_pay}}</h1>
+      </div>
     </form>
   </mat-tab>
 </mat-tab-group>
+</mat-card>
+</div>

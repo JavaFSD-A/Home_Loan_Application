@@ -1,4 +1,4 @@
-<body>
+<div class="loan-page">
   <mat-tab-group>
     <mat-tab label="Login as Customer">
   
@@ -7,6 +7,7 @@
     <form (ngSubmit)="authentication()" #logfrm="ngForm" class="form">
       <img src="./assets/imgs/avatar.png" alt="">
       <h2><b>Login For Customer</b></h2>
+      
       <div class="input-group">
         
         <input type="text" name="phone_no" #phone_no="ngModel" [(ngModel)]="auth.phone_no" required>
@@ -49,4 +50,4 @@
     </div>
     </mat-tab>
   </mat-tab-group>
-  </body>
+  </div>
