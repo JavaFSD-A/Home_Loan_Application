@@ -17,8 +17,7 @@ export class CapitaldetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem("customer") == null)
-    this.route.navigate(['login']);
+   
 }
 
   addCapital(){

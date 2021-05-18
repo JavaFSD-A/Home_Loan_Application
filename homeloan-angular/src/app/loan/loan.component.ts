@@ -26,8 +26,7 @@ export class LoanComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem("customer") == null)
-    this.route.navigate(['login']);
+    
 }
 
   addLoan(){
