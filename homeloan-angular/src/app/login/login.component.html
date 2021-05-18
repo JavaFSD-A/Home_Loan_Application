@@ -1,34 +1,13 @@
-<body>
-<mat-tab-group>
-  <mat-tab label="Login as Customer">
-
-<div class="login-wrapper">
+<div class="login-page">
+  <mat-tab-group>
+    <mat-tab label="Login as Customer">
   
-  <form (ngSubmit)="authentication()" #logfrm="ngForm" class="form">
-    <img src="../assets/imgs/avatar.png" alt="">
-    <h2><b>Login For Customer</b></h2>
-    <div class="input-group">
-      
-      <input type="text" name="phone_no" #phone_no="ngModel" [(ngModel)]="auth.phone_no" required>
-      <label>User Name</label>
-    </div>
-    <div class="input-group">
-      <input type="password" name="login_passwd" #login_passwd="ngModel" [(ngModel)]="auth.login_passwd" required>
-      <label for="loginPassword">Password</label>
-    </div>
-    <input type="submit" value="Login" [disabled]="!logfrm.valid" class="submit-btn">
-
-  </form>
-
-
-</div>
-</mat-tab>
-<mat-tab label="Login as Admin">
   <div class="login-wrapper">
     
     <form (ngSubmit)="authentication()" #logfrm="ngForm" class="form">
-      <img src="../assets/imgs/avatar.png" alt=""> 
-      <h2><b>Login For Admin</b></h2>
+      <img src="./assets/imgs/avatar.png" alt="">
+      <h2><b>Login For Customer</b></h2>
+      
       <div class="input-group">
         
         <input type="text" name="phone_no" #phone_no="ngModel" [(ngModel)]="auth.phone_no" required>
@@ -37,9 +16,6 @@
       <div class="input-group">
         <input type="password" name="login_passwd" #login_passwd="ngModel" [(ngModel)]="auth.login_passwd" required>
         <label for="loginPassword">Password</label>
-        <span *ngIf="login_passwd.dirty && login_passwd.invalid" class="alert-danger">
-          Empty or Invalid Password
-        </span>
       </div>
       <input type="submit" value="Login" [disabled]="!logfrm.valid" class="submit-btn">
   
@@ -48,5 +24,30 @@
   
   </div>
   </mat-tab>
-</mat-tab-group>
-</body>
+  <mat-tab label="Login as Admin">
+    <div class="login-wrapper">
+      
+      <form (ngSubmit)="authentication()" #logfrm="ngForm" class="form">
+        <img src="../assets/imgs/avatar.png" alt=""> 
+        <h2><b>Login For Admin</b></h2>
+        <div class="input-group">
+          
+          <input type="text" name="phone_no" #phone_no="ngModel" [(ngModel)]="auth.phone_no" required>
+          <label>User Name</label>
+        </div>
+        <div class="input-group">
+          <input type="password" name="login_passwd" #login_passwd="ngModel" [(ngModel)]="auth.login_passwd" required>
+          <label for="loginPassword">Password</label>
+          <span *ngIf="login_passwd.dirty && login_passwd.invalid" class="alert-danger">
+            Empty or Invalid Password
+          </span>
+        </div>
+        <input type="submit" value="Login" [disabled]="!logfrm.valid" class="submit-btn">
+    
+      </form>
+    
+    
+    </div>
+    </mat-tab>
+  </mat-tab-group>
+  </div>

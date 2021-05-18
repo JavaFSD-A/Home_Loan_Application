@@ -17,8 +17,8 @@ export class LoanComponent implements OnInit {
 
   constructor(private service : CustomerService, private route : Router) {
     this.loan = new LoanModel();
-    this.loan_names = ["Loan for Home Purchase","Loan for Land Purchase","Bridge HomeLoan","NRI HomeLoan"];
-    this.loan_tenures = [1,3,5,10];
+    this.loan_names = ["Loan for Home Purchase","Loan for Land Purchase","Bridge HomeLoan"];
+    this.loan_tenures = [1,5,10,15,20];
    }
 
   ngOnInit(): void {

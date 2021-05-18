@@ -7,36 +7,36 @@
         <mat-card-content>
           <form (ngSubmit)="addCapital()" #addfrm="ngForm">
             <mat-form-field>
-              <input matInput name="property_name" placeholder="property Name" #property_name="ngModel"
+              <input matInput name="property_name" placeholder="Property Name" #property_name="ngModel"
                 [(ngModel)]="capital.property_name" required>
               <mat-error *ngIf="property_name.dirty &&property_name.invalid">
-                property_name is required
+                Property Name is required
               </mat-error>
 
             </mat-form-field>
             <mat-form-field>
-              <input matInput name="property_value" placeholder="property value" #property_value="ngModel"
+              <input matInput name="property_value" placeholder="Property Value" #property_value="ngModel"
                 [(ngModel)]="capital.property_value" required>
               <mat-error *ngIf="property_value.invalid">
-                property_name is required
+                Property Value is required
               </mat-error>
 
             </mat-form-field>
             
             
             <mat-form-field>
-              <input matInput name="location" placeholder="property location" #location="ngModel"
+              <input matInput name="location" placeholder="Property Location" #location="ngModel"
                 [(ngModel)]="capital.location" required>
               <mat-error *ngIf="location.invalid">
-                property_location is required
+               Location is required
               </mat-error>
 
             </mat-form-field>
             <mat-form-field>
-              <input matInput name="monthly_income" placeholder="monthly_income" #monthly_income="ngModel"
+              <input matInput name="monthly_income" placeholder="Monthly Income" #monthly_income="ngModel"
                 [(ngModel)]="capital.monthly_income" required>
               <mat-error *ngIf="monthly_income.invalid">
-                property_name is required
+                Monthly Income is required
               </mat-error>
 
             </mat-form-field>
