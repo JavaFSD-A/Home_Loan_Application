@@ -24,7 +24,6 @@ export class CustomerComponent implements OnInit {
 
   saveCustomer(){
     this.service.createCustomer(this.customer);
-    this.route.navigate(['login']);
   }
 
 

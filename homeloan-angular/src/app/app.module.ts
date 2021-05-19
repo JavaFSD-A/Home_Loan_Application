@@ -21,6 +21,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { FormgroupComponent } from './formgroup/formgroup.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdmindashbordComponent } from './admindashbord/admindashbord.component';
@@ -60,7 +62,10 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatCarouselModule.forRoot()
+    MatCarouselModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

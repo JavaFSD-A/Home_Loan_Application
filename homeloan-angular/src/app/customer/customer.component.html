@@ -6,8 +6,6 @@
       <mat-tab label="Customer Details">
         <mat-card-content>
           <form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
-
-              
                 
             <mat-form-field>
               <input matInput [(ngModel)]="customer.custName"
@@ -22,11 +20,13 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput [(ngModel)]="customer.cust_dob"
+              <input matInput [matDatepicker]="picker" [(ngModel)]="customer.cust_dob"
           name="cust_dob"
           required
           #cust_dob="ngModel"
-          placeholder="Enter DoB" required>
+          placeholder="Enter DoB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
               <mat-error *ngIf="cust_dob.invalid">
                 DoB is required
               </mat-error>

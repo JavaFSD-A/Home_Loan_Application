@@ -99,24 +99,13 @@ public class Customer {
 		this.admin = admin;
 	}
 
-
-
-
-
 	public String getState() {
 		return state;
 	}
 
-
-
-
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
-
-
 
 
 	public int getCust_id() {
