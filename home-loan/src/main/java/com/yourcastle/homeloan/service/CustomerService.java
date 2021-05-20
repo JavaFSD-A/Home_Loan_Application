@@ -19,7 +19,7 @@ import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
 public interface CustomerService {
 
-	int addCustomer(Customer c) throws CustomerAlreadyExists;
+	Customer addCustomer(Customer c) throws CustomerAlreadyExists;
 	//boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	

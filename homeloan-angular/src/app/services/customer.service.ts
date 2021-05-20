@@ -30,7 +30,7 @@ export class CustomerService {
     return await this.http
       .post<CustomerModel>(this.baseUri + '/auth', {
         phone_no: phoneNo,
-        login_passwd: passwd,
+        login_passwd: passwd
       })
       .pipe(retry(1), catchError(this.handleError))
       .toPromise();
@@ -42,10 +42,12 @@ export class CustomerService {
    * @abstract Adds new customer
    */
 
-  createCustomer(customer: CustomerModel) {
-    this.http
+  async createCustomer(customer: CustomerModel) {
+    return await this.http
       .post(this.baseUri + '/', customer)
-      .subscribe((data) => (data = this.customer));
+      .pipe(retry(1), catchError(this.handleError))
+      .toPromise();
+      // .subscribe((data) => (data = this.customer));
   }
 
   /**

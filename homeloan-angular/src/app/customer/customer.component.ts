@@ -23,8 +23,12 @@ export class CustomerComponent implements OnInit {
   }
 
   saveCustomer(){
-    this.service.createCustomer(this.customer);
+    let customer : CustomerModel;
+    this.service.createCustomer(this.customer).then((result : CustomerModel)=>{
+      customer = result;
+      localStorage.setItem('customer', JSON.stringify(customer));
+      console.log(JSON.stringify(customer));
+    });
+
   }
-
-
 }

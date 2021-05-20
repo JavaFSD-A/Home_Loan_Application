@@ -40,12 +40,11 @@ public class CustomerController {
 
 	/////////////////////////////////////// CUSTOMER /////////////////////////////////////// //////////////////////////////////////////////////
 
-	@PostMapping(value = "/", consumes = "application/json")
+	@PostMapping(value = "/", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCustomer(@RequestBody Customer cust) {
-		int custId;
 		try {
-			custId = service.addCustomer(cust);
-			return new ResponseEntity<String>("New Customer added with Customer ID " + custId, HttpStatus.OK);
+			Customer customer= service.addCustomer(cust);
+			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} catch (CustomerAlreadyExists e) {
 			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, e.getMessage());
 		}

@@ -29,7 +29,7 @@ export class AdminService {
     return await this.http
       .post<AdminModel>(this.baseUri + '/auth', {
         phone_no: phoneNo,
-        login_passwd: passwd,
+        login_passwd: passwd
       })
       .pipe(retry(1), catchError(this.handleError))
       .toPromise();

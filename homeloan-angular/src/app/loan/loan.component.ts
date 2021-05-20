@@ -22,7 +22,7 @@ export class LoanComponent implements OnInit {
     this.loan = new LoanModel();
     this.capital=new CapitalModel();
     this.loan_names = ["Loan for Home Purchase","Loan for Land Purchase","Bridge HomeLoan","NRI HomeLoan"];
-    this.loan_tenures = [1,3,5,10];
+    this.loan_tenures = [1,3,5,10,20,25];
    }
 
   ngOnInit(): void {
@@ -31,7 +31,6 @@ export class LoanComponent implements OnInit {
 
   addLoan(){
     this.service.createLoan(this.loan);
-    this.route.navigate(['list']);
   }
 
 }

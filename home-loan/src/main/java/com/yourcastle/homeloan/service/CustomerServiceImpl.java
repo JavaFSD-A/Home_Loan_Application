@@ -43,10 +43,10 @@ public class CustomerServiceImpl implements CustomerService{
     private LoanRepository loanrepo;
 
 	@Override
-	public int addCustomer(Customer c){
-		    
-			custrepo.save(c);
-		    return c.getCust_id();
+	public Customer addCustomer(Customer c){
+		    Customer cust = new Customer();
+			cust = custrepo.save(c);
+		    return cust;
 		
 	}
 

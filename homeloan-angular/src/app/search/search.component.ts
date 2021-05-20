@@ -17,6 +17,8 @@ export class SearchComponent implements OnInit {
  
 
   ngOnInit(): void {
+    if(localStorage.getItem("admin") == null)
+    this.route.navigate(['login']);
   }
 
   getCustomerById(cust_id : number) {

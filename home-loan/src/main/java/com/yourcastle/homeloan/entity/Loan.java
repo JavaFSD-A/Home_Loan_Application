@@ -19,7 +19,7 @@ public class Loan {
 	@Id
 	@GeneratedValue
 	private int loan_id;
-	@Column(length=50, unique = true)
+	@Column(length=50)
 	private String loan_name;
 	@Column(name="tenure")
 	private int loan_tenure;
