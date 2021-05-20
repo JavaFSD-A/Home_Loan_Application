@@ -94,11 +94,11 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping(value = "/foreclousreResponse/{custId}/{flag}")
-	public ResponseEntity<?> foreclousre(@RequestParam Map<String, String> map, @PathVariable("custId") int cust_id,  @PathVariable("flag") int flag, HttpSession session){
-		double forclousre_amt;
+	@PostMapping(value = "/foreclousreResponse/{cust_id}")
+	public ResponseEntity<?> foreclousre(@PathVariable("cust_id") int cust_id){
+		double forclousre_amt = 0;
 		try {
-			forclousre_amt = service.foreclouserResponse(cust_id, flag, map.get("bal_principal"), map.get("months_left"));
+			forclousre_amt = service.foreclouserResponse(cust_id);
 			if(forclousre_amt != 0) {
 				return new ResponseEntity<String>("Accepted: Foreclouser Amount Need to pay : " + forclousre_amt, HttpStatus.OK);
 			}

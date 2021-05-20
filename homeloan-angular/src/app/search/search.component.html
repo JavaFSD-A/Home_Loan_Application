@@ -2,8 +2,8 @@
     <br> <br>
     <div class="col">
         <input type="text" #id placeholder="Enter Customer Id"><span></span>
-        <button  type="button" class="btn btn-success"  (click)="getCustomerById(id.value)">Search</button>
-        <button class="btn btn-primary" (click)="updateLoanStatus(id.value)">Update Loan</button>
+        <button  type="button" class="btn btn-success" style="margin: 20px;" (click)="getCustomerById(id.value)">Search</button>
+        <button class="btn btn-primary" style="margin-right: 20px;" (click)="updateLoanStatus(id.value)">Update Loan</button>
       </div>
         <br><br>
         <div [hidden]="!found">

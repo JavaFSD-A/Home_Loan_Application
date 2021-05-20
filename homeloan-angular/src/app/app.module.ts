@@ -17,6 +17,7 @@ import { EmicalculatorComponent } from "./emicalculator/emicalculator.component"
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material/material.module";
+import {MatTableModule} from '@angular/material/table';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -65,7 +66,8 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     MatCarouselModule.forRoot(),
     MatDatepickerModule,
     MatNativeDateModule, 
-    MatRippleModule
+    MatRippleModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,4 +28,8 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  clouserResponse(cust_id : number){
+    this.service.foreclouserResponse(cust_id);
+    }
+
 }

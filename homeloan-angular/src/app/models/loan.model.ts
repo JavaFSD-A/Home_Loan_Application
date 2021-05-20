@@ -5,5 +5,5 @@ export class LoanModel{
     loan_principal : number;
     loan_interest_rate : number;
     loan_emi : number;
-    loan_status : string;
+    loan_status : "Pending";
 }

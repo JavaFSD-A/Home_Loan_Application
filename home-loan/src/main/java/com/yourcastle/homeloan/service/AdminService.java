@@ -27,7 +27,7 @@ public interface AdminService {
 	
 	public int addAdmin(Admin admin);
 	
-	public  double foreclouserResponse(int cust_id, int flag, String bal_principal, String months_left) throws CustomerNotFoundException, NotAppliedForLoan;
+	public  double foreclouserResponse(int cust_id) throws CustomerNotFoundException, NotAppliedForLoan;
 	
 	
 }

@@ -16,8 +16,8 @@
             <td>{{c.cust_id}}</td>
             <td>{{c.custName}}</td>
             <td>{{c.cust_loan.loan_name}}</td>
-            <td>{{c.foreclouser}}</td>
-            <td><button type="button" class="btn btn-success" >Clouser</button></td>
+            <td>{{c.foreclousre}}</td>
+            <td><button type="button" class="btn btn-success" (click)="clouserResponse(c.cust_id)" >Clouser</button></td>
         </tr>
       </table>
   </div>

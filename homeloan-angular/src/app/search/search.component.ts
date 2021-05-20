@@ -25,12 +25,12 @@ export class SearchComponent implements OnInit {
     this.service.customerById(cust_id).then((result: CustomerModel) => {
       this.customer = result;
       this.found = true;
-      console.log(this.customer);
     });
   }
 
   updateLoanStatus(cust_id: number){
     this.service.updateStatus(cust_id);
+    alert("Updation in process...");
   }
 
 }

@@ -61,7 +61,7 @@ export class CustomerService {
     let customer = JSON.parse(localStorage.getItem('customer'));
     return await this.http
       .get<CustomerModel>(this.baseUri + '/get/' + customer.cust_id)
-      .pipe(delay(1000), catchError(this.handleError))
+      .pipe(delay(1000))
       .toPromise();
   }
 

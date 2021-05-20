@@ -1,3 +1,11 @@
+/**
+ * @author Tarishi Geetey 
+ * @description Admin Services
+ */
+
+
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -87,6 +95,21 @@ export class AdminService {
       this.http.get(this.baseUri + '/logout');
     }
 
+     /**
+   * GET /getCustomerBy/{cust_id}
+   * @param id
+   * @returns
+   * @description display customer details by his/her id
+   */
+
+      async foreclouserResponse(cust_id : number) {
+        return await this.http
+          .post(this.baseUri + '/foreclousreResponse/' + cust_id, cust_id)
+          .pipe(delay(1000), catchError(this.handleError))
+          .toPromise();
+      }
+  
+
    /**
    * @descriptionHandleing Error Handler
    * @param error
@@ -101,7 +124,7 @@ export class AdminService {
         errorMessage = `Error: ${error.error.message}`;
       } else {
         // server-side error
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.text}`;
+        errorMessage = `nMessage: ${error.error.text}`;
       }
       window.alert(errorMessage);
       return throwError(errorMessage);

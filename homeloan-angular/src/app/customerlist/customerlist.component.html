@@ -1,8 +1,8 @@
  <div class="container">
   <br>
-  <button class="btn btn-success" (click)="getCustomerById()">
+  <button class="btn btn-success" style="margin-right: 20px;" (click)="getCustomerById()">
     Personal Details
-  </button>
+  </button> 
   <button class="btn btn-success" (click)="foreclouser()">
     Apply for foreclousre
   </button>
@@ -66,12 +66,12 @@
     </table>
   </div>
 
-<div>
+<div  [hidden]="!found">
   <br>
   <app-capitallist></app-capitallist>
 </div>
 
-<div>
+<div  [hidden]="!found">
   <br>
   <app-loanlist></app-loanlist>
 </div>

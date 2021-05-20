@@ -31,6 +31,7 @@ export class LoanComponent implements OnInit {
 
   addLoan(){
     this.service.createLoan(this.loan);
+    alert("Loan Details Saved Press next.. ");
   }
 
 }

@@ -15,7 +15,7 @@ export class CustomerModel{
     state : string;
     pincode : number;
     adharno : number; 
-    foreclousre : 'Not Applied';
+    foreclousre : "Not Applied";
     cust_loan : LoanModel;
     cust_capital : CapitalModel;
 }

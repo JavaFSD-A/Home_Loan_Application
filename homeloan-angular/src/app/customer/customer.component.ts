@@ -28,6 +28,7 @@ export class CustomerComponent implements OnInit {
       customer = result;
       localStorage.setItem('customer', JSON.stringify(customer));
       console.log(JSON.stringify(customer));
+      alert("Personal Details saved!! press Next to Fill Loan Details!")
     });
 
   }

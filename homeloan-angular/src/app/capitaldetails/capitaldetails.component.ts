@@ -22,6 +22,7 @@ export class CapitaldetailsComponent implements OnInit {
 
   addCapital(){
     this.service.createCapital(this.capital);
+    alert("Capital Details Added press Next..");
   }
 
 }

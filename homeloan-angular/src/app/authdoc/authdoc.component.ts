@@ -20,5 +20,6 @@ export class AuthdocComponent implements OnInit {
 
   addDocument(){
     this.service.createDocument(this.authdoc);
+    alert("Documents added press next..");
   }
 }

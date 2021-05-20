@@ -25,5 +25,7 @@ export class CapitallistComponent implements OnInit {
          this.found = true;
          console.log(this.capital);
        });
+
+       
    }
 }
