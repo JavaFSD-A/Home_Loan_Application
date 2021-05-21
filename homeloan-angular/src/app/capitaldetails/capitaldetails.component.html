@@ -8,7 +8,7 @@
           <form (ngSubmit)="addCapital()" #addfrm="ngForm">
             <mat-form-field>
               <input matInput name="property_name" placeholder="property Name" #property_name="ngModel"
-                [(ngModel)]="capital.property_name" required>
+                [(ngModel)]="capital.property_name" pattern="[A-Za-z]{3,}" required>
               <mat-error *ngIf="property_name.dirty &&property_name.invalid">
                 Property Name is required
               </mat-error>
@@ -16,7 +16,7 @@
             </mat-form-field>
             <mat-form-field>
               <input matInput name="property_value" placeholder="property value" #property_value="ngModel"
-                [(ngModel)]="capital.property_value" required>
+                [(ngModel)]="capital.property_value" pattern="[0-9]{5,}" required>
               <mat-error *ngIf="property_value.invalid">
                 Property Value is required
               </mat-error>
@@ -25,8 +25,8 @@
             
             
             <mat-form-field>
-              <input matInput name="location" placeholder="property location" #location="ngModel"
-                [(ngModel)]="capital.location" required>
+              <input matInput name="location" placeholder="property location(e.g.,cityname only)" #location="ngModel"
+                [(ngModel)]="capital.location" pattern="[A-Za-z]{3,}" required>
               <mat-error *ngIf="location.invalid">
                 Location is required
               </mat-error>
@@ -34,7 +34,7 @@
             </mat-form-field>
             <mat-form-field>
               <input matInput name="monthly_income" placeholder="monthly_income" #monthly_income="ngModel"
-                [(ngModel)]="capital.monthly_income" required>
+                [(ngModel)]="capital.monthly_income" pattern="[0-9]{3,}" required>
               <mat-error *ngIf="monthly_income.invalid">
                 Monthly Income is required
               </mat-error>
