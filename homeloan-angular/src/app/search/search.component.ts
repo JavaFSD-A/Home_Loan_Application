@@ -1,3 +1,8 @@
+/**
+ * @author Tarishi Geetey
+ * @description Serach Component for AdminDashbord
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../models/customer.model';

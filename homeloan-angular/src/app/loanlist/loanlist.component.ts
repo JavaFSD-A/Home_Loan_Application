@@ -1,6 +1,10 @@
+/**
+ * @author Vyshu
+ * @description Loan Display 
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerModel } from '../models/customer.model';
 import { LoanModel } from '../models/loan.model';
 import { CustomerService } from '../services/customer.service';
 

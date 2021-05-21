@@ -38,8 +38,8 @@ public class CalculatorServiceImpl implements CalculatorService {
 		double principle = emi.getPrinciple_amt();
 		double rate = emi.getIntrest_rate();
 		int tenure = emi.getTenure();
-		int instalment = emi.getNum_instalment();
-	  emi.setEmi_to_pay((principle * tenure * rate)/instalment);
+		double r = (rate/1200);
+	  emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
 	  return emi;
 	}
 

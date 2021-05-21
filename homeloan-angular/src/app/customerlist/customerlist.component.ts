@@ -24,6 +24,10 @@ export class CustomerlistComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('customer') == null) {
       this.route.navigate(['login']);
+     
+    }
+    else{
+      alert("Not LoggedIn");
     }
   }
 

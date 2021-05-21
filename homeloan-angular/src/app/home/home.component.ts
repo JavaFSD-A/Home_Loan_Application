@@ -1,3 +1,8 @@
+/**
+ * @author Tarishi Geetey
+ * @description Home Element componenet
+ */
+
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',

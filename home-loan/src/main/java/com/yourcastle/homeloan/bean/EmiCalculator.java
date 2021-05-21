@@ -9,7 +9,6 @@ public class EmiCalculator {
 	private int tenure;
 	private double principle_amt;
 	private double remaning_loan_amt;
-	private int num_instalment;
 	private double emi_to_pay;
 	
 	public EmiCalculator() {
@@ -49,13 +48,6 @@ public class EmiCalculator {
 		this.remaning_loan_amt = remaning_loan_amt;
 	}
 
-	public int getNum_instalment() {
-		return num_instalment;
-	}
-
-	public void setNum_instalment(int num_instalment) {
-		this.num_instalment = num_instalment;
-	}
 
 	public double getEmi_to_pay() {
 		return emi_to_pay;

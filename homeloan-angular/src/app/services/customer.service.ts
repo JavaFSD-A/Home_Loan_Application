@@ -1,9 +1,17 @@
+/**
+ * @author Tarishi Geetey- Customer Component Services
+ * @author Satya- Property and Income details Services
+ * @author Vyshu-  Loan Detail Services
+ * @author Anju- Auth Doc Services
+ * @description Profile and Form Element componenets
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../models/customer.model';
 import { delay, retry, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { LoanModel } from '../models/loan.model';
 import { CapitalModel } from '../models/capital.model';
 import { AuthdocModel } from '../models/authdoc.model';

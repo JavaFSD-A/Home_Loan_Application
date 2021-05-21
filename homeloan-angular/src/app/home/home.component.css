@@ -5,9 +5,9 @@
 
 .column {
   float: left;
-  width: 25%;
-  padding: 80px;
-  align-items: center;
+  width: 33%;
+  padding: 120px;
+  text-align: center;
 }
 
 /* Clearfix (clear floats) */

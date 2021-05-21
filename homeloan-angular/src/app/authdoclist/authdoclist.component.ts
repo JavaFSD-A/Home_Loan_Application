@@ -1,3 +1,8 @@
+/**
+ * @author Anju
+ * @description Auth Doc Display 
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthdocModel } from '../models/authdoc.model';

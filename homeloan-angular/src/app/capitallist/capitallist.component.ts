@@ -1,3 +1,8 @@
+/**
+ * @author Satya
+ * @description Capital Display 
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CapitalModel } from '../models/capital.model';

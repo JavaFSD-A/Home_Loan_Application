@@ -39,7 +39,7 @@ export class AdminService {
         phone_no: phoneNo,
         login_passwd: passwd
       })
-      .pipe(retry(1), catchError(this.handleError))
+      .pipe(retry(1))
       .toPromise();
   }
 
@@ -124,7 +124,7 @@ export class AdminService {
         errorMessage = `Error: ${error.error.message}`;
       } else {
         // server-side error
-        errorMessage = `nMessage: ${error.error.text}`;
+        errorMessage = `Message: "Not Found!"`;
       }
       window.alert(errorMessage);
       return throwError(errorMessage);

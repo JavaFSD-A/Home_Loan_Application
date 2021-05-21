@@ -1,9 +1,14 @@
+/**
+ * @author Tarishi Geetey
+ * @description Calculator service
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalculatorModel } from '../models/eligiblityCal.model';
-import { delay, retry, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { retry } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { EmiCalculatorModel } from '../models/emiCal.model';
 @Injectable({
   providedIn: 'root'
@@ -52,27 +57,6 @@ export class CalculatorService {
         .post<EmiCalculatorModel>(this.baseUri + '/reducingEmi', emiCal)
         .pipe(retry(1))
         .toPromise();
-    }
-
-
-   /**
-   * @descriptionHandleing Error Handler
-   * @param error
-   * @returns error message
-   * @throws error
-   */
-
-    handleError(error) {
-      let errorMessage = '';
-      if (error.error instanceof ErrorEvent) {
-        // client-side error
-        errorMessage = `Error: ${error.error.message}`;
-      } else {
-        // server-side error
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.text}`;
-      }
-      window.alert(errorMessage);
-      return throwError(errorMessage);
     }
 
 }
