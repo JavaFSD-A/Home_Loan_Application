@@ -51,42 +51,51 @@
       </form>
   </mat-tab>
 
-  <mat-tab label="Reducing Emi">
+  <mat-tab label="MaxGain Emi">
     <form  (ngSubmit)="reducingEmi()" #emiform="ngForm">
       <mat-form-field>
-        <input matInput 
-        [(ngModel)]="emiCal.intrest_rate"
-              name="intrest_rate"
-              required
-              #intrest_rate="ngModel"
-              placeholder="Enter ROI">
+        <input matInput  [(ngModel)]="emiCal.principle_amt"
+        name="principle_amt"
+        #principle_amt="ngModel"
+        required
+        placeholder="Enter Loan Amount">
+        <mat-error *ngIf="principle_amt.invalid">
+          Loan Amount is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="emiCal.intrest_rate"
+        name="intrest_rate"
+       #intrest_rate="ngModel"
+        placeholder="Enter ROI" required>
         <mat-error *ngIf="intrest_rate.invalid">
           ROI is required
         </mat-error>
 
       </mat-form-field>
       <mat-form-field>
-        <input matInput 
-        [(ngModel)]="emiCal.remaning_loan_amt"
-              name="remaning_loan_amt"
-              #remaning_loan_amt="ngModel"
-              required
-              placeholder="Enter Remaning Loan Amount (Required for Reducing Emi)">
-        <mat-error *ngIf="remaning_loan_amt.invalid">
-          Remaning Loan amount is required
+        <input matInput  [(ngModel)]="emiCal.tenure"
+        name="tenure"
+        required
+        #tenure="ngModel"
+        placeholder="Enter Tenure">
+        <mat-error *ngIf="tenure.invalid">
+          Tenure is required
         </mat-error>
 
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!emiform.valid" class="login-button">
+      
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
         Check
       </button>
       <button mat-raised-button color="primary" type="reset"  class="login-button">
         Reset
       </button>
       <div class="cal">
-        <br>
-        <h2>Calculated Emi</h2>
-        <h1>{{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
+          <br>
+          <h2 >Calculated Emi</h2>
+          <h1>{{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
       </div>
     </form>
   </mat-tab>

@@ -10,7 +10,7 @@ public class EligiblityCalculator {
 	private double income_per_mth;
 	private double roi;
 	private String eligiblity;
-	private double calculatedMaxVal;
+	private double calculatedMaxVal = 0;
 	
 	public EligiblityCalculator() {
 		// TODO Auto-generated constructor stub

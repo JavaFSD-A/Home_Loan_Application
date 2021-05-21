@@ -26,7 +26,7 @@ public class Loan {
 	private double loan_principal;
 	private float loan_interest_rate;
 	@Column(name="status",length=20)
-	private String loan_status;
+	private String loan_status = "Not Applied";
 	private double loan_emi;
 	
 	@OneToOne

@@ -20,7 +20,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 		double emi = 0;
 		if(eligiblity.getAge() >= MINAGE && eligiblity.getAge() <= MAXAGE && eligiblity.getIncome_per_mth()>=MINSALARY && eligiblity.getTenure_yr() <= TENURE)
 			{
-			emi = eligiblity.getTenure_yr()*(eligiblity.getRoi() *(eligiblity.getIncome_per_mth()));
+			emi = eligiblity.getTenure_yr()*((eligiblity.getRoi()/12) *(eligiblity.getIncome_per_mth()));
 			eligiblity.setEligiblity("Eligible");
 			eligiblity.setCalculatedMaxVal(emi);
 			//System.out.println(eligiblity.getCalculatedMaxVal());		
@@ -42,13 +42,17 @@ public class CalculatorServiceImpl implements CalculatorService {
 	  emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
 	  return emi;
 	}
+	
+	// Special Loan for Customers
 
 	@Override
 	public EmiCalculator calculateReducingEmi(EmiCalculator emi) {
-		double remaning_amt = emi.getRemaning_loan_amt();
-		double rate = emi.getIntrest_rate(); 
-		emi.setEmi_to_pay(remaning_amt * rate);
-		return emi;
+		double principle = emi.getPrinciple_amt();
+		double rate = emi.getIntrest_rate();
+		int tenure = emi.getTenure();
+		double r = ((rate-0.5)/1200);
+	  emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
+	  return emi;
 	}
 
 }
