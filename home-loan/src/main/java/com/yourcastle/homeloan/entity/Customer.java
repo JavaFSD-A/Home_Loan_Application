@@ -51,7 +51,7 @@ public class Customer {
 	@Column(length = 6)
 	private int pincode;
 	@Column(length = 10)
-	private String foreclousre;
+	private String foreclousre = "Not Applied";
 	
 	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

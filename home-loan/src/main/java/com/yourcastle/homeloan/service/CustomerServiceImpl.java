@@ -98,7 +98,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = custrepo.findById(cust_id).get();
 		customer.setCust_loan(loan);
 		loan.setCustomer(customer);
-		loan.setLoan_emi((loan.getLoan_principal() * loan.getLoan_interest_rate() * loan.getLoan_tenure()) / 20);
+		loan.setLoan_emi(loan.getLoan_principal() * (loan.getLoan_interest_rate()/12) * loan.getLoan_tenure());
 		loanrepo.save(loan);
 		return loan.getLoan_id();
 	}
