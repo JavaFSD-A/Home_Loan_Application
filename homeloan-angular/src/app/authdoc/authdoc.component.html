@@ -1,44 +1,53 @@
 <div class="login-page">
-    <mat-card class="mat-elevation-z12">
-      <mat-card-title style="text-align:center;">Registration Step-4</mat-card-title>
-      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
-  
-        <mat-tab label="Document Detials">
-          <mat-card-content>
-            <form (ngSubmit)="addDocument()" #addfrm="ngForm">
-              <mat-form-field>
-                <input matInput name="aadhar" placeholder="Aadhar" #aadhar="ngModel"
-                  [(ngModel)]="authdoc.auth_aadhar" required>
-                <mat-error *ngIf="aadhar.dirty &&aadhar.invalid">
-                  Aadhar is required
-                </mat-error>
-  
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput name="pan" placeholder="Pan Card" #pan="ngModel"
-                  [(ngModel)]="authdoc.auth_pan" required>
-                <mat-error *ngIf="pan.invalid">
-                  Pan Card is required
-                </mat-error>
-  
-              </mat-form-field>
+  <mat-card class="mat-elevation-z12">
+    <mat-card-title style="text-align:center;">Registration Step-4</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+
+      <mat-tab label="Document Detials">
+        <mat-card-content>
+          <form (ngSubmit)="addDocument()" #addfrm="ngForm">
+            <mat-form-field>
+              <mat-label>Aadhar</mat-label>
+              <input matInput name="aadhar" placeholder="Aadhar Number" #aadhar="ngModel"
+                [(ngModel)]="authdoc.auth_aadhar" pattern="[0-9]{12}" required>
               
+              <input type="file" name="aadhar-img" required/>
               
-              <mat-form-field>
-                <input matInput name="income" placeholder="Income Certificate" #income="ngModel"
-                  [(ngModel)]="authdoc.auth_income_certificate" required>
-                <mat-error *ngIf="income.invalid">
-                  Income Certificate is required
-                </mat-error>
-  
-              </mat-form-field>
-             
-              <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
-                Submit
-              </button>
-            </form>
-          </mat-card-content>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
-  </div>
+              <mat-error *ngIf="aadhar.dirty || aadhar.invalid">
+                Invalid Aadhar Number 
+              </mat-error> 
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Pan Card</mat-label>
+              <input matInput name="pan" placeholder="Pan Number" #pan="ngModel"
+                [(ngModel)]="authdoc.auth_pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required>
+
+              <input type="file" name="pan-img" required/>
+
+              <mat-error *ngIf="pan.invalid && pan.dirty">
+                Invalid Pan Number
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Income Certificate</mat-label>
+              <input matInput name="income" placeholder="Income Certificate (Ref No. / Application No.)" #income="ngModel"
+                [(ngModel)]="authdoc.auth_income_certificate" pattern="[A-Z0-9]{10}" required>
+
+              <input type="file" name="income-img" required/>
+
+              <mat-error *ngIf="income.invalid">
+                Income Certificate is required
+              </mat-error>
+            </mat-form-field>
+           
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+              Submit
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

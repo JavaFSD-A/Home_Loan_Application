@@ -10,9 +10,9 @@
             <mat-form-field>
               <input matInput [(ngModel)]="customer.custName"
           name="custName"
-          required
+          pattern="[A-Za-z]{3,}[ ][A-Za-z]{3,}"
           #custName="ngModel"
-          placeholder="Enter Name" required>
+          placeholder="Enter Full Name" required>
               <mat-error *ngIf="custName.invalid">
                 Name is required
               </mat-error>
@@ -45,7 +45,7 @@
               <input matInput [(ngModel)]="customer.phoneNo"
           name="phoneNo"
           #phoneNo="ngModel"
-          required
+          pattern="[7-9][0-9]{9}"
           placeholder="Enter Phone No. " required>
               <mat-error *ngIf="phoneNo.invalid">
                 Phone Number is required
@@ -53,27 +53,16 @@
 
             </mat-form-field>
             <mat-form-field>
-              <input matInput  [(ngModel)]="customer.cust_email"
+              <input matInput type="email" [(ngModel)]="customer.cust_email"
           name="cust_email"
           #cust_email="ngModel"
-          required
           placeholder="Enter email id" required>
               <mat-error *ngIf="cust_email.invalid">
                 Email is required
               </mat-error>
 
             </mat-form-field>
-            <mat-form-field>
-              <input matInput  [(ngModel)]="customer.adharno"
-          name="adharno"
-          #adharno="ngModel"
-          required
-          placeholder="Enter Aadhar" required>
-              <mat-error *ngIf="adharno.invalid">
-                Aadhaar is required
-              </mat-error>
-
-            </mat-form-field>
+            
             
           </form>
         </mat-card-content>
@@ -85,9 +74,9 @@
             <mat-form-field>
               <input matInput [(ngModel)]="customer.cust_address"
           name="cust_address"
-          required
+          pattern="[A-Za-z]{3,}[ ][A-Za-z]{3,}"
           #cust_address="ngModel"
-          placeholder="Enter Address" required>
+          placeholder="Enter Address(e.g.,name name)" required>
               <mat-error *ngIf="cust_address.invalid">
                 Address is required
               </mat-error>
@@ -96,7 +85,7 @@
             <mat-form-field>
               <input matInput  [(ngModel)]="customer.city"
           name="city"
-          required
+          pattern="[A-Za-z]{3,}"
           #city="ngModel"
           placeholder="Enter City" required>
               <mat-error *ngIf="city.invalid">
@@ -117,20 +106,19 @@
                 </mat-form-field>
             
             <mat-form-field>
-              <input matInput   [(ngModel)]="customer.pincode"
+              <input matInput [(ngModel)]="customer.pincode"
           name="pincode"
-          required
+          pattern="[0-9]{6}"
           #pincode="ngModel"
-          placeholder="Enter Address" required>
+          placeholder="Enter Pincode" required>
               <mat-error *ngIf="pincode.invalid">
                 Pincode is required
               </mat-error>
 
             </mat-form-field><mat-form-field>
-              <input matInput   [(ngModel)]="customer.passwd"
+              <input matInput type="password" [(ngModel)]="customer.passwd"
           name="passwd"
           #passwd="ngModel"
-          required
           placeholder="Enter password " required>
               <mat-error *ngIf="passwd.invalid">
                 Password is required
@@ -138,7 +126,7 @@
 
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
-              Save
+              Next
             </button>
           </form>
         </mat-card-content>

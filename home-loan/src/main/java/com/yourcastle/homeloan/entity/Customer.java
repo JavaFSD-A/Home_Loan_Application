@@ -50,8 +50,7 @@ public class Customer {
 	private String city;
 	@Column(length = 6)
 	private int pincode;
-	@Column(length = 12)
-	private Long  adhar_no;
+	@Column(length = 10)
 	private String foreclousre;
 	
 	@JsonManagedReference
@@ -77,7 +76,7 @@ public class Customer {
 
 
 	public Customer(int cust_id, String custName, LocalDate cust_dob, String cust_email, String phoneNo, String passwd,
-			String cust_gender, String cust_address, String state, String city, int pincode, Long adhar_no,
+			String cust_gender, String cust_address, String state, String city, int pincode,
 			String foreclousre, Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
 		super();
 		this.cust_id = cust_id;
@@ -91,7 +90,6 @@ public class Customer {
 		this.state = state;
 		this.city = city;
 		this.pincode = pincode;
-		this.adhar_no = adhar_no;
 		this.foreclousre = foreclousre;
 		this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
@@ -186,14 +184,6 @@ public class Customer {
 
 	public void setPincode(int pincode) {
 		this.pincode = pincode;
-	}
-
-	public Long getAdhar_no() {
-		return adhar_no;
-	}
-
-	public void setAdhar_no(Long adhar_no) {
-		this.adhar_no = adhar_no;
 	}
 
 	public Loan getCust_loan() {
