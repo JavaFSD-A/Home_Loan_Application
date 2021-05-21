@@ -4,12 +4,13 @@
 
 package com.yourcastle.homeloan.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
+
 
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.AuthDocument;
@@ -17,7 +18,7 @@ import com.yourcastle.homeloan.entity.Capital;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
-import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
+
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
@@ -42,10 +43,10 @@ public class CustomerServiceImpl implements CustomerService{
     private LoanRepository loanrepo;
 
 	@Override
-	public int addCustomer(Customer c){
-		    
-			custrepo.save(c);
-		    return c.getCust_id();
+	public Customer addCustomer(Customer c){
+		    Customer cust = new Customer();
+			cust = custrepo.save(c);
+		    return cust;
 		
 	}
 
@@ -62,8 +63,9 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 	@Override
-	public AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException {
-		AuthDocument ad =  authrepo.findById(auth_id).orElseThrow(() -> new DocumentNotFoundException("Document Not Found: "+ auth_id));
+	public AuthDocument getAllAuthDocument(int cust_id) throws CustomerNotFoundException {
+		Customer customer =  custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found: "+ cust_id));
+		AuthDocument ad = customer.getCust_auth_document();
 		return ad;
 	}
 
@@ -84,9 +86,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	@Override
-	public Capital getCapital(int capId) throws CapitalNotFoundException {
-		return caprepo.findById(capId).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found " +capId));
-
+	public Capital getCapital(int cust_id) throws CapitalNotFoundException {
+		Customer customer = custrepo.findById(cust_id).orElseThrow(()-> new CapitalNotFoundException("Capital Not Found at ID " + cust_id));;
+		Capital capital = customer.getCust_capital();
+		return capital;
 	}
 
 
@@ -95,13 +98,16 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = custrepo.findById(cust_id).get();
 		customer.setCust_loan(loan);
 		loan.setCustomer(customer);
+		loan.setLoan_emi((loan.getLoan_principal() * loan.getLoan_interest_rate() * loan.getLoan_tenure()) / 20);
 		loanrepo.save(loan);
 		return loan.getLoan_id();
 	}
 
 	@Override
-	public Loan getLoan(int loan_id) {
-		return loanrepo.findById(loan_id).get();
+	public Loan getLoan(int cust_id) {
+		Customer customer = custrepo.findById(cust_id).get();
+		Loan loan = customer.getCust_loan();
+		return loan;
 	}
 
 
@@ -120,8 +126,10 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public boolean foreclousreRequest(int cust_id, int flag) {
 		Customer customer = custrepo.findById(cust_id).get();
-		if(flag == 1) {
-			customer.setForeclousre(flag);
+		if(flag == 1 && customer.getCust_loan() != null && customer.getForeclousre() != "Requested") {
+			//System.out.println(customer.getForeclousre());
+			customer.setForeclousre("Requested");
+			custrepo.save(customer);
 		    return true;
 		}
 		return false;

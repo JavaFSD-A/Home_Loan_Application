@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourcastle.homeloan.bean.BCryptEncription;
 
 @Entity
 @Table(name = "customers")
@@ -51,7 +52,7 @@ public class Customer {
 	private int pincode;
 	@Column(length = 12)
 	private Long  adhar_no;
-	private int foreclousre = 0;
+	private String foreclousre;
 	
 	@JsonManagedReference
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -77,7 +78,7 @@ public class Customer {
 
 	public Customer(int cust_id, String custName, LocalDate cust_dob, String cust_email, String phoneNo, String passwd,
 			String cust_gender, String cust_address, String state, String city, int pincode, Long adhar_no,
-			int foreclousre, Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
+			String foreclousre, Loan cust_loan, Capital cust_capital, AuthDocument cust_auth_document, Admin admin) {
 		super();
 		this.cust_id = cust_id;
 		this.custName = custName;
@@ -98,24 +99,13 @@ public class Customer {
 		this.admin = admin;
 	}
 
-
-
-
-
 	public String getState() {
 		return state;
 	}
 
-
-
-
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
-
-
 
 
 	public int getCust_id() {
@@ -163,7 +153,7 @@ public class Customer {
 	}
 
 	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+		this.passwd = BCryptEncription.passencoder(passwd);
 	}
 
 	public String getCust_gender() {
@@ -247,13 +237,13 @@ public class Customer {
 
 
 
-	public int getForeclousre() {
+	public String getForeclousre() {
 		return foreclousre;
 	}
 
 
 
-	public void setForeclousre(int foreclousre) {
+	public void setForeclousre(String foreclousre) {
 		this.foreclousre = foreclousre;
 	}
 	

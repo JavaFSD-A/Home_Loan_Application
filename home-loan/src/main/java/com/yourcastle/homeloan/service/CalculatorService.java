@@ -5,7 +5,7 @@ import com.yourcastle.homeloan.bean.EmiCalculator;
 
 public interface CalculatorService {
 
-	Double checkEligiblity(EligiblityCalculator eligiblity);
-    Double calculateFixedEmi(EmiCalculator emi);
-    Double calculateReducingEmi(EmiCalculator emi);
+	EligiblityCalculator checkEligiblity(EligiblityCalculator eligiblity);
+	EmiCalculator calculateFixedEmi(EmiCalculator emi);
+	EmiCalculator calculateReducingEmi(EmiCalculator emi);
 }

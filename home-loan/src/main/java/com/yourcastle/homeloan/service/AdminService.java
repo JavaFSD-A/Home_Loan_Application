@@ -19,15 +19,15 @@ public interface AdminService {
 	
 	public boolean updatecustomerLoanStatus(int cust_id) throws CustomerNotFoundException;
 	
-	public void acceptLoanRequest(int cust_id) throws CustomerNotFoundException;
+	public String acceptLoanRequest(int cust_id) throws CustomerNotFoundException;
 	
-	public void rejecectLoanRequest(int cust_id) throws CustomerNotFoundException;
+	public String rejecectLoanRequest(int cust_id) throws CustomerNotFoundException;
 
 	public Admin validate(Login login);
 	
 	public int addAdmin(Admin admin);
 	
-	public  double foreclouserResponse(int cust_id, int flag, String bal_principal, String months_left) throws CustomerNotFoundException, NotAppliedForLoan;
+	public  double foreclouserResponse(int cust_id) throws CustomerNotFoundException, NotAppliedForLoan;
 	
 	
 }

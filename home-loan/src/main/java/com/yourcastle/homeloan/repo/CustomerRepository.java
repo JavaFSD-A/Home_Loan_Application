@@ -14,3 +14,4 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	Customer findByPhoneNo(String phoneNo);
   
 }
+

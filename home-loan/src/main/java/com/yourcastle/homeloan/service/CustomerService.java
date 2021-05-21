@@ -19,20 +19,21 @@ import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 
 public interface CustomerService {
 
-	int addCustomer(Customer c) throws CustomerAlreadyExists;
+	Customer addCustomer(Customer c) throws CustomerAlreadyExists;
 	//boolean updateCustomer(Customer c, int cust_id);
 	Customer getCustomer(int cust_id) throws CustomerNotFoundException;
 	
 	int addAuthDocument(AuthDocument ad,  int cust_id);
 	//boolean updateAuthDocument(AuthDocument ad);
-	AuthDocument getAllAuthDocument(int auth_id) throws DocumentNotFoundException;
+	AuthDocument getAllAuthDocument(int cust_id) throws CustomerNotFoundException;
 	
 	int addCapital(Capital cap,  int cust_id);
 	//boolean updateCapital(Capital cap);
 	Capital getCapital(int capId) throws CapitalNotFoundException;
 	
 	int addLoan(Loan loan,  int cust_id);
-	Loan getLoan(int loan_id);
+	
+	Loan getLoan(int cust_id);
 	
     Customer validate(Login login);
     

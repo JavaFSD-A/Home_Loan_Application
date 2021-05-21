@@ -4,5 +4,5 @@ import com.yourcastle.homeloan.entity.Mail;
 
 public interface MailService {
 
-	 public void sendEmail(Mail mail);
+	 public void sendEmail(String email, String message);
 }

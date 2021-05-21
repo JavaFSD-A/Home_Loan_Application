@@ -1,6 +1,6 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { CustomerModel } from './customer.model';
-import { CustomerService } from './services/customer.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,9 @@ import { CustomerService } from './services/customer.service';
 export class AppComponent {
   title = 'homeloan';
 
-  constructor(private service : CustomerService){
-  }
-  ngOnInit(): void {
+  constructor(){
   }
 
-  logout(){
-    this.service.logout();
+  ngOnInit(): void {
   }
 }

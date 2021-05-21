@@ -36,7 +36,7 @@ public class Login {
 	}
 
 	public String getLogin_passwd() {
-		return login_passwd;
+		return BCryptEncription.passencoder(login_passwd);
 	}
 
 	public void setLogin_passwd(String login_passwd) {

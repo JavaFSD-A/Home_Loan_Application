@@ -1,0 +1,51 @@
+<div class="capital-page">
+  <mat-card class="mat-elevation-z12">
+    <mat-card-title style="text-align:center;">Registration Step-3</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+
+      <mat-tab label="Property Details">
+        <mat-card-content>
+          <form (ngSubmit)="addCapital()" #addfrm="ngForm">
+            <mat-form-field>
+              <input matInput name="property_name" placeholder="property Name" #property_name="ngModel"
+                [(ngModel)]="capital.property_name" required>
+              <mat-error *ngIf="property_name.dirty &&property_name.invalid">
+                Property Name is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="property_value" placeholder="property value" #property_value="ngModel"
+                [(ngModel)]="capital.property_value" required>
+              <mat-error *ngIf="property_value.invalid">
+                Property Value is required
+              </mat-error>
+
+            </mat-form-field>
+            
+            
+            <mat-form-field>
+              <input matInput name="location" placeholder="property location" #location="ngModel"
+                [(ngModel)]="capital.location" required>
+              <mat-error *ngIf="location.invalid">
+                Location is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="monthly_income" placeholder="monthly_income" #monthly_income="ngModel"
+                [(ngModel)]="capital.monthly_income" required>
+              <mat-error *ngIf="monthly_income.invalid">
+                Monthly Income is required
+              </mat-error>
+
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+              Save
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

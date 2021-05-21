@@ -1,0 +1,65 @@
+<div class="cal-page">
+  <mat-card class="mat-elevation-z12">
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+  <mat-tab label="Fixed Emi">
+    <form  (ngSubmit)="eligiblity()" #addfrm="ngForm">
+      <mat-form-field>
+        <input matInput [(ngModel)]="calculator.age"
+        name="age"
+        required
+        #age="ngModel"
+        placeholder="Enter Age">
+        <mat-error *ngIf="age.invalid">
+          Age is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="calculator.tenure_yr"
+        name="tenure_yr"
+        required
+        #tenure_yr="ngModel"
+        placeholder="Enter tenure">
+        <mat-error *ngIf="tenure_yr.invalid">
+          Tenure is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput  [(ngModel)]="calculator.income_per_mth"
+        name="income_per_mth"
+        #income_per_mth="ngModel"
+        required
+        placeholder="Enter maonthly Income">
+        <mat-error *ngIf="income_per_mth.invalid">
+          Monthly Income is required
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput 
+        [(ngModel)]="calculator.roi"
+            name="roi"
+            required
+            #roi="ngModel"
+            placeholder="Enter ROI">
+        <mat-error *ngIf="roi.invalid">
+          ROI is required
+        </mat-error>
+
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+        Check
+      </button>
+      <div class="cal">
+          <br>
+          <h2 >Eligiblity Status : {{calculator.eligiblity}}</h2>
+          <h1>Max Loan Value : Rs. {{calculator.calculatedMaxVal}}</h1>
+      </div>
+      </form>
+  </mat-tab>
+
+  
+</mat-tab-group>
+</mat-card>
+</div>

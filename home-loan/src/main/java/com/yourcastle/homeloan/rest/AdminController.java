@@ -41,7 +41,7 @@ public class AdminController {
 	@Autowired 
 	private MailServiceImpl mailservice;
 	
-	@PostMapping(value = "/addAdmin", consumes = "application/json")
+	@PostMapping(value = "/addAdmin", consumes = "application/json") // not required
 	public String addAdmin(@RequestBody Admin admin) {
 		int aid = service.addAdmin(admin);
 		return "successfully added";
@@ -71,24 +71,22 @@ public class AdminController {
 	
 	//////////////////////////////// UPDATES AND PERMISSIONS /////////////////////////////////////////
 	
-	@PostMapping(value = "/updateStatus/{custId}")
-	public ResponseEntity<?> updateLoanStatus(@RequestBody Mail mail, @PathVariable("custId") int cust_id, HttpSession session){
+	@GetMapping(value = "/updateStatus/{custId}")
+	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id, HttpSession session){
 		boolean status;
+		String email;
 		try {
-			if (session.getAttribute("ADMIN") != null) {
 			status = service.updatecustomerLoanStatus(cust_id);
 			if(status == true) {
-				service.acceptLoanRequest(cust_id);
-				mailservice.sendEmail(mail);
+				email = service.acceptLoanRequest(cust_id);
+				mailservice.sendEmail(email,"Your Request is Accepted");
 				return new ResponseEntity<String>("Accepted", HttpStatus.OK);
 			}
 			else {
-				service.rejecectLoanRequest(cust_id);
+				email = service.rejecectLoanRequest(cust_id);
+				mailservice.sendEmail(email,"Sorry! Your Request is Rejected");
 			return new ResponseEntity<String>("Rejected", HttpStatus.OK);
 		}   
-			}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
-			
 			} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -96,20 +94,17 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping(value = "/foreclousreResponse/{custId}/{flag}")
-	public ResponseEntity<?> foreclousre(@RequestParam Map<String, String> map, @PathVariable("custId") int cust_id,  @PathVariable("flag") int flag, HttpSession session){
-		double forclousre_amt;
+	@PostMapping(value = "/foreclousreResponse/{cust_id}")
+	public ResponseEntity<?> foreclousre(@PathVariable("cust_id") int cust_id){
+		double forclousre_amt = 0;
 		try {
-			if (session.getAttribute("ADMIN") != null) {
-			forclousre_amt = service.foreclouserResponse(cust_id, flag, map.get("bal_principal"), map.get("months_left"));
+			forclousre_amt = service.foreclouserResponse(cust_id);
 			if(forclousre_amt != 0) {
 				return new ResponseEntity<String>("Accepted: Foreclouser Amount Need to pay : " + forclousre_amt, HttpStatus.OK);
 			}
 			else {
 			return new ResponseEntity<String>("Pending", HttpStatus.OK);
 		}   
-			}
-		return new ResponseEntity<String>("You are not logged in!", HttpStatus.OK);
 			
 			} catch (CustomerNotFoundException | NotAppliedForLoan e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

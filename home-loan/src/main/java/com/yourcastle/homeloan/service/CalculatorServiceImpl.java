@@ -16,30 +16,39 @@ public class CalculatorServiceImpl implements CalculatorService {
 	static final double MINSALARY = 25000;
 	
 	@Override
-	public Double checkEligiblity(EligiblityCalculator eligiblity) {
+	public EligiblityCalculator checkEligiblity(EligiblityCalculator eligiblity) {
+		double emi = 0;
 		if(eligiblity.getAge() >= MINAGE && eligiblity.getAge() <= MAXAGE && eligiblity.getIncome_per_mth()>=MINSALARY && eligiblity.getTenure_yr() <= TENURE)
 			{
-			eligiblity.setEligiblity(true);
-			
+			emi = eligiblity.getTenure_yr()*(eligiblity.getRoi() *(eligiblity.getIncome_per_mth()));
+			eligiblity.setEligiblity("Eligible");
+			eligiblity.setCalculatedMaxVal(emi);
+			//System.out.println(eligiblity.getCalculatedMaxVal());		
 			}
-		return 50*(0.5 *(eligiblity.getIncome_per_mth()));
+		else {
+			eligiblity.setEligiblity("Not Eligible");
+			eligiblity.setCalculatedMaxVal(emi);
+		}
+		return eligiblity;
 	}
 
 
 	@Override
-	public Double calculateFixedEmi(EmiCalculator emi) {
+	public EmiCalculator calculateFixedEmi(EmiCalculator emi) {
 		double principle = emi.getPrinciple_amt();
 		double rate = emi.getIntrest_rate();
 		int tenure = emi.getTenure();
-		int instalment = emi.getNum_instalment();
-		return (principle * tenure * rate)/instalment;
+		double r = (rate/1200);
+	  emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
+	  return emi;
 	}
 
 	@Override
-	public Double calculateReducingEmi(EmiCalculator emi) {
+	public EmiCalculator calculateReducingEmi(EmiCalculator emi) {
 		double remaning_amt = emi.getRemaning_loan_amt();
 		double rate = emi.getIntrest_rate(); 
-		return remaning_amt * rate;
+		emi.setEmi_to_pay(remaning_amt * rate);
+		return emi;
 	}
 
 }

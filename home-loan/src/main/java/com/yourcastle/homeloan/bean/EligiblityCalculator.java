@@ -9,12 +9,25 @@ public class EligiblityCalculator {
 	private int tenure_yr;
 	private double income_per_mth;
 	private double roi;
-	private boolean eligiblity;
+	private String eligiblity;
+	private double calculatedMaxVal;
 	
 	public EligiblityCalculator() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public EligiblityCalculator(int age, int tenure_yr, double income_per_mth, double roi, String eligiblity,
+			double calculatedMaxVal) {
+		super();
+		this.age = age;
+		this.tenure_yr = tenure_yr;
+		this.income_per_mth = income_per_mth;
+		this.roi = roi;
+		this.eligiblity = eligiblity;
+		this.calculatedMaxVal = calculatedMaxVal;
+	}
 
 
 
@@ -42,11 +55,23 @@ public class EligiblityCalculator {
 	public void setRoi(double roi) {
 		this.roi = roi;
 	}
-	public boolean isEligiblity() {
+
+	public String getEligiblity() {
 		return eligiblity;
 	}
-	public void setEligiblity(boolean eligiblity) {
+
+
+	public void setEligiblity(String eligiblity) {
 		this.eligiblity = eligiblity;
+	}
+
+
+	public double getCalculatedMaxVal() {
+		return calculatedMaxVal;
+	}
+
+	public void setCalculatedMaxVal(double calculatedMaxVal) {
+		this.calculatedMaxVal = calculatedMaxVal;
 	}
 	
 	

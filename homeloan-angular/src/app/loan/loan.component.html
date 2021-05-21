@@ -1,0 +1,54 @@
+<div class="loan-page">
+  <mat-card >
+    <mat-card-title style="text-align:center;">Registration Step-2</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+
+      <mat-tab label="Loan Details">
+        <mat-card-content>
+          <form (ngSubmit)="addLoan()" #addfrm="ngForm">
+
+              <mat-form-field appearance="fill">
+                  <mat-label>Loan Name</mat-label>
+                  <mat-select [(ngModel)] = "loan.loan_name" name = "loan_name" #loan_name = 'ngModel'>
+                    <mat-option *ngFor="let names of loan_names" [value] = "names">
+                      {{ names }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Loan Tenure</mat-label>
+                  <mat-select [(ngModel)] = "loan.loan_tenure" name = "loan_tenure" #loan_tenure ='ngModel'>
+                    <mat-option *ngFor= "let t of loan_tenures" [value] = "t">
+                      {{ t }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            
+            <mat-form-field>
+              <input matInput name="loan_principal" placeholder="Enter Principal Amount" #loan_principal = 'ngModel'
+              [(ngModel)] = "loan.loan_principal" required>
+              <mat-error *ngIf="loan_principal.invalid">
+                Loan Principal is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="loan_interest_rate" placeholder="Rate of Interest" #loan_interest_rate = 'ngModel'
+              [(ngModel)] = "loan.loan_interest_rate" required>
+              <mat-error *ngIf="loan_interest_rate.invalid">
+                Loan Interest Rate is required
+              </mat-error>
+
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+              Save
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+      
+    </mat-tab-group>
+    
+  </mat-card>
+  
+</div>
