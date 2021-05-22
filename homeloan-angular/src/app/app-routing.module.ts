@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoanlistComponent } from './loanlist/loanlist.component';
 import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -30,13 +31,15 @@ const routes: Routes = [
   {path: 'capitallist', component: CapitallistComponent},
   {path: 'authdoc', component: AuthdocComponent},
   {path: 'authdoclist', component: AuthdoclistComponent},
-  {path: 'admin', component: AdminComponent},
   {path: 'formgroup', component: FormgroupComponent},
-  {path: 'admindashbord', component: AdmindashbordComponent},
   {path: 'calculator', component: CalculatorComponent},
   {path: 'eligiblitycalculator', component: EligiblitycalComponent},
   {path: 'emicalculator', component: EmicalculatorComponent},
-  {path: '**', redirectTo: '/customer', pathMatch: 'full'}
+  {path: 'admindashbord', component: AdmindashbordComponent, children: [
+    {path: 'search', component: SearchComponent},
+    {path: 'admin', component: AdminComponent}
+    ]},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'}
 
 ];
 

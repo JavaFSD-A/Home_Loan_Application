@@ -1,3 +1,4 @@
+import { AuthdocModel } from "./authdoc.model";
 import { CapitalModel } from "./capital.model";
 import { LoanModel } from "./loan.model";
 
@@ -18,4 +19,5 @@ export class CustomerModel{
     foreclousre : "Not Applied";
     cust_loan : LoanModel;
     cust_capital : CapitalModel;
+    cust_auth_document : AuthdocModel;
 }

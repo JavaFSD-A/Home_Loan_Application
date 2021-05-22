@@ -121,10 +121,10 @@ export class AdminService {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {
         // client-side error
-        errorMessage = `Error: ${error.error.message}`;
+        errorMessage = `Error: ${error.error.text}`;
       } else {
         // server-side error
-        errorMessage = `Message: "Not Found!"`;
+        errorMessage = `\nMessage: ${error.error.text}`;
       }
       window.alert(errorMessage);
       return throwError(errorMessage);

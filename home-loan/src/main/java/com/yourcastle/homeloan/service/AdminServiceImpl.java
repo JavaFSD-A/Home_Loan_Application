@@ -76,6 +76,7 @@ public class AdminServiceImpl implements AdminService {
 				l.setLoan_status("Foreclosure Accepted");
 				c.setForeclousre("Foreclosure Accepted");
 				cusrepo.save(c);
+			// Assuming 5 year loan has been covered 
 			return (l.getLoan_principal() * (l.getLoan_tenure()-5) * l.getLoan_interest_rate());
 			
 		}

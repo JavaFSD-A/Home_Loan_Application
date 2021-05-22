@@ -175,8 +175,7 @@ export class CustomerService {
 
   logout() {
     localStorage.removeItem('customer');
-    this.route.navigate(['login']);
-    this.http.get(this.baseUri + '/logout');
+    this.http.get<string>(this.baseUri + '/logout')
   }
 
   /**
@@ -193,7 +192,7 @@ export class CustomerService {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.text}`;
+      errorMessage = `\nMessage: ${error.error.message}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

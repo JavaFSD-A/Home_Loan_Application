@@ -32,6 +32,7 @@ import { EligiblitycalComponent } from './eligiblitycal/eligiblitycal.component'
 import { CalculatorComponent } from './calculator/calculator.component';
 import { AuthdocComponent } from './authdoc/authdoc.component';
 import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatRippleModule,
+    MatSidenavModule,
     MatTableModule
   ],
   providers: [],
