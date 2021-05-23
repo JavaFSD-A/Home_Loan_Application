@@ -25,14 +25,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations:[
@@ -63,14 +58,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSnackBarModule,
     MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
     MatCardModule
   ],
   exports : [
@@ -98,14 +88,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSnackBarModule,
     MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
     MatCardModule,
   ]
 })

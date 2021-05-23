@@ -14,13 +14,14 @@ public class CalculatorServiceImpl implements CalculatorService {
 	static final int MAXAGE = 62;
 	static final int TENURE = 30;
 	static final double MINSALARY = 25000;
+	static final double FOIR = 18;
 	
 	@Override
 	public EligiblityCalculator checkEligiblity(EligiblityCalculator eligiblity) {
 		double emi = 0;
 		if(eligiblity.getAge() >= MINAGE && eligiblity.getAge() <= MAXAGE && eligiblity.getIncome_per_mth()>=MINSALARY && eligiblity.getTenure_yr() <= TENURE)
 			{
-			emi = eligiblity.getTenure_yr()*((eligiblity.getRoi()/12) *(eligiblity.getIncome_per_mth()));
+			emi = (eligiblity.getIncome_per_mth() * FOIR);
 			eligiblity.setEligiblity("Eligible");
 			eligiblity.setCalculatedMaxVal(emi);
 			//System.out.println(eligiblity.getCalculatedMaxVal());		

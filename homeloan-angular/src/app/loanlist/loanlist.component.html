@@ -1,4 +1,5 @@
-<button class="btn btn-success" (click)="getLoanById()">Loan Deatails</button>
+<div class="container">
+<button mat-raised-button color="primary" (click)="getLoanById()">Show Loan Deatails</button>
 <br /><br />
 <div [hidden]="!found">
   <table class="table table-dark">
@@ -26,16 +27,17 @@
         <td>{{ loan.loan_tenure }}</td>
       </tr>
 
-      <tr>
+      <tr class="table-info">
         <td>Loan Status</td>
         <td>{{ loan.loan_status }}</td>
       </tr>
 
-      <tr>
-        <td>Calculated EMI</td>
+      <tr class="table-success">
+        <td>Loan Capability</td>
         <td>{{ loan.loan_emi | number: '1.1-3'}}</td>
       </tr>
 
       
   </table>
+  </div>
 </div>

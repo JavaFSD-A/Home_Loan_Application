@@ -134,12 +134,10 @@ public class CustomerController {
 	////////////////////////////////// LOGIN/LOGOUT ////////////////////////////////// //////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session) {
+	public ResponseEntity<?> authenticate(@RequestBody Login login) {
 		Customer customer = service.validate(login);
 		if (customer != null) {
 			// System.out.println("ok");
-			session.setAttribute("CUSTOMER", customer);
-			System.out.println(session.getAttribute("CUSTOMER"));
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);

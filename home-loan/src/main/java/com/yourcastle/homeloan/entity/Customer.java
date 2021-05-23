@@ -40,7 +40,7 @@ public class Customer {
 	private String phoneNo;
 	@Column(length = 20)
 	private String passwd;
-	@Column(length = 15)         // respecting gender fluidity
+	@Column(length = 40)         // respecting gender fluidity
 	private String cust_gender;
 	@Column(length = 40)
 	private String cust_address;
@@ -50,7 +50,7 @@ public class Customer {
 	private String city;
 	@Column(length = 6)
 	private int pincode;
-	@Column(length = 10)
+	@Column(length = 30)
 	private String foreclousre = "Not Applied";
 	
 	@JsonManagedReference
