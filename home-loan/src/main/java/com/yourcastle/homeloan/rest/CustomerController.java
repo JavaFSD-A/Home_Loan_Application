@@ -46,7 +46,7 @@ public class CustomerController {
 			Customer customer= service.addCustomer(cust);
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} catch (CustomerAlreadyExists e) {
-			throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, e.getMessage());
+			return new ResponseEntity<String>("Wrong Credentials , try again!!", HttpStatus.OK);
 		}
 	}
 
@@ -61,15 +61,19 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping(value = "/applyForceclousre/{cust_id}", produces = "application/json")
-	public ResponseEntity<?> addForeclouser(@PathVariable("cust_id") int cust_id, HttpSession session) {
-		try {
-			if(service.foreclousreRequest(cust_id, 1) == true)
-				return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
+	@GetMapping(value = "/applyForceclousre/{cust_id}")
+	public ResponseEntity<?> addForeclouser(@PathVariable("cust_id") int cust_id) {
+		
+			try {
+				if(service.foreclousreRequest(cust_id, 1) == true) {
+					return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
+			}
 			return new ResponseEntity<String>("No Loan Assigned Can't Request/ Request already Submitted!!", HttpStatus.OK);
-		} catch (CustomerNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-		}
+		
+			} catch (CustomerNotFoundException e) {
+				// TODO Auto-generated catch block
+				return new ResponseEntity<String>("Not Applied For Loan / Already Requested", HttpStatus.OK);
+			}
 	}
 
 	///////////////////////////////////// AUTHDOCUMENT ///////////////////////////////////// ////////////////////////////////////////////////////
@@ -78,7 +82,6 @@ public class CustomerController {
 	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId,
 			HttpSession session) {
 		int authId;
-
 		authId = service.addAuthDocument(ath, custId);
 		return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
 
@@ -122,7 +125,7 @@ public class CustomerController {
 	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
 		int loanId;
 		loanId = service.addLoan(loan, cust_id);
-		return new ResponseEntity<>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
+		return new ResponseEntity<String>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
 
 	}
 

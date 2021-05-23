@@ -40,7 +40,7 @@ export class CustomerService {
         phone_no: phoneNo,
         login_passwd: passwd
       })
-      .pipe(retry(1), catchError(this.handleError))
+      .pipe(retry(1))
       .toPromise();
   }
 
@@ -81,10 +81,10 @@ export class CustomerService {
   async requestForeclouser() {
     let customer = JSON.parse(localStorage.getItem('customer'));
     return this.http
-      .get<CustomerModel>(
+      .get(
         this.baseUri + '/applyForceclousre/' + customer.cust_id
       )
-      .pipe(delay(1000), catchError(this.handleError))
+      .pipe(delay(100), catchError(this.handleError))
       .toPromise();
   }
 
@@ -189,10 +189,10 @@ export class CustomerService {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error
-      errorMessage = `Error: ${error.error.message}`;
+      errorMessage = `Error: ${error.error.text}`;
     } else {
       // server-side error
-      errorMessage = `\nMessage: ${error.error.message}`;
+      errorMessage = `\nMessage: ${error.error.text}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

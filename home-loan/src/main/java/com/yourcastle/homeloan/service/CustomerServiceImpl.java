@@ -101,6 +101,7 @@ public class CustomerServiceImpl implements CustomerService{
 		customer.setCust_loan(loan);
 		loan.setCustomer(customer);
 		loan.setLoan_emi(customer.getCust_capital().getMonthly_income() * FOIR);
+		loan.setLoan_status("Applied");
 		loanrepo.save(loan);
 		return loan.getLoan_id();
 	}
@@ -128,8 +129,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public boolean foreclousreRequest(int cust_id, int flag) {
 		Customer customer = custrepo.findById(cust_id).get();
-		if(flag == 1 && customer.getCust_loan() != null && customer.getForeclousre() != "Requested") {
-			//System.out.println(customer.getForeclousre());
+		System.out.println(customer.getCust_loan().getLoan_status());
+		if(flag == 1 && customer.getCust_loan().getLoan_status().equals("Accepted")) {
+			System.out.println(customer.getCust_loan());
 			customer.setForeclousre("Requested");
 			custrepo.save(customer);
 		    return true;

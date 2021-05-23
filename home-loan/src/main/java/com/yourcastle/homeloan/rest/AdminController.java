@@ -1,5 +1,5 @@
 /** 
- * @author raj
+ * @author raj, Tarishi Geetey
  */
 
 package com.yourcastle.homeloan.rest;
@@ -56,7 +56,7 @@ public class AdminController {
 		try {
 			customer=service.getCustomerbyId(cust_id);
 		} catch (CustomerNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer Not found With Id: " + cust_id);
 		}
 		return customer;
 	}
@@ -89,25 +89,25 @@ public class AdminController {
 		}   
 			} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+			return new ResponseEntity<String>("Not Applied For Loan", HttpStatus.OK);
 		}
 		
 	}
 	
-	@PostMapping(value = "/foreclousreResponse/{cust_id}")
+	@GetMapping(value = "/foreclousreResponse/{cust_id}")
 	public ResponseEntity<?> foreclousre(@PathVariable("cust_id") int cust_id){
-		double forclousre_amt = 0;
+		String forclousre_amt = null;
 		try {
 			forclousre_amt = service.foreclouserResponse(cust_id);
-			if(forclousre_amt != 0) {
-				return new ResponseEntity<String>("Accepted: Foreclouser Amount Need to pay : " + forclousre_amt, HttpStatus.OK);
+			if(forclousre_amt != null) {
+				return new ResponseEntity<String>("Accepted: Foreclouser Amount Need to pay : Rs." + forclousre_amt, HttpStatus.OK);
 			}
 			else {
 			return new ResponseEntity<String>("Pending", HttpStatus.OK);
 		}   
 			
 			} catch (CustomerNotFoundException | NotAppliedForLoan e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+				return new ResponseEntity<String>("Not Applied For Loan or Foreclouser or Status already Updated", HttpStatus.OK);
 		}
 		
 	}
