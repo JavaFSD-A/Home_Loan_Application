@@ -1,11 +1,9 @@
  <div class="container">
   <br>
-  <button class="btn btn-success" style="margin-right: 20px;" (click)="getCustomerById()">
-    Personal Details
+  <button mat-raised-button color="primary" (click)="getCustomerById()">
+    Show Personal Details
   </button> 
-  <button class="btn btn-success" (click)="foreclouser()">
-    Apply for foreclousre
-  </button>
+ 
   <br>
   <div [hidden]="!found">
     <br>
@@ -57,7 +55,7 @@
         <td>Pincode</td>
         <td>{{ customer.pincode }}</td>
       </tr>
-      <tr>
+      <tr class="table-info">
         <td>
           Foreclouser Status
         </td>
@@ -66,20 +64,7 @@
     </table>
   </div>
 
-<div  [hidden]="!found">
-  <br>
-  <app-capitallist></app-capitallist>
 </div>
 
-<div  [hidden]="!found">
-  <br>
-  <app-loanlist></app-loanlist>
-</div>
 
-<div>
-  <br>
-  <app-authdoclist></app-authdoclist>
-</div>
-
-</div>
-
+ 

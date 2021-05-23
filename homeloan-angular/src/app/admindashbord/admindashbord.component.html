@@ -1,31 +1,28 @@
-<div class="container">
-    <br>
-    <h1>Admin DashBord</h1>
+<mat-toolbar class="example-toolbar">
+	<button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+	<h1 class="example-app-name">ADMIN DASHBORD</h1>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" autosize>
+	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+		<mat-nav-list>
+			<mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+				<span class="full-width" *ngIf="isExpanded || isShowing">Access Menue</span>
+				<mat-icon mat-list-icon>home</mat-icon>
+				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+			</mat-list-item>
+			<div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+				<a mat-list-item (click)="showCustomers()">Customer Records</a>
+				<a mat-list-item (click)="showAllCustomers()">Search Customers By ID</a>
+				<a mat-list-item (click)="logout()">Logout</a>
+			</div>
+		</mat-nav-list>
+    <mat-nav-list>
+</mat-nav-list>
+	</mat-sidenav>
 
-    <mat-tab-group>
-        <mat-tab label="Search Details">
-           <div>
-               <app-search></app-search>
-           </div>
-        </mat-tab>
+	<div class="example-sidenav-content">
+		<router-outlet></router-outlet>
+	</div>
 
-        <mat-tab label="Customer Details"> 
-             <div>
-                <app-admin></app-admin>
-            </div>
+</mat-sidenav-container>
 
-        </mat-tab>
-        <mat-tab label="Log Out">
-            <div>
-                <br>
-                <button class="btn btn-warning" (click)="logout()">LogOut</button>
-            </div>
-         </mat-tab>
-
-
-        
-      </mat-tab-group>
-
- </div>
-
- 

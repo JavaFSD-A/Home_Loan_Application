@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerService } from '../services/customer.service';
 @Component({
   selector: 'app-header',
@@ -13,12 +14,13 @@ export class HeaderComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor(private service : CustomerService) { }
+  constructor(private service : CustomerService, private route : Router) { }
 
   ngOnInit(): void {
   }
 
   logout(){
     this.service.logout();
+    this.route.navigate(['login']);
   }
 }

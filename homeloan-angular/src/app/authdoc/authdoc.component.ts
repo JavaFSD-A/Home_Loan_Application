@@ -25,6 +25,7 @@ export class AuthdocComponent implements OnInit {
 
   addDocument(){
     this.service.createDocument(this.authdoc);
-    alert("Documents added press next..");
+    alert("Document Details Saved!!.. Login To continue...");
+    this.route.navigate(['login']);
   }
 }

@@ -81,7 +81,7 @@ export class AdminService {
       async updateStatus(cust_id : number) {
         return await this.http
           .get(this.baseUri + '/updateStatus/' + cust_id)
-          .pipe(delay(1000), catchError(this.handleError))
+          .pipe(retry(1), catchError(this.handleError))
           .toPromise();
       }
    /**
@@ -104,7 +104,7 @@ export class AdminService {
 
       async foreclouserResponse(cust_id : number) {
         return await this.http
-          .post(this.baseUri + '/foreclousreResponse/' + cust_id, cust_id)
+          .get(this.baseUri + '/foreclousreResponse/' + cust_id)
           .pipe(delay(1000), catchError(this.handleError))
           .toPromise();
       }
@@ -121,10 +121,10 @@ export class AdminService {
       let errorMessage = '';
       if (error.error instanceof ErrorEvent) {
         // client-side error
-        errorMessage = `Error: ${error.error.message}`;
+        errorMessage = `Error: ${error.error.text}`;
       } else {
         // server-side error
-        errorMessage = `Message: "Not Found!"`;
+        errorMessage = `Message: ${error.error.text}`;
       }
       window.alert(errorMessage);
       return throwError(errorMessage);

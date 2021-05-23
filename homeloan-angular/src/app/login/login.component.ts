@@ -27,15 +27,16 @@ export class LoginComponent implements OnInit {
   
     this.service.authenticationService(this.auth.phone_no, this.auth.login_passwd).then((result : CustomerModel) => {
        customer = result;
-  
     if(customer != null){
       console.log("Logged in");
        localStorage.setItem("customer", JSON.stringify(customer));
        this.router.navigate(['home']);
-      }else{
-     alert("Login Failed");
+      }
+      else{
+        console.log(this.service.authenticationService(this.auth.phone_no, this.auth.login_passwd));
       }
     });
+   
   }
 
   adminAuthentication(){

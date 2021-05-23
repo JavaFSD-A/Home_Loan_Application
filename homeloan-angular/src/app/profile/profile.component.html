@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="container">
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click)="showPersonalDetails()">Personal Details</mat-button-toggle>
+    <mat-button-toggle (click)="showLoanDetails()">Loan Details</mat-button-toggle>
+    <mat-button-toggle (click)="showCapitalDetails()">Property & Income Details</mat-button-toggle>
+    <mat-button-toggle (click)="showAuthDetails()">Authentication Document Details</mat-button-toggle>
+    <mat-button-toggle matTooltip="Apply foreclousre" (click)="foreclouser()">Apply for foreclousre</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+
+ 

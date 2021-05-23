@@ -27,7 +27,8 @@ export class CapitaldetailsComponent implements OnInit {
 
   addCapital(){
     this.service.createCapital(this.capital);
-    alert("Capital Details Added press Next..");
+    alert("Property & Income Details Saved!!")
+    this.route.navigate(['loan']);
   }
 
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CustomerComponent } from './customer/customer.component';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
-import { FormgroupComponent } from './formgroup/formgroup.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AdminComponent } from './admin/admin.component';
 import { AdmindashbordComponent } from './admindashbord/admindashbord.component';
 import { SearchComponent } from './search/search.component';
@@ -32,6 +32,8 @@ import { EligiblitycalComponent } from './eligiblitycal/eligiblitycal.component'
 import { CalculatorComponent } from './calculator/calculator.component';
 import { AuthdocComponent } from './authdoc/authdoc.component';
 import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,6 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    FormgroupComponent,
     AdminComponent,
     AdmindashbordComponent,
     SearchComponent,
@@ -54,12 +55,14 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     EligiblitycalComponent,
     CalculatorComponent,
     AuthdocComponent,
-    AuthdoclistComponent
+    AuthdoclistComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -67,7 +70,9 @@ import { AuthdoclistComponent } from './authdoclist/authdoclist.component';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatRippleModule,
-    MatTableModule
+    MatSidenavModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

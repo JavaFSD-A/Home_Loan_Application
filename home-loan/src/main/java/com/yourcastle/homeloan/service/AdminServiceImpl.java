@@ -69,14 +69,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public double foreclouserResponse(int cust_id) throws NotAppliedForLoan {
+	public String foreclouserResponse(int cust_id) throws NotAppliedForLoan {
 		Customer c = cusrepo.findById(cust_id).get();
 		Loan l = c.getCust_loan();
-		if (l.getLoan_status() == "Accepted") {
+		if (l.getLoan_status().equals("Accepted") && c.getForeclousre().equals("Requested")) {
 				l.setLoan_status("Foreclosure Accepted");
 				c.setForeclousre("Foreclosure Accepted");
 				cusrepo.save(c);
-			return (l.getLoan_principal() * (l.getLoan_tenure()-5) * l.getLoan_interest_rate());
+			// Assuming 5 year loan has been covered 
+			return String.format("%.2f",(l.getLoan_principal() * ((l.getLoan_tenure()-5)/12) * (l.getLoan_interest_rate()/12)));
 			
 		}
 		throw new NotAppliedForLoan("No Loan exists under the customer ID : " + cust_id);

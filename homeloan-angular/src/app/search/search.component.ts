@@ -35,7 +35,6 @@ export class SearchComponent implements OnInit {
 
   updateLoanStatus(cust_id: number){
     this.service.updateStatus(cust_id);
-    alert("Updation in process...");
   }
 
 }
