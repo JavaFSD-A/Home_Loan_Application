@@ -1,9 +1,6 @@
 /**
-* 
-* 
-*@author Anju 
-* 
-*/
+ * @author Anju D
+ */
 
 package com.yourcastle.homeloan.entity;
 

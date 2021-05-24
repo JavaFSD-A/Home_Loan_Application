@@ -139,7 +139,6 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Customer validate(Login login) {
-		// TODO Auto-generated method stub
 		return  custrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
 	}
 

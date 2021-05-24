@@ -1,3 +1,7 @@
+/**
+ * @author Anju D
+ */
+
 package com.yourcastle.homeloan.entity;
 
 import java.util.Date;
