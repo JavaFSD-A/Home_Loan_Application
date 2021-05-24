@@ -60,12 +60,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int addAdmin(Admin admin) {
-		adminrepo.save(admin);
-		return admin.getAdmin_id();
-	}
-
-	@Override
 	public String foreclouserResponse(int cust_id) throws NotAppliedForLoan {
 		Customer c = cusrepo.findById(cust_id).get();
 		Loan l = c.getCust_loan();

@@ -1,5 +1,5 @@
 /** 
- * @author Rajarshi, Tarishi Geetey
+ * @author Tarishi Geetey
  */
 
 package com.yourcastle.homeloan.rest;
@@ -38,14 +38,6 @@ public class AdminController {
 	@Autowired 
 	private MailServiceImpl mailservice;
 	
-	////////////////////////////// ADMIN ///////////////////////////////////////////////////////////////////
-	
-	@PostMapping(value = "/addAdmin", consumes = "application/json") // not required
-	public String addAdmin(@RequestBody Admin admin) {
-		service.addAdmin(admin);
-		return "successfully added";
-	}
-	
 	///////////////////////////////////// CUSTOMER ACCESS //////////////////////////////////////////////////
 	
 	@GetMapping(value = "/getCustomer/{cust_id}", produces = "application/json")
@@ -81,7 +73,7 @@ public class AdminController {
 			status = service.updatecustomerLoanStatus(cust_id);
 			if(status == true) {
 				email = service.acceptLoanRequest(cust_id);
-				mailservice.sendEmail(email,"Congratulations!! Your Loan is Approved.");
+				mailservice.sendEmail(email,"Congratulations!! Your Loan is Approved. \n Amount will be credited to your account in 3-5 working days!!");
 				return new ResponseEntity<String>("Accepted..Mail sent!!", HttpStatus.OK);
 			}
 			else {

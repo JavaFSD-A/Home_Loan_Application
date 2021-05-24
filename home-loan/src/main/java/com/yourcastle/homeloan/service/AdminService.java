@@ -25,8 +25,6 @@ public interface AdminService {
 
 	public Admin validate(Login login);
 	
-	public int addAdmin(Admin admin);
-	
 	public  String foreclouserResponse(int cust_id) throws CustomerNotFoundException, NotAppliedForLoan;
 	
 	
