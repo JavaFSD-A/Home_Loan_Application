@@ -1,3 +1,9 @@
+/**
+ * @author Tarishi Geethey
+ * @description Customer List Form 
+ */
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../models/customer.model';

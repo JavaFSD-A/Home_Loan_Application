@@ -1,3 +1,6 @@
+<!--
+  @author Satya Sri, Vyshnavi, Tarishi Geetey
+-->
 <div class="customer-page">
   <mat-card >
     <mat-card-title style="text-align:center;">Registration Step-1</mat-card-title>
@@ -74,7 +77,6 @@
             <mat-form-field>
               <input matInput [(ngModel)]="customer.cust_address"
           name="cust_address"
-          pattern="[A-Za-z]{3,}"
           #cust_address="ngModel"
           placeholder="Enter Address(e.g.,name name)" required>
               <mat-error *ngIf="cust_address.invalid">

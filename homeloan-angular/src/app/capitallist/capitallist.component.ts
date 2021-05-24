@@ -1,5 +1,5 @@
 /**
- * @author Satya
+ * @author Satya Sri
  * @description Capital Display 
  */
 

@@ -1,3 +1,8 @@
+<!--
+  @author Satya Sri, Vyshnavi
+-->
+
+
 <div class="capital-page">
   <mat-card class="mat-elevation-z12">
     <mat-card-title style="text-align:center;">Registration Step-2</mat-card-title>
@@ -7,7 +12,7 @@
         <mat-card-content>
           <form (ngSubmit)="addCapital()" #addfrm="ngForm">
             <mat-form-field>
-              <input matInput name="property_name" placeholder="property Name" #property_name="ngModel"
+              <input matInput name="property_name" placeholder="Property Name" #property_name="ngModel"
                 [(ngModel)]="capital.property_name" pattern="[A-Za-z]{3,}" required>
               <mat-error *ngIf="property_name.dirty &&property_name.invalid">
                 Property Name is required
@@ -15,7 +20,7 @@
 
             </mat-form-field>
             <mat-form-field>
-              <input matInput name="property_value" placeholder="property value" #property_value="ngModel"
+              <input matInput name="property_value" placeholder="Property Value" #property_value="ngModel"
                 [(ngModel)]="capital.property_value" pattern="[0-9]{5,}" required>
               <mat-error *ngIf="property_value.invalid">
                 Property Value is required
@@ -25,7 +30,7 @@
             
             
             <mat-form-field>
-              <input matInput name="location" placeholder="property location(e.g.,cityname only)" #location="ngModel"
+              <input matInput name="location" placeholder="Property Location(e.g.,City Name only)" #location="ngModel"
                 [(ngModel)]="capital.location" pattern="[A-Za-z]{3,}" required>
               <mat-error *ngIf="location.invalid">
                 Location is required
@@ -33,7 +38,7 @@
 
             </mat-form-field>
             <mat-form-field>
-              <input matInput name="monthly_income" placeholder="monthly_income" #monthly_income="ngModel"
+              <input matInput name="monthly_income" placeholder="Monthly Income" #monthly_income="ngModel"
                 [(ngModel)]="capital.monthly_income" pattern="[0-9]{3,}" required>
               <mat-error *ngIf="monthly_income.invalid">
                 Monthly Income is required
@@ -41,7 +46,7 @@
 
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
-              Save
+              Next
             </button>
           </form>
         </mat-card-content>

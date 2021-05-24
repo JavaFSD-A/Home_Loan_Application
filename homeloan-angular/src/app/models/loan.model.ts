@@ -1,3 +1,8 @@
+/*
+*
+* @author Vyshnavi
+*
+*/
 export class LoanModel{
     loan_id : number;
     loan_name : string;

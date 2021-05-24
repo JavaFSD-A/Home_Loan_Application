@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         console.log(this.service.authenticationService(this.auth.phone_no, this.auth.login_passwd));
+        
       }
     });
    
