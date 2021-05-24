@@ -1,14 +1,12 @@
 /** 
- * @author raj, Tarishi Geetey
+ * @author Rajarshi, Tarishi Geetey
  */
 
 package com.yourcastle.homeloan.rest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.yourcastle.homeloan.entity.Mail;
+
 import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Customer;
@@ -41,24 +38,29 @@ public class AdminController {
 	@Autowired 
 	private MailServiceImpl mailservice;
 	
+	////////////////////////////// ADMIN ///////////////////////////////////////////////////////////////////
+	
 	@PostMapping(value = "/addAdmin", consumes = "application/json") // not required
 	public String addAdmin(@RequestBody Admin admin) {
-		int aid = service.addAdmin(admin);
+		service.addAdmin(admin);
 		return "successfully added";
 	}
 	
-	//////////////////////// CUSTOMER ACCESS ///////////////////////////////////////
+	///////////////////////////////////// CUSTOMER ACCESS //////////////////////////////////////////////////
 	
 	@GetMapping(value = "/getCustomer/{cust_id}", produces = "application/json")
-	public Customer getCustomerbyId(@PathVariable("cust_id") int cust_id) 
+	public ResponseEntity<?> getCustomerbyId(@PathVariable("cust_id") int cust_id) 
 	{
 		Customer customer=null;
 		try {
 			customer=service.getCustomerbyId(cust_id);
+			if(customer != null)
+				return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+			return new ResponseEntity<String>("No Cusrtomer found with ID: " + cust_id, HttpStatus.OK);
 		} catch (CustomerNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer Not found With Id: " + cust_id);
+			return new ResponseEntity<String>("No Cusrtomer found with ID: " + cust_id, HttpStatus.OK);
 		}
-		return customer;
+		
 	}
 	
 	@GetMapping(value = "/getCustomerAll", produces = "application/json")
@@ -72,7 +74,7 @@ public class AdminController {
 	//////////////////////////////// UPDATES AND PERMISSIONS /////////////////////////////////////////
 	
 	@GetMapping(value = "/updateStatus/{custId}")
-	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id, HttpSession session){
+	public ResponseEntity<?> updateLoanStatus(@PathVariable("custId") int cust_id){
 		boolean status;
 		String email;
 		try {
@@ -89,7 +91,7 @@ public class AdminController {
 		}   
 			} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
-			return new ResponseEntity<String>("Not Applied For Loan", HttpStatus.OK);
+			throw new  ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 		
 	}
@@ -107,7 +109,7 @@ public class AdminController {
 		}   
 			
 			} catch (CustomerNotFoundException | NotAppliedForLoan e) {
-				return new ResponseEntity<String>("Not Applied For Loan or Foreclouser or Status already Updated", HttpStatus.OK);
+				return new ResponseEntity<String>("Already Updated!! / Customer not applied for foreclousre", HttpStatus.OK);
 		}
 		
 	}
@@ -116,20 +118,18 @@ public class AdminController {
 	////////////////////////////////// LOGIN //////////////////////////////////////////////////////
 	
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
-	  public ResponseEntity<?> authenticate(@RequestBody Login login, HttpSession session){
+	  public ResponseEntity<?> authenticate(@RequestBody Login login){
 		    Admin admin = service.validate(login);
 		    if(admin != null) {
-		    	session.setAttribute("ADMIN", admin);
 			    return new ResponseEntity<Admin>(admin, HttpStatus.OK);
 			}
 		    else
-		    	return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
+		    	return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.OK);
 		
 		}
 		
 		@GetMapping("/logout")
-		public String logout(HttpSession session) {
-			session.invalidate(); //destroy session
+		public String logout() {
 			return "Logout successfull";
 		}
 	

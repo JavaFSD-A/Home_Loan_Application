@@ -1,5 +1,5 @@
 /*
-   @author raj
+   @author Rajarshi, Tarishi Geetey
  */
 package com.yourcastle.homeloan.service;
 
@@ -14,12 +14,11 @@ import com.yourcastle.homeloan.bean.Login;
 import com.yourcastle.homeloan.entity.Admin;
 import com.yourcastle.homeloan.entity.Customer;
 import com.yourcastle.homeloan.entity.Loan;
-import com.yourcastle.homeloan.entity.Mail;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
 import com.yourcastle.homeloan.exception.NotAppliedForLoan;
 import com.yourcastle.homeloan.repo.AdminRepository;
 import com.yourcastle.homeloan.repo.CustomerRepository;
-import com.yourcastle.homeloan.repo.LoanRepository;
+
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -30,9 +29,7 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private CustomerRepository cusrepo;
 
-	@Autowired
-	private LoanRepository loanrepo;
-	
+
 
 	@Override
 	public Customer getCustomerbyId(int cust_id) throws CustomerNotFoundException {
@@ -76,8 +73,9 @@ public class AdminServiceImpl implements AdminService {
 				l.setLoan_status("Foreclosure Accepted");
 				c.setForeclousre("Foreclosure Accepted");
 				cusrepo.save(c);
+				
 			// Assuming 5 year loan has been covered 
-			return String.format("%.2f",(l.getLoan_principal() * ((l.getLoan_tenure()-5)/12) * (l.getLoan_interest_rate()/12)));
+			return String.format("%.2f",(((l.getLoan_principal() * ((l.getLoan_tenure()-5)/12) * (l.getLoan_interest_rate()/12))/100)));
 			
 		}
 		throw new NotAppliedForLoan("No Loan exists under the customer ID : " + cust_id);

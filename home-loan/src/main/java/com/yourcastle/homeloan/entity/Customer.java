@@ -1,11 +1,11 @@
 /** 
- * @author tarishi geetey
+ * @author Tarishi Geetey
  */
 package com.yourcastle.homeloan.entity;
 
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +14,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.yourcastle.homeloan.bean.BCryptEncription;
 
@@ -36,11 +34,11 @@ public class Customer {
 	private LocalDate cust_dob;
 	@Column(length = 25)
 	private String cust_email;
-	@Column(name = "phone_no", length = 10, unique = true)
+	@Column(name = "phone_no", length = 30, unique = true)
 	private String phoneNo;
 	@Column(length = 20)
 	private String passwd;
-	@Column(length = 40)         // respecting gender fluidity
+	@Column(length = 30)         // respecting gender fluidity
 	private String cust_gender;
 	@Column(length = 40)
 	private String cust_address;
@@ -61,14 +59,9 @@ public class Customer {
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Capital cust_capital;
 	
-	@JsonManagedReference   // corrected
+	@JsonManagedReference 
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private AuthDocument cust_auth_document;
-	
-	@JsonBackReference
-	@OneToOne
-	@JoinColumn(name = "admin_id")
-	private Admin admin;
 	
 	public Customer() {
 	
@@ -94,7 +87,6 @@ public class Customer {
 		this.cust_loan = cust_loan;
 		this.cust_capital = cust_capital;
 		this.cust_auth_document = cust_auth_document;
-		this.admin = admin;
 	}
 
 	public String getState() {
@@ -212,19 +204,6 @@ public class Customer {
 	public void setCust_auth_document(AuthDocument cust_auth_document) {
 		this.cust_auth_document = cust_auth_document;
 	}
-
-
-
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
 
 
 	public String getForeclousre() {

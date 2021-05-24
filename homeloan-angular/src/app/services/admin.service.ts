@@ -39,7 +39,7 @@ export class AdminService {
         phone_no: phoneNo,
         login_passwd: passwd
       })
-      .pipe(retry(1))
+      .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
 
