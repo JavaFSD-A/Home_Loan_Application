@@ -85,14 +85,11 @@ export class AdminService {
           .toPromise();
       }
    /**
-   *  GET /logout
    * @description Logout call
    */
 
     logout() {
       localStorage.removeItem('admin');
-      this.route.navigate(['login']);
-      this.http.get(this.baseUri + '/logout');
     }
 
      /**

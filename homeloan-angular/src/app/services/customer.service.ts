@@ -169,13 +169,11 @@ export class CustomerService {
 }
 
   /**
-   *  GET /customer/logout
    * @description Logout call
    */
 
   logout() {
     localStorage.removeItem('customer');
-    this.http.get<string>(this.baseUri + '/logout')
   }
 
   /**
