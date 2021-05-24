@@ -130,7 +130,7 @@ public class CustomerServiceImpl implements CustomerService{
 	public boolean foreclousreRequest(int cust_id, int flag) {
 		Customer customer = custrepo.findById(cust_id).get();
 		System.out.println(customer.getCust_loan().getLoan_status());
-		if(flag == 1 && customer.getCust_loan().getLoan_status().equals("Accepted")) {
+		if(flag == 1 && customer.getCust_loan().getLoan_status().equals("Accepted") && customer.getCust_loan().getLoan_tenure() > 5) {
 			System.out.println(customer.getCust_loan());
 			customer.setForeclousre("Requested");
 			custrepo.save(customer);
