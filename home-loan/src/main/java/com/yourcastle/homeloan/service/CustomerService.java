@@ -15,7 +15,7 @@ import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
-import com.yourcastle.homeloan.exception.DocumentNotFoundException;
+
 
 public interface CustomerService {
 

@@ -16,14 +16,12 @@ mat-card {
   width: 30%;
   margin: 10% auto;
   border-radius: 8px;
-  color : grey;
 }
 
 mat-form-field, mat-checkbox {
   width: 80%;
   display: block;
   margin: auto;
-   color:violet;
 }
 mat-card-content {
   margin-top: 2px;

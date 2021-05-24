@@ -40,7 +40,7 @@ export class CustomerService {
         phone_no: phoneNo,
         login_passwd: passwd
       })
-      .pipe(retry(1))
+      .pipe(retry(1), catchError(this.handleError))
       .toPromise();
   }
 
@@ -192,9 +192,12 @@ export class CustomerService {
       errorMessage = `Error: ${error.error.text}`;
     } else {
       // server-side error
-      errorMessage = `\nMessage: ${error.error.text}`;
+      errorMessage = `${error.error.text}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
+
 }
+
+

@@ -2,7 +2,7 @@
 <div class="cal-page">
   <mat-card class="mat-elevation-z12">
 <mat-tab-group>
-  <mat-tab label="Fixed Emi">
+  <mat-tab label="Fixed EMI">
     <form  (ngSubmit)="fixedEmi()" #addfrm="ngForm">
       
       <mat-form-field>
@@ -46,13 +46,14 @@
       </button>
       <div class="cal">
           <br>
-          <h2 >Calculated Emi</h2>
-          <h1>{{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
+          <h2>Calculated EMI</h2>
+
+          <h1>₹.{{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
       </div>
       </form>
   </mat-tab>
 
-  <mat-tab label="MaxGain Emi">
+  <mat-tab label="MaxGain EMI">
     <form  (ngSubmit)="reducingEmi()" #emiform="ngForm">
       <mat-form-field>
         <input matInput  [(ngModel)]="emiCal.principle_amt"
@@ -95,8 +96,8 @@
       </button>
       <div class="cal">
           <br>
-          <h2 >Calculated Emi</h2>
-          <h1>{{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
+          <h2 >Calculated EMI</h2>
+          <h1>₹. {{emiCal.emi_to_pay | number: '1.1-3'}}</h1>
       </div>
     </form>
   </mat-tab>

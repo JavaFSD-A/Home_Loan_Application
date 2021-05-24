@@ -25,7 +25,7 @@ public class Admin {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idseq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int admin_id;
 	@Column(length = 30, unique = true)
 	private String adminName;
@@ -33,10 +33,11 @@ public class Admin {
 	private String email;
 	@Column(name = "phone_no", length = 10, unique = true)
 	private String phoneNo;
+	@Column(length = 30)
 	private String passwd;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy ="admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Customer> cust_details=new ArrayList<Customer>();
 	
 	public Admin() {

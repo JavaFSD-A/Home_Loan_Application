@@ -1,10 +1,8 @@
 /** 
- * @author tarishi geetey, Anju, Satya, Vyshu
+ * @author Tarishi Geetey, Anju, Satya, Vyshu
  */
 
 package com.yourcastle.homeloan.rest;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,7 +24,6 @@ import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 import com.yourcastle.homeloan.exception.CustomerAlreadyExists;
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
-import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.service.CustomerService;
 
 @CrossOrigin
@@ -38,7 +34,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 
-	/////////////////////////////////////// CUSTOMER /////////////////////////////////////// //////////////////////////////////////////////////
+	/////////////////////////////////////// CUSTOMER /////////////////////////////////////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addCustomer(@RequestBody Customer cust) {
@@ -51,7 +47,7 @@ public class CustomerController {
 	}
 
 	@GetMapping(value = "/get/{cust_id}", produces = "application/json")
-	public ResponseEntity<?> getCustomer(@PathVariable(value = "cust_id") int cust_id, HttpSession session) {
+	public ResponseEntity<?> getCustomer(@PathVariable(value = "cust_id") int cust_id) {
 		Customer cust = null;
 		try {
 			cust = service.getCustomer(cust_id);
@@ -72,15 +68,14 @@ public class CustomerController {
 		
 			} catch (CustomerNotFoundException e) {
 				// TODO Auto-generated catch block
-				return new ResponseEntity<String>("Not Applied For Loan / Already Requested", HttpStatus.OK);
+				return new ResponseEntity<String>("No Loan Assigned Can't Request/ Tenure is less than 5 years /Request already Submitted!!", HttpStatus.OK);
 			}
 	}
 
-	///////////////////////////////////// AUTHDOCUMENT ///////////////////////////////////// ////////////////////////////////////////////////////
+	///////////////////////////////////// AUTHDOCUMENT /////////////////////////////////////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/addAuthDocument/{custId}", consumes = "application/json")
-	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId,
-			HttpSession session) {
+	public ResponseEntity<?> addAuthDocument(@RequestBody AuthDocument ath, @PathVariable int custId) {
 		int authId;
 		authId = service.addAuthDocument(ath, custId);
 		return new ResponseEntity<String>("New Document added with Customer ID " + authId, HttpStatus.OK);
@@ -88,7 +83,7 @@ public class CustomerController {
 	}
 
 	@GetMapping(value = "/getAuthDocument/{cust_id}", produces = "application/json")
-	public ResponseEntity<?> getAuthDocument(@PathVariable("cust_id") int cust_id, HttpSession session) {
+	public ResponseEntity<?> getAuthDocument(@PathVariable("cust_id") int cust_id) {
 		
 
 		try {
@@ -101,17 +96,17 @@ public class CustomerController {
 		}
 	}
 
-	///////////////////////////////////////// CAPITAL ///////////////////////////////////////// //////////////////////////////////////////////////////
+	///////////////////////////////////////// PROPERTY AND INCOME //////////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/addCapital/{custId}", consumes = "application/json")
-	public ResponseEntity<?> addCapital(@RequestBody Capital cap, @PathVariable int custId, HttpSession session) {
+	public ResponseEntity<?> addCapital(@RequestBody Capital cap, @PathVariable int custId) {
 		int capId;
 		capId = service.addCapital(cap, custId);
 		return new ResponseEntity<String>("New Capital document added with Customer ID " + capId, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/getCapital/{cust_id}", produces = "application/json")
-	public ResponseEntity<?> getAllCapital(@PathVariable("cust_id") int cust_id, HttpSession session)
+	public ResponseEntity<?> getAllCapital(@PathVariable("cust_id") int cust_id)
 			throws CapitalNotFoundException {
 		Capital cap = null;
 		cap = service.getCapital(cust_id);
@@ -119,10 +114,10 @@ public class CustomerController {
 
 	}
 
-	///////////////////////////////// LOAN ///////////////////////////////// //////////////////////////////////////////////////////////
+	///////////////////////////////// LOAN /////////////////////////////////////////////////////////////////////
 
 	@PostMapping(value = "/addLoan/{cust_id}", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id, HttpSession session) {
+	public ResponseEntity<?> addLoan(@RequestBody Loan loan, @PathVariable int cust_id) {
 		int loanId;
 		loanId = service.addLoan(loan, cust_id);
 		return new ResponseEntity<String>("New Loan added with with CustomerId: " + loanId, HttpStatus.OK);
@@ -130,25 +125,23 @@ public class CustomerController {
 	}
 
 	@GetMapping(value = "/getLoan/{cust_id}", produces = "application/json")
-	public ResponseEntity<?> getLoan(@PathVariable("cust_id") int cust_id, HttpSession session) {
+	public ResponseEntity<?> getLoan(@PathVariable("cust_id") int cust_id) {
 		return new ResponseEntity<Loan>(service.getLoan(cust_id), HttpStatus.OK);
 	}
 
-	////////////////////////////////// LOGIN/LOGOUT ////////////////////////////////// //////////////////////////////////////////////////////////
+	////////////////////////////////////// LOGIN/LOGOUT ///////////////////////////////////////////////////////
 
 	@PostMapping(value = "/auth", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> authenticate(@RequestBody Login login) {
 		Customer customer = service.validate(login);
 		if (customer != null) {
-			// System.out.println("ok");
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} else
-			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.OK);
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout() {
 		return "Logout successfull";
 	}
 

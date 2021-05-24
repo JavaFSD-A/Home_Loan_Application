@@ -10,21 +10,20 @@ import com.yourcastle.homeloan.bean.EmiCalculator;
 public class CalculatorServiceImpl implements CalculatorService {
 
 	
-	static final int MINAGE = 23;
+	static final int MINAGE = 21;
 	static final int MAXAGE = 62;
 	static final int TENURE = 30;
 	static final double MINSALARY = 25000;
-	static final double FOIR = 18;
+	static final double FOIR = 0.5;
 	
 	@Override
 	public EligiblityCalculator checkEligiblity(EligiblityCalculator eligiblity) {
 		double emi = 0;
 		if(eligiblity.getAge() >= MINAGE && eligiblity.getAge() <= MAXAGE && eligiblity.getIncome_per_mth()>=MINSALARY && eligiblity.getTenure_yr() <= TENURE)
 			{
-			emi = (eligiblity.getIncome_per_mth() * FOIR);
+			emi = (eligiblity.getTenure_yr() * 12 * eligiblity.getIncome_per_mth() * FOIR);
 			eligiblity.setEligiblity("Eligible");
-			eligiblity.setCalculatedMaxVal(emi);
-			//System.out.println(eligiblity.getCalculatedMaxVal());		
+			eligiblity.setCalculatedMaxVal(emi);	
 			}
 		else {
 			eligiblity.setEligiblity("Not Eligible");
@@ -40,7 +39,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 		double rate = emi.getIntrest_rate();
 		int tenure = emi.getTenure();
 		double r = (rate/1200);
-	    emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
+	    emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure*12))/(Math.pow(r+1, tenure*12)-1));
 	  return emi;
 	}
 	
@@ -51,8 +50,8 @@ public class CalculatorServiceImpl implements CalculatorService {
 		double principle = emi.getPrinciple_amt();
 		double rate = emi.getIntrest_rate();
 		int tenure = emi.getTenure();
-		double r = ((rate-0.5)/1200);
-	  emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure))/(Math.pow(r+1, tenure)-1));
+		double r = ((rate-2)/1200);
+		emi.setEmi_to_pay((principle * r * Math.pow(r+1, tenure*12))/(Math.pow(r+1, tenure*12)-1));
 	  return emi;
 	}
 

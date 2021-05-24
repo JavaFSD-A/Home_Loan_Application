@@ -1,5 +1,5 @@
 /** 
- * @author tarishi geetey, Anju, Satya
+ * @author Tarishi Geetey, Anju, Satya
  */
 
 package com.yourcastle.homeloan.service;
@@ -20,7 +20,6 @@ import com.yourcastle.homeloan.entity.Loan;
 import com.yourcastle.homeloan.exception.CapitalNotFoundException;
 
 import com.yourcastle.homeloan.exception.CustomerNotFoundException;
-import com.yourcastle.homeloan.exception.DocumentNotFoundException;
 import com.yourcastle.homeloan.repo.AuthDocumentRepository;
 import com.yourcastle.homeloan.repo.CapitalRepository;
 import com.yourcastle.homeloan.repo.CustomerRepository;
@@ -30,7 +29,7 @@ import com.yourcastle.homeloan.repo.LoanRepository;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 	
-	static final double FOIR = 18;
+	static final double FOIR = 0.5;
 	
 	@Autowired
 	private CustomerRepository custrepo;
@@ -100,7 +99,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = custrepo.findById(cust_id).get();
 		customer.setCust_loan(loan);
 		loan.setCustomer(customer);
-		loan.setLoan_emi(customer.getCust_capital().getMonthly_income() * FOIR);
+		loan.setLoan_emi(customer.getCust_capital().getMonthly_income() * loan.getLoan_tenure() * 12 * FOIR);
 		loan.setLoan_status("Applied");
 		loanrepo.save(loan);
 		return loan.getLoan_id();
@@ -129,9 +128,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public boolean foreclousreRequest(int cust_id, int flag) {
 		Customer customer = custrepo.findById(cust_id).get();
-		System.out.println(customer.getCust_loan().getLoan_status());
 		if(flag == 1 && customer.getCust_loan().getLoan_status().equals("Accepted") && customer.getCust_loan().getLoan_tenure() > 5) {
-			System.out.println(customer.getCust_loan());
 			customer.setForeclousre("Requested");
 			custrepo.save(customer);
 		    return true;
