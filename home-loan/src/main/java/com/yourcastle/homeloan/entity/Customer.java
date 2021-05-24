@@ -63,6 +63,9 @@ public class Customer {
 	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private AuthDocument cust_auth_document;
 	
+	@OneToOne
+	private Admin admin;
+	
 	public Customer() {
 	
 	}

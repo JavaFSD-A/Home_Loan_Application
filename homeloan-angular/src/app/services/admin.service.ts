@@ -124,7 +124,7 @@ export class AdminService {
         errorMessage = `Error: ${error.error.text}`;
       } else {
         // server-side error
-        errorMessage = `Message: ${error.error.text}`;
+        errorMessage = `${error.error.text}`;
       }
       window.alert(errorMessage);
       return throwError(errorMessage);

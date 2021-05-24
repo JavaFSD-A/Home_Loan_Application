@@ -29,7 +29,7 @@ import com.yourcastle.homeloan.repo.LoanRepository;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 	
-	static final double FOIR = 18;
+	static final double FOIR = 0.5;
 	
 	@Autowired
 	private CustomerRepository custrepo;
@@ -99,7 +99,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = custrepo.findById(cust_id).get();
 		customer.setCust_loan(loan);
 		loan.setCustomer(customer);
-		loan.setLoan_emi(customer.getCust_capital().getMonthly_income() * FOIR);
+		loan.setLoan_emi(customer.getCust_capital().getMonthly_income() * loan.getLoan_tenure() * 12 * FOIR);
 		loan.setLoan_status("Applied");
 		loanrepo.save(loan);
 		return loan.getLoan_id();

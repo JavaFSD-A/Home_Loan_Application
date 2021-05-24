@@ -81,12 +81,12 @@ public class AdminController {
 			status = service.updatecustomerLoanStatus(cust_id);
 			if(status == true) {
 				email = service.acceptLoanRequest(cust_id);
-				mailservice.sendEmail(email,"Your Request is Accepted");
+				mailservice.sendEmail(email,"Congratulations!! Your Loan is Approved.");
 				return new ResponseEntity<String>("Accepted..Mail sent!!", HttpStatus.OK);
 			}
 			else {
 				email = service.rejecectLoanRequest(cust_id);
-				mailservice.sendEmail(email,"Sorry! Your Request is Rejected");
+				mailservice.sendEmail(email,"Sorry! Your Loan is Not Approved");
 			return new ResponseEntity<String>("Rejected..Mail sent!!", HttpStatus.OK);
 		}   
 			} catch (CustomerNotFoundException e) {
@@ -102,7 +102,7 @@ public class AdminController {
 		try {
 			forclousre_amt = service.foreclouserResponse(cust_id);
 			if(forclousre_amt != null) {
-				return new ResponseEntity<String>("Accepted: Foreclouser Amount Need to pay : Rs." + forclousre_amt, HttpStatus.OK);
+				return new ResponseEntity<String>("Accepted Foreclouser" + forclousre_amt, HttpStatus.OK);
 			}
 			else {
 			return new ResponseEntity<String>("Pending", HttpStatus.OK);

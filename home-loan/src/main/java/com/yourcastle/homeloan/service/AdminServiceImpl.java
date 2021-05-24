@@ -48,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
 		Customer c = cusrepo.findById(cust_id).get();
 		Loan l = c.getCust_loan();
 		int age = Period.between(c.getCust_dob(), LocalDate.now()).getYears();
-		if (l.getLoan_tenure() <= 30 && c.getCust_capital().getMonthly_income() >= 25000 && age >= 23 && age <= 62)
+		if (l.getLoan_tenure() <= 30 && c.getCust_capital().getMonthly_income() >= 25000 && age >= 21 && age <= 62 && l.getLoan_principal() <= l.getLoan_emi() )
 			return true;
 		else
 			return false;

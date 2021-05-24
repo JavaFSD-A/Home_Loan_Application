@@ -96,8 +96,8 @@
                 </tr>
           
                 <tr class="table-info">
-                  <td>Calculated EMI</td>
-                  <td>{{ customer.cust_loan.loan_emi | number: '1.1-3'}}</td>
+                  <td>Eligibility Loan Amount</td>
+                  <td>₹. {{ customer.cust_loan.loan_emi | number: '1.1-3'}}</td>
                 </tr>
                 <tr class="table-warning">
                 <th>Property and Income Details</th>
@@ -148,7 +148,7 @@
                     </tr>
             </table>
             <div class="container">
-              <button mat-raised-button color="primary" (click)="updateLoanStatus(id.value)">Update Loan</button>
+              <button mat-raised-button color="primary" (click)="updateLoanStatus(id.value)">Auto-Update Loan Status</button>
             <br><br>
             </div>
           </div>

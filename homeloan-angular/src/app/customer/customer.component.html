@@ -74,9 +74,8 @@
             <mat-form-field>
               <input matInput [(ngModel)]="customer.cust_address"
           name="cust_address"
-          pattern="[A-Za-z]{3,}"
           #cust_address="ngModel"
-          placeholder="Enter Address(e.g.,name name)" required>
+          placeholder="Enter Address" required>
               <mat-error *ngIf="cust_address.invalid">
                 Address is required
               </mat-error>
@@ -118,6 +117,8 @@
             </mat-form-field><mat-form-field>
               <input matInput type="password" [(ngModel)]="customer.passwd"
           name="passwd"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"
           #passwd="ngModel"
           placeholder="Enter password " required>
               <mat-error *ngIf="passwd.invalid">

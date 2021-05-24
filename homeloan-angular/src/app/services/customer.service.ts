@@ -192,7 +192,7 @@ export class CustomerService {
       errorMessage = `Error: ${error.error.text}`;
     } else {
       // server-side error
-      errorMessage = `\nMessage: ${error.error.text}`;
+      errorMessage = `${error.error.text}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
