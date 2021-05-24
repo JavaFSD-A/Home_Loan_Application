@@ -80,12 +80,12 @@ public class AdminController {
 			if(status == true) {
 				email = service.acceptLoanRequest(cust_id);
 				mailservice.sendEmail(email,"Your Request is Accepted");
-				return new ResponseEntity<String>("Accepted", HttpStatus.OK);
+				return new ResponseEntity<String>("Accepted..Mail sent!!", HttpStatus.OK);
 			}
 			else {
 				email = service.rejecectLoanRequest(cust_id);
 				mailservice.sendEmail(email,"Sorry! Your Request is Rejected");
-			return new ResponseEntity<String>("Rejected", HttpStatus.OK);
+			return new ResponseEntity<String>("Rejected..Mail sent!!", HttpStatus.OK);
 		}   
 			} catch (CustomerNotFoundException e) {
 			// TODO Auto-generated catch block
