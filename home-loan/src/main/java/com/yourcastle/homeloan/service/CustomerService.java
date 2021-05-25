@@ -41,7 +41,7 @@ public interface CustomerService {
 	
 	Customer getByPhoneNo(String phoneNo);
 	
-	boolean foreclousreRequest(int cust_id, int flag) throws CustomerNotFoundException;
+	boolean foreclousreRequest(int cust_id, int flag);
 
 	
 }
