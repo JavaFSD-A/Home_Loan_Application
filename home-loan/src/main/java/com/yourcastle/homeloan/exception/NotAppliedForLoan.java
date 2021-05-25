@@ -1,4 +1,6 @@
-package com.yourcastle.homeloan.exception;
+/**
+ * @author S SatyaSri
+ */package com.yourcastle.homeloan.exception;
 
 public class NotAppliedForLoan extends Exception{
 

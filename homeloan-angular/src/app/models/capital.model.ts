@@ -1,3 +1,6 @@
+/*
+@author S SatyaSri
+*/
 export class CapitalModel {
   cap_id: number;
   property_name: string;

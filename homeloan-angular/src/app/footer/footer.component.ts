@@ -1,3 +1,7 @@
+/**
+ * @author Tarishi G.
+ * @description Footer
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

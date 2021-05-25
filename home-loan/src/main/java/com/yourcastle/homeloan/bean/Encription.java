@@ -1,3 +1,7 @@
+/**
+ * @author Tarishi G.
+ */
+
 package com.yourcastle.homeloan.bean;
 
 import java.util.Base64;

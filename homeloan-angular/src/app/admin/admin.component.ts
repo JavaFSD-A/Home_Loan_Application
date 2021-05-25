@@ -1,6 +1,9 @@
+/**
+ * @autor Tarishi G.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminModel } from '../admin.model';
 import { CustomerModel } from '../models/customer.model';
 import { AdminService } from '../services/admin.service';
 

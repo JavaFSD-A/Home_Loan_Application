@@ -1,3 +1,8 @@
+/**
+ * @author Tarishi G.
+ * @description Eligibility Calculator
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { CalculatorModel } from '../models/eligiblityCal.model';
 import { CalculatorService } from '../services/calculator.service';

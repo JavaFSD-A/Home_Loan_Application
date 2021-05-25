@@ -1,5 +1,5 @@
 /*
-   @author Tarishi Geetey, Rajarshi
+   @author Tarishi G., Rajarshi
  */
 package com.yourcastle.homeloan.entity;
 

@@ -1,3 +1,7 @@
+/*
+@author  Tarishi G.
+*/
+
 export class EmiCalculatorModel {
       intrest_rate: number; 
 	  tenure: number;

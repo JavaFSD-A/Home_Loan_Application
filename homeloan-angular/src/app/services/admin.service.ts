@@ -3,9 +3,6 @@
  * @description Admin Services
  */
 
-
-
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -73,8 +70,7 @@ export class AdminService {
 
      /**
    * Post /updateLoanstatus/{cust_id}
-   * @param
-   * @returns
+   * @param cust_id : Customer Id
    * @description display collection of customer
    */
 

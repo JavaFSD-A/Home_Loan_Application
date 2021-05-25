@@ -1,3 +1,6 @@
+/*
+@author  Tarishi G.
+*/
 export class CalculatorModel{
     age : number;
     tenure_yr : number;

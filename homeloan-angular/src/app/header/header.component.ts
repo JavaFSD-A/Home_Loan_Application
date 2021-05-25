@@ -1,3 +1,6 @@
+/**
+  @author S Satya Sri,P Vyshnavi, Tarishi Geetey
+*/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../services/customer.service';
