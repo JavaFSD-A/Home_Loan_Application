@@ -1,5 +1,5 @@
 /** 
- * @author Tarishi Geetey
+ * @author Tarishi G., Rajarshi
  */
 
 package com.yourcastle.homeloan.rest;
@@ -50,7 +50,7 @@ public class AdminController {
 				return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 			return new ResponseEntity<String>("No Cusrtomer found with ID: " + cust_id, HttpStatus.OK);
 		} catch (CustomerNotFoundException e) {
-			return new ResponseEntity<String>("No Cusrtomer found with ID: " + cust_id, HttpStatus.OK);
+			throw new  ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 		
 	}
@@ -94,14 +94,14 @@ public class AdminController {
 		try {
 			forclousre_amt = service.foreclouserResponse(cust_id);
 			if(forclousre_amt != null) {
-				return new ResponseEntity<String>("Accepted Foreclouser" + forclousre_amt, HttpStatus.OK);
+				return new ResponseEntity<String>("Accepted Foreclousre with Foreclousre Amount : " + forclousre_amt, HttpStatus.OK);
 			}
 			else {
 			return new ResponseEntity<String>("Pending", HttpStatus.OK);
 		}   
 			
 			} catch (CustomerNotFoundException | NotAppliedForLoan e) {
-				return new ResponseEntity<String>("Already Updated!! / Customer not applied for foreclousre", HttpStatus.OK);
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 		
 	}
@@ -119,10 +119,6 @@ public class AdminController {
 		    	return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.OK);
 		
 		}
-		
-		@GetMapping("/logout")
-		public String logout() {
-			return "Logout successfull";
-		}
+	
 	
 }

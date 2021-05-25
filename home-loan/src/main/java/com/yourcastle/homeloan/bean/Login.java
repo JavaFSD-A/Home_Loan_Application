@@ -1,3 +1,7 @@
+/**
+ * @author Tarishi G.
+ */
+
 package com.yourcastle.homeloan.bean;
 
 public class Login {
@@ -36,7 +40,7 @@ public class Login {
 	}
 
 	public String getLogin_passwd() {
-		return BCryptEncription.passencoder(login_passwd);
+		return Encription.passencoder(login_passwd);
 	}
 
 	public void setLogin_passwd(String login_passwd) {

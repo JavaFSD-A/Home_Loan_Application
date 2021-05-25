@@ -1,3 +1,6 @@
+/*
+@author  Tarishi G.
+*/
 import { AuthdocModel } from "./authdoc.model";
 import { CapitalModel } from "./capital.model";
 import { LoanModel } from "./loan.model";

@@ -1,5 +1,5 @@
 /** 
- * @author Tarishi Geetey, Anju, Satya, Vyshu
+ * @author Tarishi G, Anju D. ,S SatyaSri,P Vyshnavi
  */
 
 package com.yourcastle.homeloan.rest;
@@ -42,7 +42,7 @@ public class CustomerController {
 			Customer customer= service.addCustomer(cust);
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} catch (CustomerAlreadyExists e) {
-			return new ResponseEntity<String>("Wrong Credentials , try again!!", HttpStatus.OK);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
 
@@ -60,16 +60,10 @@ public class CustomerController {
 	@GetMapping(value = "/applyForceclousre/{cust_id}")
 	public ResponseEntity<?> addForeclouser(@PathVariable("cust_id") int cust_id) {
 		
-			try {
 				if(service.foreclousreRequest(cust_id, 1) == true) {
 					return new ResponseEntity<String>("Requested Forceclousre", HttpStatus.OK);
-			}
+				}
 			return new ResponseEntity<String>("No Loan Assigned Can't Request/ Tenure is less than 5 years /Request already Submitted!!", HttpStatus.OK);
-		
-			} catch (CustomerNotFoundException e) {
-				// TODO Auto-generated catch block
-				return new ResponseEntity<String>("No Loan Assigned Can't Request/ Tenure is less than 5 years /Request already Submitted!!", HttpStatus.OK);
-			}
 	}
 
 	///////////////////////////////////// AUTHDOCUMENT /////////////////////////////////////////////////////////////////////////////////////////
@@ -138,11 +132,6 @@ public class CustomerController {
 			return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>("Invalid User or Pasword", HttpStatus.OK);
-	}
-
-	@GetMapping("/logout")
-	public String logout() {
-		return "Logout successfull";
 	}
 
 }

@@ -1,6 +1,8 @@
+/**
+ * @author Tarishi G.
+ */
 package com.yourcastle.homeloan.bean;
 
-import javax.persistence.Id;
 
 public class EmiCalculator {
 

@@ -1,10 +1,12 @@
-/**
- * @author satya
+/*
+ * @author S SatyaSri
  */
 
 package com.yourcastle.homeloan.exception;
 
 public class DocumentNotFoundException extends Exception {
+
+	private static final long serialVersionUID = 1L;
 
 	public DocumentNotFoundException() {
 		super();

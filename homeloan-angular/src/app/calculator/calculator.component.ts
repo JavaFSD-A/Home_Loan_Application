@@ -1,3 +1,7 @@
+/**
+ * @author Tarishi G.
+ * @description Calculators
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

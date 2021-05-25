@@ -1,5 +1,5 @@
 /*
-   @author Rajarshi, Tarishi Geetey
+   @author Rajarshi, Tarishi G.
  */
 package com.yourcastle.homeloan.service;
 
@@ -31,6 +31,9 @@ public class AdminServiceImpl implements AdminService {
 
 
 
+	// Fetching Customer Details by Customer_ID
+	
+	
 	@Override
 	public Customer getCustomerbyId(int cust_id) throws CustomerNotFoundException {
 		Customer c = cusrepo.findById(cust_id)
@@ -38,11 +41,21 @@ public class AdminServiceImpl implements AdminService {
 		return c;
 	}
 
+	// Fetching All Customer Details
+	
 	@Override
 	public List<Customer> getAllCustomers() {
 		return cusrepo.findAll();
 	}
 
+	/**
+	 * Check Spectrum: 
+	 *  Tenure <= 30 years
+	 *  Monthly Income >= 25000
+	 *  Age between 21 and 62
+	 *  Loan Amount <= Calculated Max. Loan 
+	 */
+	
 	@Override
 	public boolean updatecustomerLoanStatus(int cust_id) throws CustomerNotFoundException {
 		Customer c = cusrepo.findById(cust_id).get();
@@ -53,11 +66,15 @@ public class AdminServiceImpl implements AdminService {
 		else
 			return false;
 	}
+	
+	// Validating Admin 
 
 	@Override
 	public Admin validate(Login login) {
 		return adminrepo.findByPhoneNoAndPasswd(login.getPhone_no(), login.getLogin_passwd());
 	}
+	
+	// Updating Foreclosure Status
 
 	@Override
 	public String foreclouserResponse(int cust_id) throws NotAppliedForLoan {
@@ -68,12 +85,18 @@ public class AdminServiceImpl implements AdminService {
 				c.setForeclousre("Foreclosure Accepted");
 				cusrepo.save(c);
 				
-			// Assuming 5 year loan has been covered 
-			return String.format("%.2f",(((l.getLoan_principal() * ((l.getLoan_tenure()-5)/12) * (l.getLoan_interest_rate()/12))/100)));
+			/**
+			 * Assuming 5 year loan has been covered  to apply for Foreclosure 
+			 * Foreclosure Amount = Principal * Tenure * Rate%
+			 */
+				
+			return String.format("%.2f", (((l.getLoan_principal() * ((l.getLoan_tenure()-5)/12) * (l.getLoan_interest_rate()/12))/100)));
 			
 		}
 		throw new NotAppliedForLoan("No Loan exists under the customer ID : " + cust_id);
 	}
+	
+	// Accepting Loan 
 
 	@Override
 	public String acceptLoanRequest(int cust_id) throws CustomerNotFoundException {
@@ -85,6 +108,8 @@ public class AdminServiceImpl implements AdminService {
 		String email = c.getCust_email();
 		return email;
 	}
+	
+	// Rejecting Loan
 
 	@Override
 	public String rejecectLoanRequest(int cust_id) throws CustomerNotFoundException {

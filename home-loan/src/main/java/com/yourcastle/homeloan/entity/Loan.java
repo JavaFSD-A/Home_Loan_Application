@@ -1,5 +1,5 @@
 /*
- * @author Vyshu
+ * @author P Vyshnavi
  */
 package com.yourcastle.homeloan.entity;
 

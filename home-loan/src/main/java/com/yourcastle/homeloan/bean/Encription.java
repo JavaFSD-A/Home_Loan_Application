@@ -1,10 +1,14 @@
+/**
+ * @author Tarishi G.
+ */
+
 package com.yourcastle.homeloan.bean;
 
 import java.util.Base64;
 import java.util.Base64.Encoder;
 
 
-public class BCryptEncription {
+public class Encription {
 
 static Encoder passwordEncoder = Base64.getEncoder();
 	

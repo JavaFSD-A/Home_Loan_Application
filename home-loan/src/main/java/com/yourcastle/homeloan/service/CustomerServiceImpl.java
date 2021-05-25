@@ -1,12 +1,8 @@
 /** 
- * @author Tarishi Geetey, Anju, Satya
+ * @author Tarishi Geetey,D Anju,S SatyaSri,P Vyshnavi
  */
 
 package com.yourcastle.homeloan.service;
-
-
-import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +39,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
     private LoanRepository loanrepo;
 
+	
+	// Adding Customer Personal Details
+	
 	@Override
 	public Customer addCustomer(Customer c){
 		    Customer cust = new Customer();
@@ -50,8 +49,19 @@ public class CustomerServiceImpl implements CustomerService{
 		    return cust;
 		
 	}
+	
 
+	// Fetching All Customer Details by Customer_ID
 
+	@Override
+	public Customer getCustomer(int cust_id) throws CustomerNotFoundException {
+		Customer cust = custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("No Customer found with Id : " + cust_id ));
+		return cust;
+	}
+	
+   
+	// Adding Customer Document Details
+	
 	@Override
 	public int addAuthDocument(AuthDocument ad,  int cust_id) {  
 		Customer cust = custrepo.findById(cust_id).get();
@@ -62,6 +72,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	}
 
+	// Fetching Document Details by Customer_ID
 
 	@Override
 	public AuthDocument getAllAuthDocument(int cust_id) throws CustomerNotFoundException {
@@ -69,6 +80,8 @@ public class CustomerServiceImpl implements CustomerService{
 		AuthDocument ad = customer.getCust_auth_document();
 		return ad;
 	}
+	
+	// Adding Customer Property and Income Details
 
 	@Override
 	public int addCapital(Capital cap,  int cust_id) {
@@ -79,12 +92,9 @@ public class CustomerServiceImpl implements CustomerService{
 		return cap.getCap_id();
 	
 	}
-
-	@Override
-	public Customer getCustomer(int cust_id) throws CustomerNotFoundException {
-		Customer cust = custrepo.findById(cust_id).orElseThrow(() -> new CustomerNotFoundException("No Customer found with Id : " + cust_id ));
-		return cust;
-	}
+	
+	
+	// Fetching Property And Income Details by Customer_ID
 	
 	@Override
 	public Capital getCapital(int cust_id) throws CapitalNotFoundException {
@@ -93,6 +103,8 @@ public class CustomerServiceImpl implements CustomerService{
 		return capital;
 	}
 
+	
+	// Adding Customer Loan Details
 
 	@Override
 	public int addLoan(Loan loan, int cust_id) {
@@ -105,6 +117,8 @@ public class CustomerServiceImpl implements CustomerService{
 		return loan.getLoan_id();
 	}
 
+	// Fetching Loan Details by Customer_ID
+	
 	@Override
 	public Loan getLoan(int cust_id) {
 		Customer customer = custrepo.findById(cust_id).get();
@@ -112,18 +126,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return loan;
 	}
 
-
-	@Override
-	public List<Customer> getAllCustomers() {
-		return custrepo.findAll();
-	}
-
-
-	@Override
-	public Customer getByPhoneNo(String phoneNo) {
-		return custrepo.findByPhoneNo(phoneNo);
-	}
-
+	// Requesting For Foreclosure
 
 	@Override
 	public boolean foreclousreRequest(int cust_id, int flag) {
@@ -136,6 +139,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return false;
 	}
 
+	// Validating Customer
 
 	@Override
 	public Customer validate(Login login) {

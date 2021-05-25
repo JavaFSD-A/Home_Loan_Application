@@ -1,6 +1,11 @@
+/*
+ * S SatyaSri
+ */
 package com.yourcastle.homeloan.exception;
 
 public class CapitalNotFoundException extends Exception {
+
+	private static final long serialVersionUID = 1L;
 
 	public CapitalNotFoundException() {
 		super();

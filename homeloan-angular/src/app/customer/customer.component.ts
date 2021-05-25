@@ -1,3 +1,8 @@
+/**
+ * @author Tarishi G.
+ * @description Personal Details Form
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../models/customer.model';

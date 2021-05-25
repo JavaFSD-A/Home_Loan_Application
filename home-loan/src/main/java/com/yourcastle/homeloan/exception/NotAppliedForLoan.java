@@ -1,7 +1,11 @@
-package com.yourcastle.homeloan.exception;
+/**
+ * @author S SatyaSri
+ */package com.yourcastle.homeloan.exception;
 
 public class NotAppliedForLoan extends Exception{
 
+	private static final long serialVersionUID = 1L;
+	
 	public NotAppliedForLoan() {
 		super();
 		// TODO Auto-generated constructor stub

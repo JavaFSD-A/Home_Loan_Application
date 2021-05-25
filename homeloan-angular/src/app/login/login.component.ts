@@ -1,3 +1,7 @@
+/** 
+@author  Tarishi G.
+@description Login component
+*/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminModel } from '../admin.model';

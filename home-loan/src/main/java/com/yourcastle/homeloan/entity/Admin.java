@@ -1,5 +1,5 @@
 /*
-   @author tarishi geetey , Raj
+   @author Tarishi G., Rajarshi
  */
 package com.yourcastle.homeloan.entity;
 
@@ -13,12 +13,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.yourcastle.homeloan.bean.BCryptEncription;
+import com.yourcastle.homeloan.bean.Encription;
 @Entity
 @Table(name="admin_table")
 public class Admin {
@@ -79,7 +78,7 @@ public class Admin {
 	}
 
 	public void setPasswd(String passwd) {
-		this.passwd = BCryptEncription.passencoder(passwd);
+		this.passwd = Encription.passencoder(passwd);
 	}
 
 	public List<Customer> getCust_details() {

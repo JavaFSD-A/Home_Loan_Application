@@ -1,3 +1,6 @@
+/*
+@author Anju D.
+*/
 export class AuthdocModel{
     auth_id : number;
     auth_aadhar : string;

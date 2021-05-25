@@ -1,5 +1,5 @@
 /** 
- * @author Tarishi Geetey
+ * @author Tarishi G.
  */
 
 package com.yourcastle.homeloan.repo;
@@ -11,7 +11,6 @@ import com.yourcastle.homeloan.entity.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 	Customer findByPhoneNoAndPasswd(String phoneNo, String passwd);
-	Customer findByPhoneNo(String phoneNo);
   
 }
 

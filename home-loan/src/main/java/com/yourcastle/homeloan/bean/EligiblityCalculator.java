@@ -1,7 +1,8 @@
+/**
+ * @author Tarishi G.
+ */
 package com.yourcastle.homeloan.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class EligiblityCalculator {
 	
@@ -11,12 +12,6 @@ public class EligiblityCalculator {
 	private double roi;
 	private String eligiblity;
 	private double calculatedMaxVal = 0;
-	
-	public EligiblityCalculator() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 	
 	public EligiblityCalculator(int age, int tenure_yr, double income_per_mth, double roi, String eligiblity,
 			double calculatedMaxVal) {

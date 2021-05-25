@@ -1,9 +1,11 @@
-/**
- * @author satya
+/*
+ * @author S SatyaSri
  */
 package com.yourcastle.homeloan.exception;
 
 public class InvalidFormatException extends Exception {
+
+	private static final long serialVersionUID = 1L;
 
 	public InvalidFormatException() {
 		super();

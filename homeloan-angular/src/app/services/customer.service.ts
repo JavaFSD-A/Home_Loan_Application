@@ -47,7 +47,7 @@ export class CustomerService {
   /**
    * POST /customer/
    * @param customer
-   * @abstract Adds new customer
+   * @description Adds new customer
    */
 
   async createCustomer(customer: CustomerModel) {
@@ -74,8 +74,8 @@ export class CustomerService {
   }
 
   /**
-   * @description Request Forclouser
-   * @returns 
+   * GET /applyForceclousre/
+   * @description Request Foreclosure
    */
 
   async requestForeclouser() {
@@ -169,13 +169,11 @@ export class CustomerService {
 }
 
   /**
-   *  GET /customer/logout
    * @description Logout call
    */
 
   logout() {
     localStorage.removeItem('customer');
-    this.http.get<string>(this.baseUri + '/logout')
   }
 
   /**
